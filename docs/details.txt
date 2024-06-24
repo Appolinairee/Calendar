@@ -1,0 +1,83 @@
+Calendrier générique
+
+Le calendrier générique fournira une vue globale des évènements qui constituent vos journées, semaines, mois et années.
+En passant un ensemble d'événements pour ce calendrier, il les positionne au bon endroit pour une vue agréable.
+
+- Vue Day
+Une journée est composée de 24h
+En faisant une section par 15min (avec un taux de précision à la minute), on dispose pour chaque heure de 4 unités.
+Soit au total 96
+
+L'espace est orienté d'un repère orthonormé (0, i, j)
+o    i
+j
+
+La vue Day pour la journée spécifiée va successivement:
+	 # chercher les events de la journée
+	 # trouver la position de chacune des events
+	 # render du contenu (html, css, js, mithri)
+	 # Gérer les chevauchements: Pour une journée, on fait les considérations suivantes:
+		- si un event A englobe un autre B, A reste en arrière plan et B surmonte dessus avec un border.
+		A et B n'auront pas la même abscisse de début (B sera décalé d'une poignée d'unité pour plus de visibilité)
+		- A chevauche avec B en une partie: Dans ce cas, on met en place un petit décalage sur l'abscisse comme précédemment. 
+	Un event occupera toute l'abscisse disponible
+	L'utilisateur pourra switcher d'une journée à une autre (il pourra choisir la journée voulue dans un calendrier à vu mois): Spécificité interface
+
+Les events couvrant plusieurs heures ou plusieurs jours pourront être affichées comme telle
+
+- Vue Month
+	Pour un mois donné, la vue month présentera toutes les journées d'un mois donné occupé par des événements.
+	D'un point de vue visuel, toutes les journées du mois seront afficher (le nombre de jour constituant le mois sera déterminé)
+	Chacune des journée présentera (en grid sur en miniature les events de la journée), une action de mouseover ou de onclick sur l'event pourra la faire agrandir) pour plus de détails).
+	Quand le nombre dépasse le maximum qu'on peut mettre dans la case jour, on fait un bouton + (more)
+	
+Il n'aura pas de chauve chaument à gérer dans ce cas. Les events couvrant plusieurs jours seront tout simplement répétés
+
+	#chercher les events du mois
+	# gérer le positionnement de chaque event dans une journée donnée ou prendre une journée et trouver les events qui y seront
+	# render du contenu (html, css, js, mithri)
+
+Pour implémenter les features de la vue mois, il faudrait se baser sur les méthodes utilisables dans la vue day ou week
+
+
+- Vue Week
+Utilise la vue jours de manière condensée sur 07 jours
+
+
+- Vue Year
+	Afficher l'ensemble des mois
+	à ce niveau, on présente tous les mois.
+On ne remettra pas de logique pour les années
+On appellera la vue month plusieurs fois, ce qui va principalment changer, c'est la logique d'affichage
+
+On présente les jours des mois comme de petits boutons, qui seront colorées en fonction du  nombre d'events qu'on y trouve. Un survol fera découvrir le nombre d'events et aussi peut être la liste
+
+
+
+
+
+Définir le format et les attributs possibles d'un event: 
+- title
+- description
+- start
+- end
+- color
+- onClick
+- onMouse
+
+Un event dont l'une des dates n'est pas entrée ne sera pas pris en compte
+
+
+
+
+
+Utils: 
+- gestion efficace des dates
+format d'une date, jours d'un mois, …
+
+
+Rechercher si on peut développer un calendar de dépendance avec React. 
+Penser à utiliser du typescript
+Voir utiliser Babel si c'est Mithri qui sera utilisé
+
+
