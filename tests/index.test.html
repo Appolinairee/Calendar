@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qunit@latest/qunit/qunit.css">
+
+    <title>Calendar Software Tests</title>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sinon@17.0.1/pkg/sinon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qunit@latest"></script>
+    
+    <script>
+        const { test, module } = QUnit;
+    </script>
+
+    <script src="../src/Day.js"></script>
+    <script src="day/findStartPosition.test.js"></script>
+    <!-- <script src="day/findDayEvents.test.js"></script> -->
+    
+    <script src="../utils/date.utils.js"></script>
+    <!-- <script src="./utils/date.utils.test.js"></script> -->
+</body>
+</html>

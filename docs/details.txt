@@ -81,3 +81,20 @@ Penser à utiliser du typescript
 Voir utiliser Babel si c'est Mithri qui sera utilisé
 
 
+
+
+
+
+
+Vue Day Spécifications
+
+Chaque événement est positionné horizontalement en fonction de son heure de début. Si plusieurs événements commencent à la même heure, ils seront alignés côte à côte sur la même abscisse.
+
+Les événements sont empilés verticalement sur une ligne. Chaque ligne peut contenir jusqu'à 6 événements maximum.
+Si un nouvel événement ne peut pas être placé sur la ligne actuelle en raison de l'espace limité (déjà occupé par d'autres événements), il sera marqué comme hidden.
+
+Lorsque deux événements se chevauchent partiellement, il n'y a pas de règle stricte pour leur alignement horizontal. Chaque événement conserve sa position en fonction de son heure de début, mais ils peuvent être positionnés côte à côte ou légèrement décalés en fonction de leur chevauchement.
+
+
+Les événements visibles sont ceux qui peuvent être entièrement affichés sur la vue Day sans chevauchement avec d'autres événements et sans dépasser le nombre maximum sur une ligne (6 événements).
+Les événements marqués comme hidden sont ceux qui ne peuvent pas être affichés directement sur la vue Day en raison de la saturation de la ligne ou du chevauchement avec d'autres événements. Ils sont inclus dans une section ou un bouton "voir plus" pour permettre aux utilisateurs de les consulter si nécessaire.
