@@ -1,0 +1,27 @@
+La date et l’heure font partie de nos vies quotidiennes et occupent donc une place importante dans la programmation informatique. En JavaScript, vous aurez éventuellement à créer un site Internet avec un calendrier, un programme de formation ou une interface de prise de rendez-vous. Ces applications doivent afficher des heures applicables en fonction de la zone horaire actuelle de l’utilisateur, ou effectuer des calculs sur les heures d’arrivée et de départ ou de démarrage et de fin. En outre, vous devrez utiliser JavaScript pour générer un rapport quotidien à un certain moment la journée ou appliquer un filtre pour obtenir les restaurants et les établissements actuellement ouverts.
+
+
+L’heure Epoch est également appelée notice nemo, représentée par la chaîne de date 01 janvier, 1970 00:00:00 Universal Time (UTC) et par la 0
+
+
+Pour un projet de calendrier générique utilisé dans plusieurs projets, il est recommandé d'adopter un schéma de gestion des dates qui soit cohérent, clair et facilement intégrable dans différents environnements.
+
+Utilisation de l'UTC
+
+Stockage et Transmission en UTC :
+On utilise toujours l'heure UTC (temps universel coordonné) pour stocker et transmettre les dates et heures. Cela évite les ambiguïtés liées aux fuseaux horaires et garantit une représentation cohérente des événements à travers différents contextes.
+
+Conversion Locale pour l'Affichage :
+On convertit les dates UTC en heures locales uniquement lors de l'affichage à l'utilisateur final. Cela permet de présenter les informations dans le fuseau horaire approprié sans altérer les données sous-jacentes.
+
+Format de Date et Heure
+Utilisation d'un Format ISO 8601 :
+On adopte le format ISO 8601 pour la représentation des dates et heures (par exemple, YYYY-MM-DDTHH:mm:ssZ). Ce format est largement reconnu, facilite l'interopérabilité entre systèmes et offre une clarté dans la lecture et la manipulation des dates.
+
+Gestion des Fuseaux Horaires
+
+Explicitation du Fuseau Horaire :
+Lorsque des événements sont créés ou modifiés, spécifiez toujours le fuseau horaire exact (UTC explicitement ou un fuseau horaire local connu) pour éviter les interprétations incorrectes des heures.
+
+Normalisation des Fuseaux Horaires :
+On normalise les fuseaux horaires pour tous les événements enregistrés. Assurez-vous que les opérations de conversion de fuseau horaire sont correctement gérées pour éviter les erreurs de calcul.

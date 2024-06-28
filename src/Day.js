@@ -11,6 +11,7 @@ class Day {
             this._events = props.events;
 
         this._dayEvents = [];
+        this.findDayEvents();
     }
 
     getEndOfDay(date) {
@@ -53,30 +54,35 @@ class Day {
 
 
     findEDayStartPosition(event) {
-        const { startDate } = event;
-        const startHour = startDate.getUTCHours();
-        const startMinutes = startDate.getUTCMinutes();
+        const isTodayEvent = this._dayEvents.some(e => e.id == event.id);
 
-        let horizontalPosition = (startHour * 60 + startMinutes) / 15;
-
-        horizontalPosition = Math.floor(horizontalPosition);
-
-        const eventsAtSameTime = this.events.filter(existingEvent =>
-            existingEvent.startDate.getHours() === startHour &&
-            existingEvent.startDate.getMinutes() === startMinutes
-        );
-
-        eventsAtSameTime.sort((a, b) => a.startDate - b.startDate);
-
-        if (eventsAtSameTime.length >= 6) {
-            event.hidden = true;
-        } else {
-            event.verticalPosition = eventsAtSameTime.length * 4;
+        if (!isTodayEvent) {
+            return { x: -1, y: -1 };
         }
 
-        return horizontalPosition;
-    }
+        const startMinutes = event.startDate.getUTCHours() * 60 + event.startDate.getUTCMinutes();
+        const positionX = Math.floor(startMinutes / MINUTES_IN_SUBDIVISION);
 
+        const overlappingEvents = this._dayEvents.filter(e =>
+            e.id !== event.id &&
+            !(e.endDate <= event.startDate || e.startDate >= event.endDate)
+        );
+
+        overlappingEvents.push(event);
+
+        console.log(overlappingEvents);
+
+        overlappingEvents.sort((a, b) => {
+            if (a.startDate.getTime() === b.startDate.getTime()) {
+                return (a.endDate.getTime() - a.startDate.getTime()) - (b.endDate.getTime() - b.startDate.getTime());
+            }
+            return a.startDate - b.startDate;
+        });
+
+        const positionY = overlappingEvents.findIndex(e => e.id === event.id);
+
+        return { x: positionX, y: positionY };
+    }
 
     get date() {
         return this._date;

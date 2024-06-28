@@ -1,72 +1,103 @@
+const testDate = new Date("2024-06-25");
+
 module('findEDayStartPosition', () => {
-    test("should return 0 for event starting at the beginning of the day.", assert => {
-        const day = new Day();
-        const event = { startDate: new Date("2024-06-25T00:00:00Z") };
+    test("should return (-1, -1) when event is not in dayEvents.", assert => {
+        const event = { id: 1, startDate: new Date("2024-05-26T10:00:00Z") };
+        const day = new Day({ date: testDate, events: [event] });
 
         const position = day.findEDayStartPosition(event);
-
-        assert.equal(position, 0, "Position should be 0 for event starting at the beginning of the day");
+        assert.deepEqual(position, { x: -1, y: -1 });
     });
 
-    test("should return 40 for event starting at 10:00", assert => {
-        const day = new Day();
-        const event = { startDate: new Date("2024-06-25T10:00:00Z"), endDate: new Date("2024-06-25T10:15:00Z") };
+    test("should return (0,0) for one event starting at the beginning of the day.", assert => {
+        const event = { id: 1, startDate: new Date("2024-06-25T00:00:00Z") };
+        const day = new Day({ date: testDate, events: [event] });
+        const position = day.findEDayStartPosition(event);
+        assert.deepEqual(position, { x: 0, y: 0 });
+    });
+
+    test("should return (40, 0) for event starting at 10:00", assert => {
+        const event = { id: 1, startDate: new Date("2024-06-25T10:00:00Z"), endDate: new Date("2024-06-25T10:15:00Z") };
+        const day = new Day({ date: testDate, events: [event] });
 
         const position = day.findEDayStartPosition(event);
-
-        assert.equal(position, 40, "Position should be 40 for event starting at 10:00");
+        assert.deepEqual(position, { x: 40, y: 0 });
     });
 
-    test("should return 40 for event starting at 10:14", assert => {
-        const day = new Day();
-        const event = { startDate: new Date("2024-06-25T10:14:00Z"), endDate: new Date("2024-06-25T10:29:00Z") };
+    test("should return (40, 0) for event starting at 10:14", assert => {
+        const event = { id: 1, startDate: new Date("2024-06-25T10:14:00Z"), endDate: new Date("2024-06-25T10:29:00Z") };
+        const day = new Day({ date: testDate, events: [event] });
 
         const position = day.findEDayStartPosition(event);
-
-        assert.equal(position, 40, "Position should be 40 for event starting at 10:14");
+        assert.deepEqual(position, { x: 40, y: 0 });
     });
 
-    test("should return the same position for multiple events starting at the same time", assert => {
-        const day = new Day();
-        const event1 = { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:15:00Z") };
-        const event2 = { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:30:00Z") };
+    test("should return the same x-position and different y-position for two events starting at the same time", assert => {
+        const event1 = { id: 1, startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:15:00Z") };
+        const event2 = { id: 2, startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:30:00Z") };
+        const day = new Day({ date: testDate, events: [event1, event2] });
 
         const position1 = day.findEDayStartPosition(event1);
         const position2 = day.findEDayStartPosition(event2);
 
-        assert.equal(position1, position2, "Events starting at the same time should have the same position");
+        assert.deepEqual(position1, { x: 48, y: 0 });
+        assert.deepEqual(position2, { x: 48, y: 1 });
     });
 
-    test("should return correct positions for events overlapping partially", assert => {
-        const day = new Day();
-        const event1 = { startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:30:00Z") };
-        const event2 = { startDate: new Date("2024-06-25T14:15:00Z"), endDate: new Date("2024-06-25T14:45:00Z") };
+    test("should return correct positions for two events overlapping partially", assert => {
+        const event1 = { id: 1, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:30:00Z") };
+        const event2 = { id: 2, startDate: new Date("2024-06-25T14:15:00Z"), endDate: new Date("2024-06-25T14:45:00Z") };
+        const day = new Day({ date: testDate, events: [event1, event2] });
 
         const position1 = day.findEDayStartPosition(event1);
         const position2 = day.findEDayStartPosition(event2);
 
-        assert.notEqual(position1, position2, "Events overlapping should have different positions");
+        assert.deepEqual(position1, { x: 56, y: 0 });
+        assert.deepEqual(position2, { x: 57, y: 1 });
     });
 
-    const events = [
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:15:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:30:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T12:45:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T13:00:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T13:15:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T13:30:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T13:45:00Z") },
-        { startDate: new Date("2024-06-25T12:00:00Z"), endDate: new Date("2024-06-25T14:00:00Z") }
-    ];
+    test("should return correct positions for three events with partial overlaps", assert => {
+        const event1 = { id: 1, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:30:00Z") };
+        const event2 = { id: 2, startDate: new Date("2024-06-25T14:15:00Z"), endDate: new Date("2024-06-25T14:45:00Z") };
+        const event3 = { id: 3, startDate: new Date("2024-06-25T14:25:00Z"), endDate: new Date("2024-06-25T14:55:00Z") };
+        const day = new Day({ date: testDate, events: [event1, event2, event3] });
 
-    test("should mark event as hidden if it is on the same line as more than 6 events", assert => {
-        const day = new Day();
+        const position1 = day.findEDayStartPosition(event1);
+        const position2 = day.findEDayStartPosition(event2);
+        const position3 = day.findEDayStartPosition(event3);
 
-        const hiddenEvents = events.map(event => {
-            const position = day.findEDayStartPosition(event);
-            return position >= 6 ? event : null;
-        }).filter(event => event !== null);
-
-        assert.equal(hiddenEvents.length, 1, "One event should be marked as hidden");
+        assert.deepEqual(position1, { x: 56, y: 0 });
+        assert.deepEqual(position2, { x: 57, y: 1 });
+        assert.deepEqual(position3, { x: 57, y: 2 });
     });
+
+    test("should return correct positions for three events with mixed overlaps", assert => {
+        const event1 = { id: 1, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:30:00Z") };
+        const event2 = { id: 2, startDate: new Date("2024-06-25T14:15:00Z"), endDate: new Date("2024-06-25T14:45:00Z") };
+        const event3 = { id: 3, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:50:00Z") };
+        const day = new Day({ date: testDate, events: [event1, event2, event3] });
+
+        const position1 = day.findEDayStartPosition(event1);
+        const position2 = day.findEDayStartPosition(event2);
+        const position3 = day.findEDayStartPosition(event3);
+
+        assert.deepEqual(position1, { x: 56, y: 0 });
+        assert.deepEqual(position2, { x: 57, y: 2 });
+        assert.deepEqual(position3, { x: 56, y: 1 });
+    });
+
+    // test("should return correct positions for three events with one overlapping both", assert => {
+    //     const event1 = { id: 1, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T14:30:00Z") };
+    //     const event2 = { id: 2, startDate: new Date("2024-06-25T14:30:00Z"), endDate: new Date("2024-06-25T14:45:00Z") };
+    //     const event3 = { id: 3, startDate: new Date("2024-06-25T14:00:00Z"), endDate: new Date("2024-06-25T15:00:00Z") };
+    //     const day = new Day({ date: testDate, events: [event1, event2, event3] });
+
+    //     const position1 = day.findEDayStartPosition(event1);
+    //     const position2 = day.findEDayStartPosition(event2);
+    //     const position3 = day.findEDayStartPosition(event3);
+
+    //     assert.deepEqual(position1, { x: 56, y: 0 }, "Position should be { x: 56, y: 0 } for event1");
+    //     assert.deepEqual(position2, { x: 58, y: 0 }, "Position should be { x: 57, y: 1 } for event2");
+    //     assert.deepEqual(position3, { x: 56, y: 1 }, "Position should be { x: 56, y: 2 } for event3");
+    // });
 });
