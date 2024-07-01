@@ -1,95 +1,82 @@
 class Day {
 
     constructor(props = {}) {
+        if (props.date && !(props.date instanceof Date)) {
+            throw new Error(DateParamError);
+        }
+
+        if (!props.events || !Array.isArray(props.events) || !props.events.every(event => typeof event === 'object')) {
+            throw new Error(EventsParamError);
+        }
+
         this._date = props.date instanceof Date ? props.date : new Date();
-
-        this._events = [];
-
-        let isArrayOfObjects = props && props.events && Array.isArray(props.events) && props.events.every(event => typeof event === 'object');
-
-        if (isArrayOfObjects)
-            this._events = props.events;
-
-        this._dayEvents = [];
-        this.findDayEvents();
+        this._events = props.events;
+        this._cases = Array(96).fill(null).map(() => Array(4).fill(null));
     }
 
-    getEndOfDay(date) {
-        const endDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59));
-        return endDate.toISOString();
-    }
 
-    isSameDay(date1, date2) {
-        return date1.getUTCFullYear() === date2.getUTCFullYear() &&
-            date1.getUTCMonth() === date2.getUTCMonth() &&
-            date1.getUTCDate() === date2.getUTCDate();
-    }
+    isCurrentDayEvent(event) {
+        if (!isValidISODate(event.startDate))
+            return false;
 
-    findDayEvents = () => {
-        if (this._events.length === 0) {
-            this._dayEvents = [];
-            return;
+        const startDate = new Date(event.startDate);
+
+        if (
+            startDate.getUTCFullYear() !== this._date.getUTCFullYear() ||
+            startDate.getUTCMonth() !== this._date.getUTCMonth() ||
+            startDate.getUTCDate() !== this._date.getUTCDate()
+        ) {
+            return false;
         }
 
-        this._dayEvents = this._events.map(event => {
-            if (isValidISODate(event.startDate)) {
-                const startDate = new Date(event.startDate);
-                const endDate = new Date(event.endDate);
+        if (event.endDate && isValidISODate(event.endDate))
+            return startDate <= new Date(event.endDate);
+        else if (event.endDate && !isValidISODate(event.endDate))
+            return false;
 
-                if (!isValidISODate(event.endDate)) {
-                    event.endDate = this.getEndOfDay(startDate);
-                }
-
-                if (endDate < startDate) {
-                    return null;
-                }
-
-                if (this.isSameDay(startDate, this._date)) {
-                    return event;
-                }
-            }
-            return null;
-        }).filter(event => event !== null);
+        return true;
     }
 
+    findPosition(date) {
+        const dateObject = new Date(date);
 
-    findEDayStartPosition(event) {
-        const isTodayEvent = this._dayEvents.some(e => e.id == event.id);
+        const endOfDay = new Date(this._date);
+        endOfDay.setUTCHours(23, 59, 59, 999);
 
-        if (!isTodayEvent) {
-            return { x: -1, y: -1 };
+        if (dateObject > endOfDay) {
+            return 96;
         }
 
-        const startMinutes = event.startDate.getUTCHours() * 60 + event.startDate.getUTCMinutes();
-        const positionX = Math.floor(startMinutes / MINUTES_IN_SUBDIVISION);
+        const startMinutes = dateObject.getUTCHours() * 60 + dateObject.getUTCMinutes();
+        const position = Math.floor(startMinutes / MINUTES_IN_SUBDIVISION);
 
-        const overlappingEvents = this._dayEvents.filter(e =>
-            e.id !== event.id &&
-            !(e.endDate <= event.startDate || e.startDate >= event.endDate)
-        );
+        return position;
+    }
 
-        overlappingEvents.push(event);
+    fillCases() {
+        this._events.forEach(event => {
 
-        console.log(overlappingEvents);
+            if (!this.isCurrentDayEvent(event))
+                return;
+    
+            const startPosition = this.findPosition(event.startDate);
+            let endPosition = this.findPosition(event.endDate);
 
-        overlappingEvents.sort((a, b) => {
-            if (a.startDate.getTime() === b.startDate.getTime()) {
-                return (a.endDate.getTime() - a.startDate.getTime()) - (b.endDate.getTime() - b.startDate.getTime());
+            if((new Date(event.endDate)).getUTCMinutes() % 15 != 0)
+                endPosition++;
+
+            for (let i = startPosition; i < endPosition; i++) {
+                this._cases[i][0] = event.id;
             }
-            return a.startDate - b.startDate;
         });
-
-        const positionY = overlappingEvents.findIndex(e => e.id === event.id);
-
-        return { x: positionX, y: positionY };
     }
 
     get date() {
         return this._date;
     }
 
-    get dayEvents() {
-        return this._dayEvents;
+    get cases() {
+        return this._cases;
     }
 
     get events() {

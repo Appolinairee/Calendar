@@ -1,1 +1,9 @@
-- comment un membre peut-il 
+- levons une exception si les données ne sont pas correctes (date par exemple)
+Lever une exception arrêtera tout le processus, on pouvait tout simplement ignorer l'event parcequ'il y a d'autres events qui sont peut être correctes
+
+- les attributs title, startDate, endDate, seront abligatoires
+Obligatoires veut dire que dans le constructor si un event de events n'a pas un seul attribut, on abandonne tout le reste
+
+- events seront un param obligatoire et doit être un tableau d'objects
+
+- dayEvents ne fera plus le même rôle, il prendra un event et reverra son objet avec les attributs mise à jour (les dates en object dates par exemple) s'il est du jour, null sinon
