@@ -13,10 +13,10 @@ module('fillcases', () => {
         let result = 0;
         for (let i = 0; i < 96; i++) {
             for (let j = 0; j < 4; j++) {
-                if(cases[i][j] != null) {
+                if (cases[i][j] != null) {
                     result = 1;
                     break;
-                }   
+                }
             }
         }
 
@@ -29,7 +29,7 @@ module('fillcases', () => {
 
         day.fillCases();
 
-        console.log(day.findPosition(event.startDate),  day.findPosition(event.endDate))
+        console.log(day.findPosition(event.startDate), day.findPosition(event.endDate))
 
         const cases = day.cases;
         assert.equal(cases[40][0], 1);
@@ -96,5 +96,54 @@ module('fillcases', () => {
         assert.equal(cases[41][0], 1);
         assert.equal(cases[42][0], 1);
         assert.equal(cases[43][0], null);
+    });
+
+    test("should correctly position two events that partially overlap", assert => {
+        const event1 = { id: 1, startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
+        const event2 = { id: 2, startDate: "2024-06-25T10:15:00Z", endDate: "2024-06-25T10:45:00Z" };
+        const day = new Day({ date: testDate3, events: [event1, event2] });
+
+        day.fillCases();
+
+        const cases = day.cases;
+        assert.equal(cases[40][0], 1);
+        assert.equal(cases[41][0], 1);
+        assert.equal(cases[41][1], 2);
+        assert.equal(cases[42][1], 2);
+        assert.equal(cases[43][1], null);
+    });
+
+    test("should correctly position two events that completely overlap", assert => {
+        const event1 = { id: 1, startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
+        const event2 = { id: 2, startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
+        const day = new Day({ date: testDate3, events: [event1, event2] });
+
+        day.fillCases();
+
+        const cases = day.cases;
+        assert.equal(cases[40][0], 1);
+        assert.equal(cases[40][1], 2);
+        assert.equal(cases[41][0], 1);
+        assert.equal(cases[41][1], 2);
+        assert.equal(cases[42][0], null);
+        assert.equal(cases[42][1], null);
+    });
+
+    test("should correctly position three events with partial overlaps", assert => {
+        const event1 = { id: 1, startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
+        const event2 = { id: 2, startDate: "2024-06-25T10:15:00Z", endDate: "2024-06-25T10:45:00Z" };
+        const event3 = { id: 3, startDate: "2024-06-25T10:20:00Z", endDate: "2024-06-25T10:50:00Z" };
+        const day = new Day({ date: testDate3, events: [event1, event2, event3] });
+
+        day.fillCases();
+
+        const cases = day.cases;
+        assert.equal(cases[40][0], 1);
+        assert.equal(cases[41][0], 1);
+        assert.equal(cases[41][1], 2);
+        assert.equal(cases[42][1], 2);
+        assert.equal(cases[42][2], 3);
+        assert.equal(cases[43][2], 3);
+        assert.equal(cases[44][2], null);
     });
 })

@@ -34,50 +34,78 @@ module('constructor', () => {
         const day = new Day({ events });
         assert.equal(JSON.stringify(day.events), JSON.stringify(events));
     });
+
+    test("when date parameter is provided, hours, minutes, and seconds should be set to 0", assert => {
+        const date = new Date("2023-06-25T10:30:15Z");
+        const day = new Day({ date, events: [{}] });
+
+        assert.equal(day.date.getHours(), 0);
+        assert.equal(day.date.getMinutes(), 0);
+        assert.equal(day.date.getSeconds(), 0);
+    });
 });
 
 
 const testDate2 = new Date("2024-06-25");
+const day = new Day({ date: testDate2, events: [] });
 
 module('isCurrentDayEvent', () => {
     test("should return false when event startDate or endDate are not valid ISO dates", assert => {
-        const event1 = { name: 'Event 1', startDate: "Invalid Date", endDate: new Date().toISOString() };
+        const event1 = { startDate: "Invalid Date", endDate: new Date().toISOString() };
         const event2 = { name: 'Event 2', startDate: new Date().toISOString(), endDate: "Invalid Date" };
-
-        const day = new Day({ date: testDate2, events: [] });
 
         assert.equal(day.isCurrentDayEvent(event1), false);
         assert.equal(day.isCurrentDayEvent(event2), false);
     });
 
     test("should return false when event startDate is not for the specific day", assert => {
-        const event = { name: 'Event 1', startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T11:00:00Z" };
-
-        const day = new Day({ date: testDate2, events: [] });
+        const event = { startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T11:00:00Z" };
 
         assert.equal(day.isCurrentDayEvent(event), false);
     });
 
     test("should return false when event endDate is before startDate", assert => {
-        const event = { name: 'Event 1', startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T09:00:00Z" };
-
-        const day = new Day({ date: testDate2, events: [] });
+        const event = { startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T09:00:00Z" };
 
         assert.equal(day.isCurrentDayEvent(event), false);
     });
 
     test("should return true when event startDate and endDate are valid and for the specific day", assert => {
-        const event = { name: 'Event 1', startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
-
-        const day = new Day({ date: testDate2, events: [] });
+        const event = { startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:30:00Z" };
 
         assert.equal(day.isCurrentDayEvent(event), true);
     });
 
     test("should return true when event startDate is provided and is for specific day and endDate is missing", assert => {
-        const event = { name: 'Event 1', startDate: "2024-06-25T10:00:00Z" };
+        const event = { startDate: "2024-06-25T10:00:00Z" };
 
-        const day = new Day({ date: testDate2, events: [] });
+        assert.equal(day.isCurrentDayEvent(event), true);
+    });
+
+
+    test("should return true when event covers the entire current day (starts before and ends after)", assert => {
+        const event = {
+            startDate: "2024-06-24T00:00:00Z",
+            endDate: "2024-06-26T00:00:00Z"
+        };
+
+        assert.equal(day.isCurrentDayEvent(event), true);
+    });
+
+    test("should return true when event starts on the day and ends on the one following", assert => {
+        const event = {
+            startDate: "2024-06-25T22:00:00Z",
+            endDate: "2024-06-26T00:00:00Z"
+        };
+
+        assert.equal(day.isCurrentDayEvent(event), true);
+    });
+
+    test("should return true when event starts on the previous day and ends on the current day", assert => {
+        const event = {
+            startDate: "2024-06-24T24:00:00Z",  
+            endDate: "2024-06-25T22:00:00Z"
+        };
 
         assert.equal(day.isCurrentDayEvent(event), true);
     });
