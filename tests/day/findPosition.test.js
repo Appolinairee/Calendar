@@ -3,6 +3,26 @@ const day = new Day({ date: testDate, events: [{}] });
 
 module('findPosition', () => {
 
+    test("should return -1, -1 if the event is not within the day", assert => {
+        const eventBeforeDay = {
+            startDate: "2024-06-24T22:00:00Z",
+            endDate: "2024-06-24T22:30:00Z"
+        };
+
+        const eventAfterDay = {
+            startDate: "2024-06-26T00:00:00Z",
+            endDate: "2024-06-26T01:00:00Z"
+        };
+
+        const resultBeforeDay = day.findPosition(eventBeforeDay);
+        assert.equal(resultBeforeDay.start, -1);
+        assert.equal(resultBeforeDay.end, -1);
+
+        const resultAfterDay = day.findPosition(eventAfterDay);
+        assert.equal(resultAfterDay.start, -1);
+        assert.equal(resultAfterDay.end, -1);
+    });
+
     test("should return correct positions for events starting at every hour with 00 minutes", assert => {
         const hoursWithZeroMinutes = Array.from({ length: 24 }, (_, hour) => ({
             startDate: `2024-06-25T${String(hour).padStart(2, '0')}:00:00Z`,
@@ -11,12 +31,13 @@ module('findPosition', () => {
             expectedEndPosition: (hour + 1) * 4
         }));
 
+
         hoursWithZeroMinutes.forEach(({ startDate, endDate, startPosition, expectedEndPosition }) => {
             const { start, end } = day.findPosition({ startDate, endDate });
+
             assert.equal(start, startPosition);
             assert.equal(end, expectedEndPosition);
         });
-
     });
 
     test("should return correct positions for events starting at every 15-minute interval within one hour", assert => {
