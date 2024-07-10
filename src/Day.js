@@ -99,7 +99,7 @@ class Day {
                 end++;
 
             let column = -1;
-            for (let j = 0; j < 4; j++) {
+            for (let j = 0; j < 3; j++) {
                 let canPlace = true;
                 for (let i = start; i < end; i++) {
                     if (this._cases[i][j]) {
@@ -115,11 +115,55 @@ class Day {
 
             if (column !== -1) {
                 for (let i = start; i < end; i++) {
-                    this._cases[i][column] = event.id;
+                    this._cases[i][column] = event;
                 }
             }
         });
     }
+
+
+    buildEventStyle(event) {
+        this.fillCases();
+
+        let colStart = -1;
+        let colEnd = -1;
+        let rowStart = -1;
+        let rowEnd = -1;
+
+        for (let i = 0; i < 96; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (this._cases[i][j] === event) {
+                    colStart = j + 1;
+                    colEnd = colStart + 1;
+
+                    if (rowStart == -1) {
+                        rowStart = i + 1;
+                        rowEnd = rowStart + 1;
+                    } else {
+                        rowEnd = rowEnd + 1;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return {
+            colStart,
+            colEnd,
+            rowStart,
+            rowEnd
+        };
+    }
+
+
+    getBoardStyle() {
+        return `
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(96, 100px);
+    `;
+    }
+
 
     get date() {
         return this._date;

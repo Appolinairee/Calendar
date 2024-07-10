@@ -1,4 +1,3 @@
-const testDate = new Date("2024-06-25");
 const day = new Day({ date: testDate, events: [{}] });
 
 module('findPosition', () => {

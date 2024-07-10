@@ -46,8 +46,7 @@ module('constructor', () => {
 });
 
 
-const testDate2 = new Date("2024-06-25");
-const day2 = new Day({ date: testDate2, events: [] });
+const day2 = new Day({ date: testDate, events: [] });
 
 module('isCurrentDayEvent', () => {
     test("should return false when event startDate or endDate are not valid ISO dates", assert => {
