@@ -16,25 +16,12 @@ class Day {
         this._cases = Array(96).fill(null).map(() => Array(4).fill(null));
     }
 
-    getUtcDate(date) {
-        const utcDate = new Date(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate(),
-            date.getUTCHours(),
-            date.getUTCMinutes(),
-            date.getUTCSeconds(),
-        );
-
-        return utcDate;
-    }
-
 
     isCurrentDayEvent(event) {
         if (!isValidISODate(event.startDate))
             return false;
 
-        let startDate = this.getUtcDate(new Date(event.startDate));
+        let startDate = getUtcDate(new Date(event.startDate));
 
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59);
@@ -49,7 +36,7 @@ class Day {
         if (!event.endDate || !isValidISODate(event.endDate))
             return false;
 
-        const endDate = this.getUtcDate(new Date(event.endDate));
+        const endDate = getUtcDate(new Date(event.endDate));
 
         if (startDate < this._date && (endDate >= endOfDay || (endDate >= this._date && endDate <= endOfDay)))
             return startDate <= endDate;
@@ -67,8 +54,8 @@ class Day {
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59)
 
-        const dateObjectStart = this.getUtcDate(new Date(event.startDate));
-        const dateObjectEnd = this.getUtcDate(new Date(event.endDate));
+        const dateObjectStart = getUtcDate(new Date(event.startDate));
+        const dateObjectEnd = getUtcDate(new Date(event.endDate));
 
         let startPosition = 0;
         let endPosition = 96;
@@ -81,7 +68,6 @@ class Day {
         if (dateObjectEnd >= startOfDay && dateObjectEnd <= endOfDay) {
             const endMinutes = dateObjectEnd.getHours() * 60 + dateObjectEnd.getUTCMinutes();
             endPosition = Math.floor(endMinutes / 15);
-
         }
 
         return { start: startPosition, end: endPosition };
@@ -95,7 +81,7 @@ class Day {
 
             let { start, end } = this.findPosition(event);
 
-            if (this.getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
+            if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
                 end++;
 
             let column = -1;
@@ -163,7 +149,6 @@ class Day {
         grid-template-rows: repeat(96, 100px);
     `;
     }
-
 
     get date() {
         return this._date;
