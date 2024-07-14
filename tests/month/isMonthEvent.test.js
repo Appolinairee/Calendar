@@ -41,10 +41,7 @@ module('constructor', () => {
 
 
 module('isMonthEvent', () => {
-    const testDate = new Date("2024-06-25");
-    const month = new Month({
-        date: testDate, events: []
-    });
+    const month = new Month({ date: testDate, events: [] });
 
     test("should return false when event startDate or endDate are not valid ISO dates", assert => {
         const event1 = { startDate: "Invalid Date", endDate: new Date().toISOString() };

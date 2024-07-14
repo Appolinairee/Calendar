@@ -1,0 +1,97 @@
+Sommaire
+
+
+Résumé (ou avant propos)
+
+
+
+
+
+Introduction
+
+Dans un monde professionnel où chaque minute compte, la capacité à gérer efficacement le temps et les priorités est essentielle. Les outils de gestion du temps permettent non seulement d'optimiser la productivité, mais aussi de créer une harmonie organisationnelle au sein des équipes. Cependant, au-delà des simples applications de gestion des tâches, il existe un besoin croissant pour des modules de calendrier flexibles et intégrables, capables de s'adapter aux exigences spécifiques de divers projets. C'est dans ce contexte que notre projet prend tout son sens : nous développons un module de calendrier générique, adaptable et intégrable dans divers systèmes de gestion.
+
+Un calendrier est un outil permettant de planifier et de visualiser le passage du temps. Il organise les jours, semaines, mois et années de manière structurée, facilitant la gestion des événements et des tâches. Le terme "générique" dans ce contexte se réfère à la capacité de notre module à s’adapter à divers environnements et besoins spécifiques. Contrairement aux solutions de calendrier spécialisées, notre module est conçu pour être intégré de manière fluide dans une multitude de systèmes de gestion, sans nécessiter de modifications majeures. Il offre une flexibilité qui permet aux développeurs et aux entreprises de l'adapter facilement à différents projets et contextes.
+
+Informations des events modifiables, ...
+
+Nous allons explorer les différentes fonctionnalités de ce module, y compris les vues Day (journalière), Week (hebdomadaire), Month (mensuelle) et Year (annuelle). Chaque vue est implémentée pour gérer efficacement les chevauchements d'événements et offrir une présentation claire des informations.
+
+
+
+
+Etude de l'existant
+
+1.Avant de développer ce module de calendrier générique, il était essentiel de comprendre les solutions existantes pour identifier les meilleures pratiques, les lacunes et les opportunités d'innovation. Cette étude examine les outils de calendrier actuellement disponibles sur le marché, en mettant en lumière leurs caractéristiques, leurs avantages et leurs limitations.
+
+
+Les applications de gestion du temps, telles que Google Calendar, Microsoft Outlook Calendar, et Apple Calendar, sont parmi les plus couramment utilisées. Elles offrent des fonctionnalités de base comme la création d'événements, les rappels et les vues multiples (jour, semaine, mois).
+
+Solutions de Calendrier pour Entreprises
+Les solutions comme Microsoft Dynamics 365, Salesforce Calendar, et Asana Calendar sont conçues pour s'intégrer dans des environnements de gestion de projets et des systèmes CRM. Elles offrent des fonctionnalités avancées adaptées aux besoins des entreprises.
+
+Les modules open source, comme FullCalendar et React Big Calendar, offrent des solutions flexibles pour les développeurs cherchant à intégrer des fonctionnalités de calendrier dans leurs applications web.
+
+
+À partir de l'examen des outils existants, plusieurs besoins non couverts apparaissent :
+Intégration Facile: Besoin d'un module qui peut être facilement intégré dans différents systèmes de gestion sans nécessiter des modifications majeures.
+
+Gestion des Chevauchements: Amélioration dans la gestion des chevauchements d'événements pour une meilleure visualisation et interaction.
+
+Vue Modulaire: Besoin d'une vue modulaire qui permet de basculer entre différentes perspectives temporelles (jour, semaine, mois, année) sans perte de fonctionnalité.
+
+L'étude de l'existant révèle que bien que de nombreux outils de calendrier soient disponibles. En tirant parti des avantages des solutions existantes et en abordant leurs limitations, le module de calendrier pourra offrir une flexibilité et une intégration optimales pour une variété de projets et de contextes professionnels.
+
+
+Format de datas qui change; Ce qu'on doit prendre pour title, ...
+
+Conception et choix technique
+La conception d'un module de calendrier générique nécessite une réflexion approfondie sur les choix techniques et architecturaux pour garantir que le produit final soit flexible, performant et facilement intégrable dans divers systèmes de gestion. 
+
+I-/Conception
+
+    # objectifs
+        Flexibilité : Permettre l'intégration facile dans différents systèmes de gestion et d'applications.
+        Modularité : Offrir des vues configurables (jour, semaine, mois, année) et gérer les événements de manière efficace.
+        Performance : Assurer une gestion fluide des événements, même avec un grand nombre de données.
+        Accessibilité : Fournir une interface utilisateur intuitive et accessible sur diverses plateformes.
+    
+    # Structures du calendrier
+        Vues Temporelles : Implémentation des vues jour, semaine, mois, et année.
+        Interface Utilisateur : Conception d'une interface intuitive et réactive pour une expérience utilisateur optimale.
+
+    # Modélisation
+        ## Diagramme de classe
+
+II-/ Choix techniques
+    
+    # Technologies
+        JavaScript : Utilisé pour la logique de programmation et l'interaction avec l'utilisateur. JavaScript permet une manipulation dynamique du DOM et la gestion des états de l'application.
+        
+        Tests: 
+
+        Mithri : Choisi pour son efficacité en tant que moteur de templating, Mithri permettra de créer des vues dynamiques et modulables. Il simplifie la génération de contenu HTML à partir des données JavaScript.
+
+        CSS : Utilisé pour la mise en forme et la présentation des éléments du calendrier. Les styles CSS garantiront une interface utilisateur attrayante et réactive.
+
+    # Gestion de code source
+        GitHub : Utilisé pour le contrôle de version et la gestion du code source. GitHub facilitera la collaboration, le suivi des modifications et la gestion des branches de développement.
+
+    
+
+
+Résultats et discussions
+
+
+
+Conclusions et perspectives
+
+
+
+
+Biographie
+
+
+
+
+Annexe

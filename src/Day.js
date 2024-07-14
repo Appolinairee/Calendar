@@ -10,7 +10,6 @@ class Day {
         }
 
         this._date = props.date instanceof Date ? props.date : new Date();
-        this._date.setHours(0, 0, 0);
 
         this._events = props.events;
         this._cases = Array(96).fill(null).map(() => Array(4).fill(null));
@@ -18,38 +17,49 @@ class Day {
 
 
     isCurrentDayEvent(event) {
-        if (!isValidISODate(event.startDate))
+        if (!event.startDate || !isValidISODate(event.startDate) || (event.endDate && !isValidISODate(event.endDate))) {
             return false;
-
-        let startDate = getUtcDate(new Date(event.startDate));
-
-        const endOfDay = new Date(this._date.getTime());
-        endOfDay.setHours(23, 59, 59);
-
-        if (startDate >= this._date && startDate <= endOfDay) {
-            if (!event.endDate)
-                return true;
-
-            return isValidISODate(event.endDate) && startDate <= (new Date(event.endDate));
         }
 
-        if (!event.endDate || !isValidISODate(event.endDate))
-            return false;
-
+        const startDate = getUtcDate(new Date(event.startDate));
         const endDate = getUtcDate(new Date(event.endDate));
+        const currentDate = this._date;
 
-        if (startDate < this._date && (endDate >= endOfDay || (endDate >= this._date && endDate <= endOfDay)))
-            return startDate <= endDate;
+        const isSameDay = (date) =>
+            date.getDate() === currentDate.getDate() &&
+            date.getMonth() === currentDate.getMonth() &&
+            date.getFullYear() === currentDate.getFullYear();
 
-        return false;
+        const isAfterCurrentDate = (date) => {
+            return (
+                date.getFullYear() > currentDate.getFullYear() ||
+                (date.getFullYear() === currentDate.getFullYear() && date.getMonth() > currentDate.getMonth()) ||
+                (date.getFullYear() === currentDate.getFullYear() && date.getMonth() === currentDate.getMonth() && date.getDate() > currentDate.getDate())
+            );
+        };
+
+        const isBeforeCurrentDate = (date) => {
+            return (
+                date.getFullYear() < currentDate.getFullYear() ||
+                (date.getFullYear() === currentDate.getFullYear() && date.getMonth() < currentDate.getMonth()) ||
+                (date.getFullYear() === currentDate.getFullYear() && date.getMonth() === currentDate.getMonth() && date.getDate() < currentDate.getDate())
+            );
+        };
+
+        if (isSameDay(startDate)) {
+            return true;
+        }
+
+        return isBeforeCurrentDate(startDate) && (isSameDay(endDate) || isAfterCurrentDate(endDate));
     }
 
-    findPosition(event) {
 
+    findPosition(event) {
         if (!this.isCurrentDayEvent(event))
             return { start: -1, end: -1 };
 
         const startOfDay = new Date(this._date.getTime());
+        startOfDay.setHours(0, 0, 0);
 
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59)
@@ -76,9 +86,6 @@ class Day {
 
     fillCases() {
         this._events.forEach(event => {
-            if (!this.isCurrentDayEvent(event))
-                return;
-
             let { start, end } = this.findPosition(event);
 
             if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
@@ -133,12 +140,7 @@ class Day {
             }
         }
 
-        return {
-            colStart,
-            colEnd,
-            rowStart,
-            rowEnd
-        };
+        return `grid-column: ${colStart} / span ${colEnd - colStart}; grid-row: ${rowStart} / span ${rowEnd - rowStart};`;
     }
 
 

@@ -9,7 +9,8 @@ En faisant une section par 15min (avec un taux de précision à la minute), on d
 Soit au total 96
 
 L'espace est orienté d'un repère orthonormé (0, i, j)
-o    i
+o   i
+
 j
 
 La vue Day pour la journée spécifiée va successivement:
@@ -68,10 +69,7 @@ Définir le format et les attributs possibles d'un event:
 Un event dont l'une des dates n'est pas entrée ne sera pas pris en compte
 
 
-
-
-
-Utils: 
+Utils:
 - gestion efficace des dates
 format d'une date, jours d'un mois, …
 

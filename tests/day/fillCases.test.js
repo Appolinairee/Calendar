@@ -4,6 +4,25 @@ module('fillcases', () => {
         return cases.flat().some(caseEvent => caseEvent === event);
     }
 
+    test('should call findPosition for each event', assert => {
+        const events = [
+            { startDate: "2024-06-25T10:00:00Z", endDate: "2024-06-25T10:15:00Z" },
+            { startDate: "2024-06-25T10:30:00Z", endDate: "2024-06-25T10:45:00Z" }
+        ];
+        const testDate = new Date("2024-06-25T00:00:00Z");
+        const day = new Day({ date: testDate, events });
+
+        const findPositionSpy = sinon.spy(day, 'findPosition');
+
+        day.fillCases();
+
+        assert.equal(findPositionSpy.callCount, events.length, "findPosition should be called for each event");
+
+        findPositionSpy.restore();
+    });
+
+
+
     test('should not fill into cases an event which is not for current day', assert => {
         const event = { startDate: "2024-06-26T00:00:00Z", endDate: "2024-06-27T00:00:00Z" };
         const testDate = new Date("2024-06-25T00:00:00Z");
