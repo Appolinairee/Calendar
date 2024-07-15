@@ -54,64 +54,53 @@ class Day {
     }
 
 
-    findPosition(event) {
-        if (!this.isCurrentDayEvent(event))
-            return { start: -1, end: -1 };
 
+    findPosition(dateString) {
+        if (!dateString || !isValidISODate(dateString)) {
+            return -1;
+        }
+
+        const dateObject = getUtcDate(new Date(dateString));
         const startOfDay = new Date(this._date.getTime());
         startOfDay.setHours(0, 0, 0);
 
         const endOfDay = new Date(this._date.getTime());
-        endOfDay.setHours(23, 59, 59)
+        endOfDay.setHours(23, 59, 59);
 
-        const dateObjectStart = getUtcDate(new Date(event.startDate));
-        const dateObjectEnd = getUtcDate(new Date(event.endDate));
-
-        let startPosition = 0;
-        let endPosition = 96;
-
-        if (dateObjectStart >= startOfDay && dateObjectStart <= endOfDay) {
-            const startMinutes = dateObjectStart.getHours() * 60 + dateObjectStart.getUTCMinutes();
-            startPosition = Math.floor(startMinutes / 15);
+        if (dateObject < startOfDay || dateObject > endOfDay) {
+            return 0;
         }
 
-        if (dateObjectEnd >= startOfDay && dateObjectEnd <= endOfDay) {
-            const endMinutes = dateObjectEnd.getHours() * 60 + dateObjectEnd.getUTCMinutes();
-            endPosition = Math.floor(endMinutes / 15);
-        }
-
-        return { start: startPosition, end: endPosition };
+        const minutes = dateObject.getHours() * 60 + dateObject.getMinutes();
+        return Math.floor(minutes / 15);
     }
 
 
-    fillCases() {
-        this._events.forEach(event => {
-            let { start, end } = this.findPosition(event);
+    fillCases(event, start, end) {
+        let column = -1;
 
-            if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
-                end++;
-
-            let column = -1;
-            for (let j = 0; j < 3; j++) {
-                let canPlace = true;
-                for (let i = start; i < end; i++) {
-                    if (this._cases[i][j]) {
-                        canPlace = false;
-                        break;
-                    }
-                }
-                if (canPlace) {
-                    column = j;
+        if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
+            end++;
+        
+        for (let j = 0; j < 3; j++) {
+            let canPlace = true;
+            for (let i = start; i < end; i++) {
+                if (this._cases[i][j]) {
+                    canPlace = false;
                     break;
                 }
             }
-
-            if (column !== -1) {
-                for (let i = start; i < end; i++) {
-                    this._cases[i][column] = event;
-                }
+            if (canPlace) {
+                column = j;
+                break;
             }
-        });
+        }
+
+        if (column !== -1) {
+            for (let i = start; i < end; i++) {
+                this._cases[i][column] = event;
+            }
+        }
     }
 
 
@@ -143,12 +132,41 @@ class Day {
         return `grid-column: ${colStart} / span ${colEnd - colStart}; grid-row: ${rowStart} / span ${rowEnd - rowStart};`;
     }
 
+    buildEventStyle(event) {
+        this.fillCases();
+    
+        let colStart = -1;
+        let rowStart = -1;
+        let rowEnd = -1;
+    
+        for (let i = 0; i < 96; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (this._cases[i][j] === event) {
+                    colStart = j + 1;
+
+                    if (rowStart == -1) {
+                        rowStart = i + 1;
+                        rowEnd = rowStart + 1;
+                    } else {
+                        rowEnd = rowEnd + 1;
+                    }
+                    break;
+                }
+            }
+        }
+    
+        return `grid-column: ${colStart} / ${colStart + 1}; grid-row: ${rowStart} / ${rowEnd};`;
+    }
+
 
     getBoardStyle() {
         return `
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(96, 100px);
+        grid-template-rows: repeat(96, 20px);
+        border: 1px solid black;
+        border-radius: 5px;
+        border-top: none;
     `;
     }
 

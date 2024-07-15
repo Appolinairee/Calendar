@@ -46,7 +46,6 @@ class Month {
         return true;
     }
 
-
     findPosition(event) {
 
     }

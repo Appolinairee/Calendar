@@ -1,3 +1,0 @@
-- id dans la case
-- findPosition start, end (cas de l'event couvrant plusieurs journées)
-- fillcases

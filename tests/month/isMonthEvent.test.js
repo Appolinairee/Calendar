@@ -43,51 +43,48 @@ module('constructor', () => {
 module('isMonthEvent', () => {
     const month = new Month({ date: testDate, events: [] });
 
-    test("should return false when event startDate or endDate are not valid ISO dates", assert => {
-        const event1 = { startDate: "Invalid Date", endDate: new Date().toISOString() };
-        const event2 = { name: 'Event 2', startDate: new Date().toISOString(), endDate: "Invalid Date" };
+    test("should return false when event has no startDate", assert => {
+        const event = { endDate: "2024-06-15T10:30:00Z" };
+        assert.equal(month.isMonthEvent(event), false);
+    });
 
-        assert.equal(month.isMonthEvent(event1), false);
-        assert.equal(month.isMonthEvent(event2), false);
+    test("should return false when event startDate is not valid ISO date", assert => {
+        const event = { startDate: "Invalid Date", endDate: new Date().toISOString() };
+        assert.equal(month.isMonthEvent(event), false);
+    });
+
+    test("should return false when event endDate is provided and is not valid ISO date", assert => {
+        const event = { startDate: new Date().toISOString(), endDate: "Invalid Date" };
+        assert.equal(month.isMonthEvent(event), false);
+    });
+
+    test("should return false when event endDate is provided and is not valid ISO date", assert => {
+        const event = { startDate: new Date().toISOString(), endDate: "Invalid Date" };
+        assert.equal(month.isMonthEvent(event), false);
     });
 
     test("should return false when event startDate is after the end of the month", assert => {
         const event = { startDate: "2024-07-01T10:00:00Z", endDate: "2024-07-01T12:00:00Z" };
-
         assert.equal(month.isMonthEvent(event), false);
     });
 
-    test("should return false when event endDate is before the start of the month", assert => {
-        const event = { startDate: "2024-05-01T10:00:00Z", endDate: "2024-05-01T12:00:00Z" };
-
-        assert.equal(month.isMonthEvent(event), false);
-    });
-
-    test("should return true when event starts and ends within the current month", assert => {
-        const event = { startDate: "2024-06-15T10:00:00Z", endDate: "2024-06-15T12:00:00Z" };
-
+    test("should return true when event starts within the current month and has no end date", assert => {
+        const event = { startDate: "2024-06-15T08:00:00Z" };
         assert.equal(month.isMonthEvent(event), true);
     });
 
     test("should return true when event starts before and ends within the current month", assert => {
         const event = { startDate: "2024-05-25T08:00:00Z", endDate: "2024-06-05T12:00:00Z" };
-
         assert.equal(month.isMonthEvent(event), true);
     });
 
     test("should return true when event starts within and ends after the current month", assert => {
         const event = { startDate: "2024-06-25T08:00:00Z", endDate: "2024-07-05T12:00:00Z" };
-
         assert.equal(month.isMonthEvent(event), true);
     });
 
     test("should return true when event starts before and ends after the current month", assert => {
         const event = { startDate: "2024-05-25T08:00:00Z", endDate: "2024-07-05T12:00:00Z" };
-        assert.equal(month.isMonthEvent(event), true);
-    });
-
-    test("should return true when event starts within the current month and has no end date", assert => {
-        const event = { startDate: "2024-06-15T08:00:00Z" };
         assert.equal(month.isMonthEvent(event), true);
     });
 

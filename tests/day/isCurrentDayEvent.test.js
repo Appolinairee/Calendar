@@ -40,7 +40,6 @@ module('constructor', () => {
 const day2 = new Day({ date: testDate, events: [] });
 
 module('isCurrentDayEvent', () => {
-
     test("should return false when event has no startDate", assert => {
         const event = { endDate: "2024-06-25T10:30:00Z" };
         assert.equal(day2.isCurrentDayEvent(event), false);
@@ -63,6 +62,11 @@ module('isCurrentDayEvent', () => {
 
     test("should return false when endDate is before startDate", assert => {
         const event = { startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T09:00:00Z" };
+        assert.equal(day2.isCurrentDayEvent(event), false);
+    });
+
+    test("should return false when event is not for current day and endDate is not defined", assert => {
+        const event = { startDate: "2024-06-24T10:00:00Z" };
         assert.equal(day2.isCurrentDayEvent(event), false);
     });
 

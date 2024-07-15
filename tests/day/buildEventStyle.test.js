@@ -11,9 +11,8 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event);
 
-        assert.equal(eventStyle, "grid-column: 1 / span 1; grid-row: 1 / span 1;");
+        assert.equal(eventStyle, "grid-column: 1 / 2; grid-row: 1 / 2;");
     });
-
 
     test("should return correct style for a single 30-minute event", assert => {
         const event = { startDate: "2024-06-25T00:00:00Z", endDate: "2024-06-25T00:30:00Z" };
@@ -28,7 +27,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event);
 
-        assert.equal(eventStyle, "grid-column: 1 / span 1; grid-row: 1 / span 2;");
+        assert.equal(eventStyle, "grid-column: 1 / 2; grid-row: 1 / 3;");
     });
 
     test("should return correct style for a 1-hour event", assert => {
@@ -45,7 +44,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event);
 
-        assert.equal(eventStyle, "grid-column: 1 / span 1; grid-row: 1 / span 4;");
+        assert.equal(eventStyle, "grid-column: 1 / 2; grid-row: 1 / 5;");
     });
 
     test("should return correct style for an event ending at the end of the day", assert => {
@@ -60,7 +59,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event);
 
-        assert.equal(eventStyle, "grid-column: 3 / span 1; grid-row: 96 / span 1;");
+        assert.equal(eventStyle, "grid-column: 3 / 4; grid-row: 96 / 97;");
     });
 
     test("should return correct style for an event spanning multiple days", assert => {
@@ -75,7 +74,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event);
 
-        assert.equal(eventStyle, "grid-column: 3 / span 1; grid-row: 96 / span 1;");
+        assert.equal(eventStyle, "grid-column: 3 / 4; grid-row: 96 / 97;");
     });
 
     test("should return correct style for two non-overlapping events", assert => {
@@ -93,7 +92,7 @@ module("buildEventStyle", () => {
         const event1Style = day.buildEventStyle(event1);
         const event2Style = day.buildEventStyle(event2);
 
-        assert.equal(event1Style, "grid-column: 1 / span 1; grid-row: 41 / span 1;");
-        assert.equal(event2Style, "grid-column: 1 / span 1; grid-row: 42 / span 1;");
+        assert.equal(event1Style, "grid-column: 1 / 2; grid-row: 41 / 42;");
+        assert.equal(event2Style, "grid-column: 1 / 2; grid-row: 42 / 43;");
     });
 });
