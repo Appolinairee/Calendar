@@ -79,9 +79,13 @@ class Day {
     fillCases(event, start, end) {
         let column = -1;
 
+        if (start == end) {
+            end++;
+        }
+
         if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
             end++;
-        
+
         for (let j = 0; j < 3; j++) {
             let canPlace = true;
             for (let i = start; i < end; i++) {
@@ -133,12 +137,11 @@ class Day {
     }
 
     buildEventStyle(event) {
-        this.fillCases();
-    
+
         let colStart = -1;
         let rowStart = -1;
         let rowEnd = -1;
-    
+
         for (let i = 0; i < 96; i++) {
             for (let j = 0; j < 3; j++) {
                 if (this._cases[i][j] === event) {
@@ -154,7 +157,7 @@ class Day {
                 }
             }
         }
-    
+
         return `grid-column: ${colStart} / ${colStart + 1}; grid-row: ${rowStart} / ${rowEnd};`;
     }
 

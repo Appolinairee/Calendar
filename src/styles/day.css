@@ -3,20 +3,33 @@
     gap: 10px;
 }
 
-.calendar-day-view {
+.calendar-grid {
     width: 100%;
     position: relative;
-}
-
-.hourList {
-    display: grid;
-
-}
-
-.events {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(96, 20px);
+    border: 1px solid black;
+    border-radius: 5px;
+    border-top: none;
+}
+
+
+.calendar-grid-cell {
+}
+
+.calendar-grid-cell.active {
+    border: none;
+    border-top: 1px solid black;
+}
+
+
+.hourList {
+    display: grid;
+}
+
+.events {
     border-radius: 5px;
     z-index: 10;
     position: absolute;

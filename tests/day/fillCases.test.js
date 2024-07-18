@@ -13,6 +13,32 @@ module('fillcases', () => {
         return true;
     }
 
+    // remplir une case si start et end sont à la même position
+    // remplir les cases de start à end quand ses derniers sont disponibles
+    // remplir colonne 2 si colonne 1 n'est pas disponible
+    // remplir colonne 3 si colonne 2 n'est pas disponible
+    // seemore
+
+    test("should fill one case if start and end are same", assert => {
+        const day = new Day({ date: testDate, events: [] });
+        const event = { startDate: "2024-06-25T00:00:00Z", endDate: "2024-06-25T00:15:00Z" };
+
+        day.fillCases(event, 0, 0);
+
+        assert.equal(day.cases[0][0], event);
+        assert.ok(areAllCasesEmpty(day.cases, [[0, 0]]));
+    });
+
+    test("should fill one case if start and end are same", assert => {
+        const day = new Day({ date: testDate, events: [] });
+        const event = { startDate: "2024-06-25T00:00:00Z", endDate: "2024-06-25T00:15:00Z" };
+
+        day.fillCases(event, 0, 0);
+
+        assert.equal(day.cases[0][0], event);
+        assert.ok(areAllCasesEmpty(day.cases, [[0, 0]]));
+    });
+
     test("should correctly position a 15-minute event at the beginning of the day", assert => {
         const event = { startDate: "2024-06-25T00:00:00Z", endDate: "2024-06-25T00:15:00Z" };
         const day = new Day({ date: testDate, events: [] });

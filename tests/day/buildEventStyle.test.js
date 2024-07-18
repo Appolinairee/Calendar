@@ -1,3 +1,8 @@
+// penser en terme de positionnement
+
+// tester les parties grid-row
+// tester la partie column: si la colonne 0 est la seule colonne occupée, on définit le style sur les 4 colonnes, ainsi de suite
+
 module("buildEventStyle", () => {
     test("should return the correct style for a single 15-minute event", assert => {
         const event = { startDate: "2024-06-25T00:00:00Z", endDate: "2024-06-25T00:15:00Z" };
