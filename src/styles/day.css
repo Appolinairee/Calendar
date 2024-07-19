@@ -1,40 +1,180 @@
+.calendar-view {
+    height: 450px;
+    margin-bottom: 40px;
+    margin: 40px 3% 0;
+    padding-right: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.calendar-view::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 5px;
+    height: 5px;
+}
+
+.calendar-view::-webkit-scrollbar-thumb {
+    border: none;
+    box-shadow: none;
+    background: rgb(218, 220, 224);
+    border-radius: 8px;
+    min-height: 40px;
+}
+
+
 .day {
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.dayLabel {
+    position: fixed;
+    top: 65px;
+    left: calc(3%);
+    font-size: 12px;
+    color: var(--primaryColor);
+    background-color: white;
+    width: 94%;
+    z-index: 10;
+}
+
+.dayLabel span {
+    margin-left: 75px;
+}
+
+.dayLabel p{
+    font-size: 1rem;
+    background: var(--primaryColor);
+    border-radius: 50%;
+    color: white;
+    width: 43px;
+    margin-left: 65px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .calendar-grid {
     width: 100%;
     position: relative;
-    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(96, 20px);
-    border: 1px solid black;
-    border-radius: 5px;
+    grid-template-rows: repeat(96, 10px);
+    border-top: none;
+    padding: 15px 0;
+}
+
+.calendar-grid.grid-background {
+    border: 1px solid var(--gridColor);
+    border-bottom: none;
     border-top: none;
 }
 
-
 .calendar-grid-cell {
+    text-rendering: geometricPrecision;
 }
 
 .calendar-grid-cell.active {
-    border: none;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--gridColor);
 }
 
+.calendar-grid-cell.active:nth-child(4n)::after, .calendar-grid-cell.active:nth-child(4n+1)::after {
+    width: 15px;
+    height: .5px;
+    top: -0.5px;
+    left: 100%;
+    background: var(--gridColor);
+}
+
+.calendar-grid-cell.active:nth-child(4n + 1)::after {
+    right: 100%;
+    left: -15px;
+}
+
+.calendar-grid-cell.left {
+    border-left: 1px solid var(--gridColor);
+}
+
+.calendar-grid-cell.bottom {
+    border-bottom: 1px solid var(--gridColor);
+}
+
+.calendar-grid-cell.bottom:first {
+    border-bottom: 1px solid var(--gridColor);
+}
 
 .hourList {
+    font-size: 12px;
     display: grid;
+    grid-template-rows: repeat(24, 40px);
+    text-align: center;
+    color: var(--gridLabelColor);
 }
 
+.hour-item {
+    padding-top: 7px;
+    border-bottom: solid white;
+}
+
+
+
+
+/* %%%%%%% Event %%%%%%% */
+
 .events {
-    border-radius: 5px;
     z-index: 10;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     right: 0;
+}
+
+.events .event {
+    font-size: 13px;
+    overflow-y: hidden;
+    border-left: 2.5px solid rgb(26, 115, 232);
+    background: rgb(26, 115, 232, 0.05) !important;
+    border-radius: 3px;
+    color: rgb(26, 115, 232);
+    padding: 0 5px;
+    margin-top: 1.5px;
+    margin-bottom: .5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03), -1px -1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.events .event:nth-child(5n) {
+    border-left: 2.5px solid rgb(26, 115, 232);
+    background: rgb(26, 115, 232, 0.1) !important;
+    color: rgb(26, 115, 232);
+}
+
+.events .event:nth-child(5n + 1) {
+    border-left: 2.5px solid red;
+    background: rgba(255, 0, 0, 0.05) !important;
+    color: red;
+}
+
+.events .event:nth-child(5n + 2) {
+    border-left: 2.5px solid green;
+    background: rgba(0, 128, 0, 0.05) !important;
+    color: green;
+}
+
+.events .event:nth-child(5n + 3) {
+    border-left: 2.5px solid yellow;
+    background: rgba(255, 255, 0, 0.05) !important;
+    color: yellow;
+}
+
+.events .event:nth-child(5n + 4) {
+    border-left: 2.5px solid rebeccapurple;
+    background:  rgba(102, 51, 153, 0.05) !important;
+    color:  rebeccapurple;
 }
