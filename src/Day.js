@@ -108,9 +108,7 @@ class Day {
     }
 
 
-    buildEventStyle(event) {
-        this.fillCases();
-
+    buildEventStyle(event, start, end) {
         let colStart = -1;
         let colEnd = -1;
         let rowStart = -1;
@@ -133,30 +131,30 @@ class Day {
             }
         }
 
-        return `grid-column: ${colStart} / span ${colEnd - colStart}; grid-row: ${rowStart} / span ${rowEnd - rowStart};`;
+        return `grid-column: ${colStart} / ${colEnd - colStart}; grid-row: ${rowStart} / ${rowEnd - rowStart};`;
     }
 
-    buildEventStyle(event) {
+    buildEventStyle(event, start, end) {
 
-        let colStart = -1;
-        let rowStart = -1;
-        let rowEnd = -1;
+        const eventsOnRow = this._cases[start].filter(event => event).length;
 
-        for (let i = 0; i < 96; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (this._cases[i][j] === event) {
-                    colStart = j + 1;
+        const startColumn = start + 1;
+        const endColumn = end + 1;
 
-                    if (rowStart == -1) {
-                        rowStart = i + 1;
-                        rowEnd = rowStart + 1;
-                    } else {
-                        rowEnd = rowEnd + 1;
-                    }
-                    break;
-                }
-            }
+        if(eventsOnRow == 1) {
+            columnStart = 1;
+            columnEnd = 5;
+        }else if(eventsOnRow == 2) {
+            columnStart = 1;
+            columnEnd = 5;
+        }else if(eventsOnRow == 3) {
+
+        }else {
+
         }
+
+        const columnStart = eventsOnRow == 1 ? 1 : startColumn;
+        const columnEnd = isOnlyEventOnRow ? 5 : endColumn;
 
         return `grid-column: ${colStart} / ${colStart + 1}; grid-row: ${rowStart} / ${rowEnd};`;
     }
