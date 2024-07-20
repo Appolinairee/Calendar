@@ -76,12 +76,13 @@ module('fillcases', () => {
         day.cases[1][0] = 1;
         day.cases[1][1] = 1;
         day.cases[1][2] = 1;
+        day.cases[1][3] = 1;
 
         day.fillCases(event, 1, 4);
 
         const cases = day.cases;
 
-        assert.ok(areAllCasesEmpty(cases, [[1, 0], [1, 1], [1, 2]]));
+        assert.ok(areAllCasesEmpty(cases, [[1, 0], [1, 1], [1, 2], [1, 3]]));
     });
 
     test("should correctly handle events spanning multiple days", assert => {

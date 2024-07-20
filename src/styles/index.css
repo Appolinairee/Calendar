@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *, :after, :before {
     margin: 0;
@@ -11,18 +12,20 @@
     --opacityBlack: rgba(0, 0, 0, 0.07);
     --textColor: rgba(0, 0, 0, 0.9);
     /* --gridColor: rgb(241, 243, 244); */
-    --gridColor: rgb(232, 234, 235);
+    --gridColor: rgb(214, 215, 215);
     --gridLabelColor: #70757a;
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
 
 input {
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Poppins", sans-serif;
 }
 
 .flex{

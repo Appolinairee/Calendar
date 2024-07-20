@@ -3,7 +3,7 @@
 }
 
 .top-bar {
-    padding: 10px 3%;
+    padding: 8px 3%;
     font-size: 14px;
     position: fixed;
     top: 0;
@@ -11,6 +11,7 @@
     width: 100%;
     z-index: 15;
     background: white;
+    border-bottom: 1px solid var(--opacityBlack);
 }
 
 .top-bar-date {
@@ -66,7 +67,7 @@
 
 .top-bar-mode span {
     border-radius: 8px;
-    color: var(--textColor);
+    color: rgba(0, 0, 0, 0.657);
     width: 65px;
     padding: 7px 0;
     text-align: center;

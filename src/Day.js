@@ -60,9 +60,10 @@ class Day {
             return -1;
         }
 
-        const dateObject = getUtcDate(new Date(dateString));
+        const dateObject = new Date(dateString);
         const startOfDay = new Date(this._date.getTime());
         startOfDay.setHours(0, 0, 0);
+
 
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59);
@@ -86,7 +87,7 @@ class Day {
         if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
             end++;
 
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < 4; j++) {
             let canPlace = true;
             for (let i = start; i < end; i++) {
                 if (this._cases[i][j]) {
@@ -94,71 +95,58 @@ class Day {
                     break;
                 }
             }
+
             if (canPlace) {
                 column = j;
                 break;
             }
         }
 
-        if (column !== -1) {
+        if (column != -1) {
             for (let i = start; i < end; i++) {
                 this._cases[i][column] = event;
             }
         }
     }
 
-
     buildEventStyle(event, start, end) {
-        let colStart = -1;
-        let colEnd = -1;
-        let rowStart = -1;
-        let rowEnd = -1;
+        const totalColumns = 4;
+        const uniqueEventsOnStartRow = new Set(this._cases[start].filter(e => e !== null));
 
-        for (let i = 0; i < 96; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (this._cases[i][j] === event) {
-                    colStart = j + 1;
-                    colEnd = colStart + 1;
+        const columnWidth = Math.floor(totalColumns / uniqueEventsOnStartRow.size);
 
-                    if (rowStart == -1) {
-                        rowStart = i + 1;
-                        rowEnd = rowStart + 1;
-                    } else {
-                        rowEnd = rowEnd + 1;
-                    }
-                    break;
-                }
-            }
-        }
+        const startCol = this._cases[start].indexOf(event) + 1;
 
-        return `grid-column: ${colStart} / ${colEnd - colStart}; grid-row: ${rowStart} / ${rowEnd - rowStart};`;
+        const endCol = Math.min(startCol + columnWidth, totalColumns + 1);
+
+        const gridRow = `grid-row: ${start + 1} / ${end + 1};`;
+        const gridColumn = `grid-column: ${startCol} / ${endCol};`;
+
+        return `${gridColumn} ${gridRow}`;
     }
 
-    buildEventStyle(event, start, end) {
+    update(data) {
 
-        const eventsOnRow = this._cases[start].filter(event => event).length;
-
-        const startColumn = start + 1;
-        const endColumn = end + 1;
-
-        if(eventsOnRow == 1) {
-            columnStart = 1;
-            columnEnd = 5;
-        }else if(eventsOnRow == 2) {
-            columnStart = 1;
-            columnEnd = 5;
-        }else if(eventsOnRow == 3) {
-
-        }else {
-
+        if (data && data.events && Array.isArray(events) && data.events.every(event => typeof event === 'object')) {
+            this._events = events;
         }
 
-        const columnStart = eventsOnRow == 1 ? 1 : startColumn;
-        const columnEnd = isOnlyEventOnRow ? 5 : endColumn;
+        if (data && data.date && data.date instanceof Date) {
+            this._date = date;
+        }
 
-        return `grid-column: ${colStart} / ${colStart + 1}; grid-row: ${rowStart} / ${rowEnd};`;
+        this._events.forEach(event => {
+            if (!this.isCurrentDayEvent(event)) return;
+
+            const start = this.findPosition(event.startDate);
+            if (start == -1) return;
+
+            const end = this.findPosition(event.endDate);
+            if (end == -1) return;
+
+            this.fillCases(event, start, end);
+        });
     }
-
 
     getBoardStyle() {
         return `

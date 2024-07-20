@@ -1,21 +1,61 @@
 const m = require("mithril");
 
-const DisplayEvents = {
-    view: function (vnode) {
-        const cases = vnode.attrs.events;
-        return m('.events .calendar-grid', cases.map((e, index) => {
-            const start = new Date(e.startDate).getHours() * 4 + new Date(e.startDate).getMinutes() / 15 + 1;
-            const end = new Date(e.endDate).getHours() * 4 + new Date(e.endDate).getMinutes() / 15 + 1;
-            const style = index == 1
-                ? `grid-column: 1/5; grid-row: 1/5;`
-                : `grid-column: 1/2; grid-row: 6/8;`;
+function getEventKey(event, colIndex) {
+    return `${event.title}-${event.startDate}-${event.endDate}-${colIndex}`;
+}
 
-            return m('.event', { style: style }, [
-                m('span', e.title),
-                m('span', e.startDate),
-                m('span', e.endDate),
-            ]);
-        }));
+function formatDate(date) {
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
+
+const DisplayEvents = {
+    displayedEvents: new Set(),
+
+    view: function (vnode) {
+        const day = vnode.attrs.day;
+
+        DisplayEvents.resetDisplayedEvents();
+
+        const eventsVNodes = [];
+
+        for (let rowIndex = 0; rowIndex < day.cases.length; rowIndex++) {
+            const row = day.cases[rowIndex];
+
+            for (let colIndex = 0; colIndex < row.length; colIndex++) {
+                const e = row[colIndex];
+
+                if (e != null) {
+                    const eventKey = getEventKey(e, colIndex);
+
+                    if (DisplayEvents.displayedEvents.has(eventKey)) {
+                        continue;
+                    }
+
+                    DisplayEvents.displayedEvents.add(eventKey);
+
+                    const style = day.buildEventStyle(e, day.findPosition(e.startDate), day.findPosition(e.endDate));
+
+                    eventsVNodes.push(
+                        m('.event', { style: style, key: `event-${rowIndex}-${colIndex}` }, [
+                            m('span', e.title),
+                            m('p', [
+                                m('span', formatDate(new Date(e.startDate))),
+                                m('span', ' à '),
+                                m('span', formatDate(new Date(e.endDate))),
+                            ])
+                        ])
+                    );
+                }
+            }
+        }
+
+        return m('.events.calendar-grid', eventsVNodes);
+    },
+
+    resetDisplayedEvents: function () {
+        DisplayEvents.displayedEvents.clear();
     }
 };
 

@@ -9,6 +9,8 @@ const CalendarGrid = {
             date: vnode.attrs.currentDate,
             events: vnode.attrs.events
         });
+
+       this.day.update();
     },
     view: function () {
         function renderCell(i, j) {
@@ -29,7 +31,7 @@ const CalendarGrid = {
 
         return m(".calendar-grid grid-background", [
             components,
-            m(DisplayEvents, { events: this.day.events })
+            m(DisplayEvents, { day: this.day })
         ]);
     }
 };
@@ -50,8 +52,8 @@ const CalendarView = {
                 m(CalendarGrid, { events, currentDate }),
             ]),
             m('.dayLabel', [
-                m("span", formattedDate[0]),
-                m("p", formattedDate[1]),
+                m("p.text", formattedDate[0]),
+                m("p.number", formattedDate[1]),
             ]),
         ]);
     }

@@ -1,6 +1,5 @@
 .calendar-view {
     height: 450px;
-    margin-bottom: 40px;
     margin: 40px 3% 0;
     padding-right: 20px;
     overflow-y: scroll;
@@ -22,7 +21,6 @@
     min-height: 40px;
 }
 
-
 .day {
     display: flex;
     gap: 20px;
@@ -32,7 +30,7 @@
 
 .dayLabel {
     position: fixed;
-    top: 65px;
+    top: 60px;
     left: calc(3%);
     font-size: 12px;
     color: var(--primaryColor);
@@ -41,17 +39,19 @@
     z-index: 10;
 }
 
-.dayLabel span {
-    margin-left: 75px;
+.dayLabel p.text {
+    margin-left: 72px;
+    transform: translateY(10px);
 }
 
-.dayLabel p{
+.dayLabel p.number{
     font-size: 1rem;
     background: var(--primaryColor);
     border-radius: 50%;
     color: white;
     width: 43px;
     margin-left: 65px;
+    transform: translateY(10px);
     height: 40px;
     align-items: center;
     display: flex;
@@ -63,7 +63,7 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(96, 10px);
+    grid-template-rows: repeat(96, 20px);
     border-top: none;
     padding: 15px 0;
 }
@@ -110,9 +110,10 @@
 .hourList {
     font-size: 12px;
     display: grid;
-    grid-template-rows: repeat(24, 40px);
+    grid-template-rows: repeat(24, 80px);
     text-align: center;
     color: var(--gridLabelColor);
+    
 }
 
 .hour-item {
