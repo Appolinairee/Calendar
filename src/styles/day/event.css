@@ -1,0 +1,75 @@
+.events {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+}
+
+.events .event {
+    font-size: 13px;
+    overflow-y: hidden;
+    border-left: 2.5px solid rgb(26, 115, 232);
+    background: rgb(26, 115, 232, 0.05) !important;
+    border-radius: 3px;
+    color: rgb(26, 115, 232);
+    padding: 0 5px;
+    margin-top: 1.5px;
+    margin-bottom: 1px;
+    margin-left: 2px;
+    margin-right: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03), -1px -1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.events .event:nth-child(5n) {
+    border-left: 2.5px solid rgb(26, 115, 232);
+    background: rgb(26, 115, 232, 0.1) !important;
+    color: rgb(26, 115, 232);
+}
+
+.events .event:nth-child(5n + 1) {
+    border-left: 2.5px solid red;
+    background: rgba(255, 0, 0, 0.05) !important;
+    color: red;
+}
+
+.events .event:nth-child(5n + 2) {
+    border-left: 2.5px solid green;
+    background: rgba(0, 128, 0, 0.05) !important;
+    color: green;
+}
+
+.events .event:nth-child(5n + 3) {
+    border-left: 2.5px solid yellow;
+    background: rgba(255, 255, 0, 0.05) !important;
+    color: yellow;
+}
+
+.events .event:nth-child(5n + 4) {
+    border-left: 2.5px solid rebeccapurple;
+    background: rgba(102, 51, 153, 0.05) !important;
+    color: rebeccapurple;
+}
+
+
+.more-events .more-event {
+    padding: 5px 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(102, 51, 153, 0.05);
+}
+
+.more-events .more-event:hover {
+    background: rgba(102, 51, 153, 0.1);
+}
+
+.more-events .event-datetime div {
+    margin-top: 5px;
+}
+
+.more-events .event-datetime span {
+    font-size: 11px;
+    color: var(--gridLabelColor);
+}

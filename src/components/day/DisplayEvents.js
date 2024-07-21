@@ -4,11 +4,6 @@ function getEventKey(event, colIndex) {
     return `${event.title}-${event.startDate}-${event.endDate}-${colIndex}`;
 }
 
-function formatDate(date) {
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-}
 
 const DisplayEvents = {
     displayedEvents: new Set(),
@@ -35,15 +30,15 @@ const DisplayEvents = {
 
                     DisplayEvents.displayedEvents.add(eventKey);
 
-                    const style = day.buildEventStyle(e, day.findPosition(e.startDate), day.findPosition(e.endDate));
+                    const style = day.buildEventStyle(e, rowIndex, day.findPosition(e.endDate));
 
                     eventsVNodes.push(
                         m('.event', { style: style, key: `event-${rowIndex}-${colIndex}` }, [
                             m('span', e.title),
                             m('p', [
-                                m('span', formatDate(new Date(e.startDate))),
+                                m('span', formatHour(new Date(e.startDate))),
                                 m('span', ' à '),
-                                m('span', formatDate(new Date(e.endDate))),
+                                m('span', formatHour(new Date(e.endDate))),
                             ])
                         ])
                     );

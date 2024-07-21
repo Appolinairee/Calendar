@@ -1,56 +1,50 @@
 module('update', (hooks) => {
-
     const initialDate = new Date('2024-07-20T00:00:00Z');
     const initialEvents = [
         { startDate: '2024-07-20T10:00:00Z', endDate: '2024-07-20T11:00:00Z' },
         { startDate: '2024-07-20T12:00:00Z', endDate: '2024-07-20T13:00:00Z' }
     ];
 
+    let day;
+
     hooks.beforeEach(function () {
-        day = new Day({ date: initialDate, events: initialEvents });
+        day = new Day();
     });
 
-    test('update method does not set events if events parameter is not passed', function (assert) {
-        const newDate = new Date('2024-07-21T00:00:00Z');
-
-        day.update({ date: newDate });
-
-        assert.deepEqual(day.events, initialEvents);
-        assert.deepEqual(day.date, newDate);
+    test("when date parameter is provided and is not a Date object, it should throw an exception", assert => {
+        assert.throws(() => {
+            day.update({ date: "Hello", events: [] });
+        }, new Error(DateParamError));
     });
 
-    test('update method does not set date if date parameter is not passed', function (assert) {
-        day.update({ events: [{}] });
-
-        assert.deepEqual(day.date, initialDate, 'Date should not be updated');
+    test("when events parameter is not provided, it should throw an exception", assert => {
+        assert.throws(() => {
+            day.update({ date: initialDate });
+        }, new Error(EventsParamError));
     });
 
-    test('update method does not update if date is provided but invalid', function (assert) {
-        day.update({ date: "Invalid Date" });
-
-        assert.deepEqual(day.date, initialDate);
-        assert.deepEqual(day.events, initialEvents);
+    test("when events parameter is provided and is not an array, it should throw an exception", assert => {
+        assert.throws(() => {
+            day.update({ date: initialDate, events: "Events" });
+        }, new Error(EventsParamError));
     });
 
-    test('update method does not update if events are not an array of objects', function (assert) {
-
-        day.update({ events: "Invalid Events" });
-
-        assert.deepEqual(day.date, initialDate);
-        assert.deepEqual(day.events, initialEvents);
+    test("when date parameter is provided and is a Date object, date attribute should be that date", assert => {
+        const date = new Date("2023-06-25T10:00:00Z");
+        day.update({ date, events: [{}] });
+        assert.equal(day.date.toISOString(), date.toISOString());
     });
 
-    test('update method sets events and date attributes when they are provided', function (assert) {
-        const newDate = new Date('2024-07-21T00:00:00Z');
-        const newEvents = [
-            { startDate: '2024-07-21T10:00:00Z', endDate: '2024-07-21T11:00:00Z' },
-            { startDate: '2024-07-21T12:00:00Z', endDate: '2024-07-21T13:00:00Z' }
-        ];
+    test("when events parameter is provided and is not an array of objects, it should throw an exception", assert => {
+        assert.throws(() => {
+            day.update({ date: initialDate, events: ["", ""] });
+        }, new Error(EventsParamError));
+    });
 
-        day.update({ events: newEvents, date: newDate });
-
-        assert.deepEqual(day.events, newEvents);
-        assert.deepEqual(day.date, newDate);
+    test("when events parameter is provided and is an array, it should be assigned to events", assert => {
+        const events = [{ title: 'Event 1' }, { title: 'Event 2' }];
+        day.update({ date: initialDate, events });
+        assert.equal(JSON.stringify(day.events), JSON.stringify(events));
     });
 
 
@@ -61,7 +55,6 @@ module('update', (hooks) => {
         assert.ok(spy.calledTwice);
         spy.restore();
     });
-
 
     test('update method calls functions in the correct order', function (assert) {
         const spyIsCurrentDayEvent = sinon.spy(day, 'isCurrentDayEvent');
@@ -77,20 +70,18 @@ module('update', (hooks) => {
         spyFindPosition.restore();
         spyFillCases.restore();
     });
-    
 
-    test('update method does not call findPosition if isCurrentDayEvent returns false', function (assert) {
-        const stub = sinon.stub(day, 'isCurrentDayEvent').returns(false);
-        const spyFindPosition = sinon.spy(day, 'findPosition');
+    test('update method does not call fillCases if isCurrentDayEvent returns false', function (assert) {
+        const stubIsCurrentDayEvent = sinon.stub(day, 'isCurrentDayEvent').returns(false);
+        const spyFillCases = sinon.spy(day, 'fillCases');
 
         day.update({ events: initialEvents, date: initialDate });
 
-        assert.notOk(spyFindPosition.called);
+        assert.notOk(spyFillCases.called);
 
-        stub.restore();
-        spyFindPosition.restore();
+        stubIsCurrentDayEvent.restore();
+        spyFillCases.restore();
     });
-
 
     test('update method does not call fillCases if findPosition returns -1 for start date', function (assert) {
         const stubIsCurrentDayEvent = sinon.stub(day, 'isCurrentDayEvent').returns(true);
@@ -105,7 +96,6 @@ module('update', (hooks) => {
         stubFindPosition.restore();
         spyFillCases.restore();
     });
-
 
     test('update method calls fillCases with correct parameters', function (assert) {
         const stubIsCurrentDayEvent = sinon.stub(day, 'isCurrentDayEvent').returns(true);

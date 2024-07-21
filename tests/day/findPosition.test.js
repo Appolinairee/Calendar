@@ -1,6 +1,12 @@
-const day = new Day({ date: testDate, events: [{}] });
 
-module('findPosition', () => {
+module('findPosition', (hooks) => {
+    let day;
+
+    hooks.beforeEach(() => {
+        day = new Day();
+        day.update({ date: testDate, events: [{}] });
+    });
+
     test("should return -1 when date string is not valid", assert => {
         assert.equal(day.findPosition(), -1);
         assert.equal(day.findPosition("Invalide date"), -1);

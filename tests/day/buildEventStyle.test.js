@@ -10,7 +10,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event, 0, 3);
 
-        assert.equal(eventStyle, "grid-column: 1 / 5; grid-row: 1 / 4;");
+        assert.equal(eventStyle, "grid-column: 1 / 4; grid-row: 1 / 4;");
     });
 
 
@@ -25,7 +25,7 @@ module("buildEventStyle", () => {
 
         const eventStyle = day.buildEventStyle(event, 0, 2);
 
-        assert.equal(eventStyle, "grid-column: 3 / 5; grid-row: 1 / 3;");
+        assert.equal(eventStyle, "grid-column: 2 / 3; grid-row: 1 / 3;");
     });
 
 
@@ -46,34 +46,6 @@ module("buildEventStyle", () => {
         assert.equal(event1Style, "grid-column: 1 / 2; grid-row: 1 / 2;");
         assert.equal(event2Style, "grid-column: 2 / 3; grid-row: 1 / 3;");
         assert.equal(event3Style, "grid-column: 3 / 4; grid-row: 1 / 4;");
-    });
-
-
-
-    module("buildEventStyle", () => {
-
-        test("should share grid-column space between four events occupying the same row", assert => {
-            const event1 = { startDate: "2024-06-25T00:00:00Z" };
-            const event2 = { startDate: "2024-06-25T00:15:00Z" };
-            const event3 = { startDate: "2024-06-25T00:30:00Z" };
-            const event4 = { startDate: "2024-06-25T00:45:00Z" };
-            const day = new Day({ date: testDate, events: [event1, event2, event3, event4] });
-
-            day._cases[0][0] = event1;
-            day._cases[0][1] = event2;
-            day._cases[0][2] = event3;
-            day._cases[0][3] = event4;
-
-            const event1Style = day.buildEventStyle(event1, 0, 1);
-            const event2Style = day.buildEventStyle(event2, 0, 1);
-            const event3Style = day.buildEventStyle(event3, 0, 3);
-            const event4Style = day.buildEventStyle(event4, 0, 2);
-
-            assert.equal(event1Style, "grid-column: 1 / 2; grid-row: 1 / 2;");
-            assert.equal(event2Style, "grid-column: 2 / 3; grid-row: 1 / 2;");
-            assert.equal(event3Style, "grid-column: 3 / 4; grid-row: 1 / 4;");
-            assert.equal(event4Style, "grid-column: 4 / 5; grid-row: 1 / 3;");
-        });
     });
 
 

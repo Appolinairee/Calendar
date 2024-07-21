@@ -1,18 +1,10 @@
 class Day {
 
-    constructor(props = {}) {
-        if (props.date && !(props.date instanceof Date)) {
-            throw new Error(DateParamError);
-        }
-
-        if (!props.events || !Array.isArray(props.events) || !props.events.every(event => typeof event === 'object')) {
-            throw new Error(EventsParamError);
-        }
-
-        this._date = props.date instanceof Date ? props.date : new Date();
-
-        this._events = props.events;
-        this._cases = Array(96).fill(null).map(() => Array(4).fill(null));
+    constructor() {
+        this._events = null;
+        this._date = null;
+        this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
+        this._seemoreCases = Array(24).fill(null).map(() => []);
     }
 
 
@@ -54,16 +46,14 @@ class Day {
     }
 
 
-
     findPosition(dateString) {
         if (!dateString || !isValidISODate(dateString)) {
             return -1;
         }
 
-        const dateObject = new Date(dateString);
-        const startOfDay = new Date(this._date.getTime());
+        const dateObject = getUtcDate(new Date(dateString));
+        const startOfDay = getUtcDate(new Date(this._date.getTime()));
         startOfDay.setHours(0, 0, 0);
-
 
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59);
@@ -84,10 +74,10 @@ class Day {
             end++;
         }
 
-        if (getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
+        if (event.endDate && getUtcDate((new Date(event.endDate))).getMinutes() % 15 != 0)
             end++;
 
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < 3; j++) {
             let canPlace = true;
             for (let i = start; i < end; i++) {
                 if (this._cases[i][j]) {
@@ -106,16 +96,33 @@ class Day {
             for (let i = start; i < end; i++) {
                 this._cases[i][column] = event;
             }
+        } else {
+
+            let seemoreStartSlot = Math.floor(start / 4);
+
+            if (!this._seemoreCases[seemoreStartSlot]) {
+                this._seemoreCases[seemoreStartSlot] = [];
+            }
+            this._seemoreCases[seemoreStartSlot].push(event);
         }
     }
 
     buildEventStyle(event, start, end) {
-        const totalColumns = 4;
-        const uniqueEventsOnStartRow = new Set(this._cases[start].filter(e => e !== null));
+        const totalColumns = 3;
+        const overlappingEvents = new Set();
 
-        const columnWidth = Math.floor(totalColumns / uniqueEventsOnStartRow.size);
+        for (let i = start; i < end; i++) {
+            this._cases[i].forEach(e => {
+                if (e !== null) {
+                    overlappingEvents.add(e);
+                }
+            });
+        }
 
-        const startCol = this._cases[start].indexOf(event) + 1;
+        const columnWidth = Math.floor(totalColumns / overlappingEvents.size);
+
+        let eventColIndex = this._cases[start].indexOf(event);
+        let startCol = eventColIndex * columnWidth + 1;
 
         const endCol = Math.min(startCol + columnWidth, totalColumns + 1);
 
@@ -126,14 +133,19 @@ class Day {
     }
 
     update(data) {
+        if (!data) return;
 
-        if (data && data.events && Array.isArray(events) && data.events.every(event => typeof event === 'object')) {
-            this._events = events;
+        if (data.date && !(data.date instanceof Date)) {
+            throw new Error(DateParamError);
         }
 
-        if (data && data.date && data.date instanceof Date) {
-            this._date = date;
+        if (!data.events || !Array.isArray(data.events) || !data.events.every(event => typeof event === 'object')) {
+            throw new Error(EventsParamError);
         }
+
+        this._date = data.date instanceof Date ? data.date : new Date();
+
+        this._events = data.events;
 
         this._events.forEach(event => {
             if (!this.isCurrentDayEvent(event)) return;
@@ -142,6 +154,7 @@ class Day {
             if (start == -1) return;
 
             const end = this.findPosition(event.endDate);
+            end == 0 && end++;
             if (end == -1) return;
 
             this.fillCases(event, start, end);
@@ -169,5 +182,9 @@ class Day {
 
     get events() {
         return this._events;
+    }
+
+    get seemoreCases() {
+        return this._seemoreCases;
     }
 }

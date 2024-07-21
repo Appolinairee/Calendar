@@ -1,43 +1,5 @@
-module('constructor', () => {
-    test("when date parameter is provided and is not a Date object, it should throw an exception", assert => {
-        assert.throws(() => {
-            new Day({ date: "Hello", events: [] });
-        }, new Error(DateParamError));
-    });
-
-    test("when events parameter is not provided, throw an exception", assert => {
-        assert.throws(() => {
-            new Day();
-        }, new Error(EventsParamError));
-    });
-
-    test("when events parameter is provided and is not an array, it should throw an exception", assert => {
-        assert.throws(() => {
-            new Day({ events: "Events" });
-        }, new Error(EventsParamError));
-    });
-
-    test("when date parameter is provided and is a Date object, date attribute should be that date", assert => {
-        const date = new Date("2023-06-25T10:00:00Z");
-        const day = new Day({ date, events: [{}] });
-        assert.equal(day.date.toISOString(), date.toISOString());
-    });
-
-    test("when events parameter is provided and is not an array of objects, it should throw an exception", assert => {
-        assert.throws(() => {
-            new Day({ events: ["", ""] });
-        }, new Error(EventsParamError));
-    });
-
-    test("when events parameter is provided and is an array, it should be assigned to events", assert => {
-        const events = [{ title: 'Event 1' }, { title: 'Event 2' }];
-        const day = new Day({ events });
-        assert.equal(JSON.stringify(day.events), JSON.stringify(events));
-    });
-});
-
-
-const day2 = new Day({ date: testDate, events: [] });
+const day2 = new Day();
+day2.update({ date: testDate, events: [] });
 
 module('isCurrentDayEvent', () => {
     test("should return false when event has no startDate", assert => {
