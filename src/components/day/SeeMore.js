@@ -5,15 +5,12 @@ const SeeMoreButton = require('./SeeMoreButton');
 const SeeMore = {
     oninit: function (vnode) {
         this.showPopup = false;
-        this.events = vnode.attrs.events;
         this.popupRef = null;
         this.buttonRef = null;
-
-        console.log(this.events)
     },
 
     view: function (vnode) {
-        return this.events.length > 0 && m('.see-more-container', [
+        return vnode.attrs.events.length > 0 && m('.see-more-container', [
             m(SeeMoreButton, {
                 onClick: () => {
                     this.showPopup = true;
@@ -22,7 +19,7 @@ const SeeMore = {
             }),
             this.showPopup && m(Popup, {
                 visible: this.showPopup,
-                events: this.events,
+                events: vnode.attrs.events,
                 onClose: () => {
                     this.showPopup = false;
                     m.redraw();

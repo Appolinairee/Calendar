@@ -3,8 +3,6 @@ class Day {
     constructor() {
         this._events = null;
         this._date = null;
-        this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
-        this._seemoreCases = Array(24).fill(null).map(() => []);
     }
 
 
@@ -144,8 +142,10 @@ class Day {
         }
 
         this._date = data.date instanceof Date ? data.date : new Date();
-
         this._events = data.events;
+
+        this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
+        this._seemoreCases = Array(24).fill(null).map(() => []);
 
         this._events.forEach(event => {
             if (!this.isCurrentDayEvent(event)) return;

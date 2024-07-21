@@ -10,6 +10,14 @@ const CalendarGrid = {
             events: vnode.attrs.events
         });
     },
+    onbeforeupdate: function (vnode, old) {
+        if (vnode.attrs.currentDate !== old.attrs.currentDate) {
+            this.day.update({
+                events: vnode.attrs.events,
+                date: vnode.attrs.currentDate
+            });
+        }
+    },
     view: function () {
         function renderCell(i, j) {
             let styleClass = '';
@@ -32,7 +40,7 @@ const CalendarGrid = {
                 components,
                 m(DisplayEvents, { day: this.day })
             ]),
-            m(SeeMoreGrid, {moreEvents: this.day.seemoreCases})
+            m(SeeMoreGrid, { moreEvents: this.day.seemoreCases })
         ])
 
         return;

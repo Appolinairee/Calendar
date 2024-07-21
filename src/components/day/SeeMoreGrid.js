@@ -2,10 +2,6 @@ const m = require("mithril");
 const SeeMore = require("./SeeMore");
 
 const SeeMoreGrid = {
-    oninit: function (vnode) {
-        this.moreEvents = vnode.attrs.moreEvents;
-    },
-
     view: function (vnode) {
         const components = [];
 
@@ -13,7 +9,7 @@ const SeeMoreGrid = {
             components.push(
                 m('.see-more-grid-cell.after', { key: i },
                     m(SeeMore, {
-                        events: this.moreEvents[i]
+                        events: vnode.attrs.moreEvents[i]
                     })
                 )
             );
