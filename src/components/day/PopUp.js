@@ -2,7 +2,7 @@ const m = require("mithril");
 
 const Popup = {
     view: function (vnode) {
-        return vnode.attrs.visible ? m(".popup", [
+        return m(".popup", [
             m(".popup-content after", [
                 m("span", "Événements"),
                 m(".more-events", vnode.attrs.events.map(event => m(".more-event", [
@@ -14,7 +14,7 @@ const Popup = {
                 ]))),
                 m("i.fas.fa-xmark", { onclick: vnode.attrs.onClose })
             ])
-        ]) : null;
+        ]);
     }
 };
 

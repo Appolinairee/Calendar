@@ -14,7 +14,6 @@ const SeeMore = {
             m(SeeMoreButton, {
                 onClick: () => {
                     this.showPopup = true;
-                    m.redraw();
                 }
             }),
             this.showPopup && m(Popup, {
@@ -22,7 +21,6 @@ const SeeMore = {
                 events: vnode.attrs.events,
                 onClose: () => {
                     this.showPopup = false;
-                    m.redraw();
                 }
             })
         ]);

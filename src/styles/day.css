@@ -106,7 +106,7 @@
 .popup .popup-content {
     position: absolute;
     padding: 10px 20px;
-    top: 65px;
+    top: 0px;
     background: white;
     left: 50%;
     transform: translateX(-50%);
