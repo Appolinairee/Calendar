@@ -1,24 +1,21 @@
 const m = require("mithril");
 const CalendarView = require("./CalendarView");
 const TopBar = require('./components/TopBar');
+const { events } = require('./assets/datas');
 
 const App = {
     oninit: function (vnode) {
-        vnode.state.currentDate = new Date();
-        vnode.state.activeMode = 'Day';
+        const initialDate = new Date();
+        vnode.state.calendar = new Calendar({ date: initialDate, events: events, mode: 'month' });
     },
 
     view: function (vnode) {
         return m('.app', [
             m(TopBar, {
-                currentDate: vnode.state.currentDate,
-                activeMode: vnode.state.activeMode,
-                setCurrentDate: (date) => vnode.state.currentDate = date,
-                setActiveMode: (mode) => vnode.state.activeMode = mode
+                calendar: vnode.state.calendar
             }),
             m(CalendarView, {
-                currentDate: vnode.state.currentDate,
-                activeMode: vnode.state.activeMode
+                calendar: vnode.state.calendar
             })
         ]);
     }

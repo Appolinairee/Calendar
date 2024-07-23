@@ -1,0 +1,25 @@
+.month-grid-container {
+    overflow-y: scroll;
+    margin-top: 20px;
+}
+
+.month-grid-container .month-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    height: 40px;
+    color: var(--gridLabelColor);
+    text-align: center;
+    border-bottom: 1px solid var(--gridColor);
+
+}
+
+.month-grid-container .month-grid-header div{
+    border-left: 1px solid var(--gridColor);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.month-grid-container .month-grid-header div:nth-last-child(1) {
+    border-right: 1px solid var(--gridColor);
+}

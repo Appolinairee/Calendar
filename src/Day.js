@@ -2,7 +2,10 @@ class Day {
 
     constructor() {
         this._events = null;
+        this._cases = null;
         this._date = null;
+        this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
+        this._seemoreCases = Array(24).fill(null).map(() => []);
     }
 
 
@@ -77,18 +80,19 @@ class Day {
 
         for (let j = 0; j < 3; j++) {
             let canPlace = true;
+
             for (let i = start; i < end; i++) {
                 if (this._cases[i][j]) {
                     canPlace = false;
                     break;
                 }
             }
-
             if (canPlace) {
                 column = j;
                 break;
             }
         }
+
 
         if (column != -1) {
             for (let i = start; i < end; i++) {
@@ -117,7 +121,7 @@ class Day {
             });
         }
 
-        const columnWidth = Math.floor(totalColumns / overlappingEvents.size);
+        const columnWidth = Math.floor(totalColumns / (Math.min(overlappingEvents.size, totalColumns)));
 
         let eventColIndex = this._cases[start].indexOf(event);
         let startCol = eventColIndex * columnWidth + 1;

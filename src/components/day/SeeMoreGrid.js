@@ -9,7 +9,7 @@ const SeeMoreGrid = {
             components.push(
                 m('.see-more-grid-cell.after', { key: i },
                     m(SeeMore, {
-                        events: vnode.attrs.moreEvents[i]
+                        events: vnode.attrs.moreCases[i]
                     })
                 )
             );

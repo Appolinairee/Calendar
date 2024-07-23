@@ -13,23 +13,23 @@ const TopBar = {
     },
 
     view: function (vnode) {
-        const { currentDate, activeMode, setCurrentDate, setActiveMode } = vnode.attrs;
+        const { calendar } = vnode.attrs;
 
         return m('.navSection', m('.top-bar.flex', [
             m('.top-bar-date.flex', [
-                m('span', { onclick: () => setCurrentDate(new Date()) }, 'Today'),
+                m('span', { onclick: () => calendar.setCurrentDate(new Date()) }, 'Today'),
                 m('.chevrons.flex', [
-                    m('i.fas.fa-chevron-left', { onclick: () => setCurrentDate(this.adjustDate(currentDate, -1)) }),
-                    m('i.fas.fa-chevron-right', { onclick: () => setCurrentDate(this.adjustDate(currentDate, 1)) })
+                    m('i.fas.fa-chevron-left', { onclick: () => calendar.setCurrentDate(this.adjustDate(calendar.date, -1)) }),
+                    m('i.fas.fa-chevron-right', { onclick: () => calendar.setCurrentDate(this.adjustDate(calendar.date, 1)) })
                 ]),
-                m('p', this.formatDate(currentDate)),
+                m('p', this.formatDate(calendar.date)),
             ]),
 
             m('.top-bar-mode.flex', [
-                m('span', { class: activeMode === 'Day' ? 'active' : '', onclick: () => setActiveMode('Day') }, 'Day'),
-                m('span', { class: activeMode === 'Week' ? 'active' : '', onclick: () => setActiveMode('Week') }, 'Week'),
-                m('span', { class: activeMode === 'Month' ? 'active' : '', onclick: () => setActiveMode('Month') }, 'Month'),
-                m('span', { class: activeMode === 'Year' ? 'active' : '', onclick: () => setActiveMode('Year') }, 'Year')
+                m('span', { class: calendar.currentMode === 'day' ? 'active' : '', onclick: () => calendar.switchMode('day') }, 'Day'),
+                m('span', { class: calendar.currentMode === 'month' ? 'active' : '', onclick: () => calendar.switchMode('month') }, 'Month'),
+                m('span', { class: calendar.currentMode === 'year' ? 'active' : '' }, 'Year'),
+                m('span', { class: calendar.currentMode === 'week' ? 'active' : '' }, 'Week')
             ]),
 
             m('.top-bar-search', [

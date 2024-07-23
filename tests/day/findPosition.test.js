@@ -1,4 +1,3 @@
-
 module('findPosition', (hooks) => {
     let day;
 

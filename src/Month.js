@@ -1,17 +1,9 @@
 class Month {
 
     constructor(props = {}) {
-        if (props.date && !(props.date instanceof Date)) {
-            throw new Error(DateParamError);
-        }
-
-        if (!props.events || !Array.isArray(props.events) || !props.events.every(event => typeof event === 'object')) {
-            throw new Error(EventsParamError);
-        }
-
         this._date = props.date instanceof Date ? props.date : new Date();
         this._events = props.events;
-        this._cases = Array(7).fill(null).map(() => Array(5).fill(null));
+        this._cases = Array(7).fill(null).map(() => Array(24).fill(null));
     }
 
 
@@ -60,6 +52,10 @@ class Month {
 
     getBoardStyle() {
 
+    }
+
+    update() {
+        // 
     }
 
     get events() {

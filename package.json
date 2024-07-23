@@ -6,13 +6,18 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "build:css": "postcss src/styles/tailwind.css -o bin/styles.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mithril": "^2.2.2"
+    "autoprefixer": "^10.4.19",
+    "mithril": "^2.2.2",
+    "postcss": "^8.4.39",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.6"
   },
   "devDependencies": {
     "eslint": "^9.7.0",

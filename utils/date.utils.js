@@ -30,3 +30,15 @@ function formatHour(date) {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
 }
+
+function formatDateForDayNav (date) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('fr-FR', options);
+};
+
+function formatDateForDayEvent(dateString) {
+    const date = new Date(dateString);
+    const options = { hour: '2-digit', minute: '2-digit' };
+    
+    return date.toLocaleTimeString('fr-FR', options);
+}
