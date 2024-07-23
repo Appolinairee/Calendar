@@ -1,7 +1,7 @@
 const m = require("mithril");
 const CalendarView = require("./CalendarView");
-const TopBar = require('./components/TopBar');
 const { events } = require('./assets/datas');
+const TopBar = require("./components/topbar/TopBar");
 
 const App = {
     oninit: function (vnode) {

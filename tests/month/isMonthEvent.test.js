@@ -1,5 +1,9 @@
-module('isMonthEvent', () => {
-    const month = new Month({ date: testDate, events: [] });
+module('isMonthEvent', (hooks) => {
+
+    hooks.beforeEach(() => {
+        month = new Month();
+        month._date = testDate;
+    });
 
     test("should return false when event has no startDate", assert => {
         const event = { endDate: "2024-06-15T10:30:00Z" };

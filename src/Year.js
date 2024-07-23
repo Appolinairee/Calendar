@@ -1,0 +1,5 @@
+class Year {
+
+    constructor(props = {}) {
+    }
+}

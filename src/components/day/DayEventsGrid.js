@@ -1,8 +1,6 @@
 const m = require("mithril");
 
-
 const DayEventsGrid = {
-
     resetDisplayedEvents() {
         this.displayedEvents.clear();
     },

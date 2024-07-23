@@ -11,7 +11,7 @@ class Calendar {
         this._currentDate = props.date instanceof Date ? props.date : new Date();
         this._events = props.events;
 
-        this._validModes = ['day', 'month', 'year'];
+        this._validModes = ['day', 'month', 'year', 'week'];
         this._currentMode = this._validModes.includes(props.mode) ? props.mode : 'day';
     }
 

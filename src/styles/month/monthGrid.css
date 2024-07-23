@@ -1,25 +1,76 @@
 .month-grid-container {
+    height: 470px;
     overflow-y: scroll;
-    margin-top: 20px;
+    padding: 0 30px;
 }
 
-.month-grid-container .month-grid-header {
+.month-grid {
+    width: 100%;
+    position: relative;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    height: 40px;
-    color: var(--gridLabelColor);
-    text-align: center;
-    border-bottom: 1px solid var(--gridColor);
-
+    grid-template-rows: repeat(30, 20px);
+    border-top: none;
+    border: 1px solid var(--gridColor);
+    border-top: none;
+    border-right: none;
 }
 
-.month-grid-container .month-grid-header div{
-    border-left: 1px solid var(--gridColor);
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+/* .month-grid.background-grid {
+    height: 500px;
+    width: calc(100% + 18.5px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: px;
+} */
 
-.month-grid-container .month-grid-header div:nth-last-child(1) {
+.month-grid .month-grid-cell {
     border-right: 1px solid var(--gridColor);
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    font-weight: 500;
+}
+
+.month-grid .month-grid-cell.month-grid-border {
+    border-top: 1px solid var(--gridColor);
+    position: relative;
+    height: 30px;
+}
+
+.month-grid .month-grid-cell.month-grid-border:nth-child(7n + 1)::after, .month-grid .month-grid-cell.month-grid-border:nth-child(7n)::after {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: -1px;
+    background: var(--gridColor);
+    width: 15px;
+    height: 1px;
+}
+
+.month-grid .month-grid-cell.month-grid-border:nth-child(7n)::after {
+    right: 15px;
+    left: 100%;
+}
+
+
+.month-grid .month-grid-cell.month-inactive-day {
+    opacity: 0.6;
+    font-weight: 300;
+}
+
+.month-grid .month-grid-cell span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.month-grid .month-grid-cell.current-day span {
+    background: rgba(26, 115, 232, 0.3);
+    border-radius: 50%;
+    padding: 1px 4px;
+    color: var(--primaryColor);
+    font-weight: 600;
 }

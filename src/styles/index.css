@@ -75,3 +75,8 @@ input {
     border-radius: 5px;
     height: 5px;
 }
+
+.wait-message{
+    color: var(--gridLabelColor);
+    margin: 10px;
+}

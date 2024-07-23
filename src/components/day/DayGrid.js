@@ -12,12 +12,12 @@ const DayGrid = {
 
     view: function (vnode) {
         const components = [];
-
-        for (let i = 0; i < 96; i++) {
-            for (let j = 0; j < 3; j++) {
-                components.push(this.renderCell(i, j));
-            }
-        }
+        
+        vnode.attrs.day.cases.forEach((row, rowIndex) => {
+            row.forEach((_, colIndex) => {
+                components.push(this.renderCell(rowIndex, colIndex));
+            });
+        });
 
         return m('.grid-container', [
             m(".calendar-grid.grid-background", [

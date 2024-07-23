@@ -1,3 +1,31 @@
 .month {
-    margin: 0px 3% 0;
+    margin: 30px calc(3% - 30px) 0;
+}
+
+.month .month-grid-header {
+    display: grid;
+    width: calc(100% - 69px);
+    grid-template-columns: repeat(7, 1fr);
+    height: 50px;
+    color: var(--gridLabelColor);
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 30px;
+    transform: translateY(1px);
+    border-bottom: 1px solid var(--gridColor);
+}
+
+.month .month-grid-header div{
+    border-left: 1px solid var(--gridColor);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* width: calc(100% - 2px);
+    background: red; */
+}
+
+.month .month-grid-header div:nth-last-child(1) {
+    border-right: 1px solid var(--gridColor);
+    padding-right: 1px;
 }

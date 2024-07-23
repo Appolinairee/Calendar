@@ -1,5 +1,6 @@
 const m = require("mithril");
 const MonthGrid = require("./MonthGrid");
+const MonthHeaderGrid = require('./MonthHeaderGrid');
 
 const MonthView = {
     oninit: function (vnode) {
@@ -12,8 +13,8 @@ const MonthView = {
         const { date, events } = vnode.attrs;
 
         return m('.month', [
-            m(MonthGrid, {date, month: this.month}),
-            m("p", "Month view not implemented yet."),
+            m(MonthHeaderGrid),
+            m(MonthGrid, {date, month: this.month})
         ]);
     }
 };
