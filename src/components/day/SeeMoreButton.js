@@ -6,7 +6,7 @@ const SeeMoreButton = {
             onclick: vnode.attrs.onClick
         }, [
             m('i.far.fa-square-plus'),
-            m('p', "Voir plus")
+            m('p', `${vnode.attrs.length} events`)
         ]);
     }
 };

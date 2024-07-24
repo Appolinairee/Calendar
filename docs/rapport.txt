@@ -1,1 +1,236 @@
-- rappeller que pour 2 events sur une même lgne
+
+
+En terme de design général
+- Mettre le numéro et le titre du chapitre et mettre une barre
+- paginer les pages et tenir à les respecter dans le Sommaire
+- numéroter aussi les pages avant l'introduction
+- à coté mettre le nom de l'application avec une petite icon à côté
+
+
+
+Sommaire directement en profondeur
+
+
+Dédicace: Nous dédions ce projet à tous ceux qui cherchent à mieux organiser leur temps ou à en avoir plus.
+
+Remerciement: Remercier tout le monde, 
+Ce travail ne saurait être l'œuvre d'une seule personne. Je tiens à remercier tout particulièrement le professeur Hénoc SOUDE pour son précieux guide et ses conseils éclairés. Votre partage de connaissances a été essentiel.
+
+
+
+
+
+
+Résumé du Projet
+
+Ce projet a permis de développer un module de calendrier polyvalent, capable de gérer les événements à travers diverses vues telles que quotidienne, hebdomadaire et mensuelle. Il inclut des fonctionnalités avancées pour éviter les chevauchements d’événements et permet une navigation fluide entre les différentes dates et modes. Conçu spécifiquement pour les développeurs, ce module offre une architecture modulaire facilitant son intégration et sa personnalisation.
+
+Project Summary
+
+This project has developed a versatile calendar module capable of managing events across various views, such as daily, weekly, and monthly. It includes advanced features to prevent event overlaps and allows smooth navigation between different dates and modes. Designed specifically for developers, this module offers a modular architecture that facilitates integration and customization.
+
+
+Introduction
+
+- citation en haut
+Le temps est comme un fleuve, il coule sans retour: Proverbe africain
+
+Créer l'intrigue
+Présenter de manière captivante les besoins
+Dire ce que nous pensons mettre en oeuvres précisément dans tout celà en se focalisant sur ce qui est fait tou en focalisant sur ce qui est fait. 
+Et profiter pour faire une petite projection sur les projetctions.
+Annoncer succintement et brillamment le plan: dans un langage simple et naturel (un langage oral)
+
+
+Aujourd'hui, nous faisons face à un besoin croissant de solutions qui non seulement permettent de planifier les événements, mais qui aussi optimisent la gestion des chevauchements et offrent une flexibilité dans la visualisation des différentes perspectives temporelles. Que ce soit pour un usage quotidien, hebdomadaire, mensuel ou annuel, le défi est de créer un calendrier qui facilement intégrable sur des projets, précis et simple.
+
+Dans ce projet, nous avons conçu PolyCalendar, un module de calendrier polyvalent, capable de répondre à ces exigences. Ce module offre des fonctionnalités pour gérer efficacement les chevauchements d’événements et permet une navigation fluide entre les différentes vues. Avec une interface utilisateur appropriable et une architecture modulaire, il est conçu pour faciliter l'intégration et la personnalisation par les développeurs.
+
+Nous commencerons par une analyse des solutions existantes et des lacunes identifiées. Ensuite, nous détaillerons l'architecture de notre module, en expliquant les différentes vues disponibles et la conception de l'interface utilisateur pour une navigation optimale. Ce module ouvre également la voie à des perspectives futures, offrant la possibilité d'ajouter des fonctionnalités personnalisées pour répondre à des besoins variés.
+
+
+
+
+Etude de l'existant
+
+Ils sont inombrabes ses outils de calendrier numérique qui nous permttent de visualiser nos Événements et tâches sur plusieurs formats .
+Pour mener une étude exhaustive des outils de calendrier numérique existants, nous les classerons en trois catégories principales : Calendriers Personnels et Professionnels, Outils de Plannificatiion de Projets et d'Événements et les modules de calendriers pour Développeurs.
+
+
+Calendriers Personnels et Professionnels
+Ces calendriers, comme Google Calendar, Microsoft Outlook Calendar, Apple Calendar, et Zoho Calendar, sont conçus pour une utilisation individuelle ou en très petites équipes. Ils permettent de gérer des tâches personnelles et professionnelles, de synchroniser les événements sur plusieurs appareils, et d'intégrer des rappels et des notifications. 
+
+Par exemple, Google Calendar propose divers formats de visualisation des événements, avec plusieurs options de personnalisation, intégrées aux services Google connexes.
+Ces applications, bien que puissants pour des usages quotidiens, ils ne sont pas toujours conçus pour être intégrés facilement dans des applications tierces. Certains de ces outils ne sont pas gratuits ou sont accessibles uniquement au sein des services de l'entreprise, ce qui complique leur adoption et leur intégration dans des projets personnalisés.
+
+
+Mettre 2 captures: l'une pour google calendar et l'autre pour fantastic
+
+
+
+Outils de Plannificatiion de Projets et d'Événements
+
+Dans ce lot, on retrouve les plateformes comme Trello, Asana, et Monday.com qui intègrent des vues de calendrier dans des plateformes de gestion de projets ou de planification d'événements. 
+Par exemple, Trello permet une gestion facile des tâches et des échéances avec une vue calendrier intégrée. Comme le groupe précédent, ils ne peuvent pas être intégrés sur des applications tierces. Mais plus spécifiquement, ils sont plus adaptés pour la gestion de projets d'équipe offrant ainsi le calendrier comme une vue secondaire.
+
+
+Modules de Calendriers pour Développeurs
+Contrairement aux outils précédemment mentionnés, il existe des modules ou API permettant aux développeurs d'intégrer des fonctionnalités de calendrier dans leurs applications web et mobiles. Parmi eux, on trouve FullCalendar, DHTMLX Scheduler, et Syncfusion Calendar, qui offrent plusieurs options de personnalisation et supportent divers frameworks JavaScript. FullCalendar, par exemple, est très adaptable et s'intègre facilement, offrant principalement trois vues. Cependant, les formats de visualisation d'événements disponibles restent relativement limités, et la libre structuration des données d'événements ainsi que la personnalisation pour la gestion de calendrier sont encore des points faibles.
+
+Mettre la capture de full calendar
+
+Ces outils apportent une grande puissance pour les usages quotidiens, offrant des fonctionnalités variées et une intégration avec d'autres services. Cependant, ils manquent souvent de flexibilité et de fonctionnalités avancées nécessaires pour des intégrations complexes. Aussi ne sont-ils pas toujours gratuits ou conçus pour être intégrés dans des applications tierces, limitant ainsi leur adoption par les développeurs.
+
+Notre module de calendrier générique vise à améliorer cette situation en offrant une solution flexible 📆, intégrable 🔫, et accessible ⚙. Il permet aux développeurs de structurer librement les données des événements et de configurer les attributs selon leurs besoins. De plus, il ne se limite pas aux simples vues day, month, year, mais propose un ensemble complet de graphiques et de formats de visualisation d'événements dans le temps. Cela permet une meilleure adaptation aux besoins variés des utilisateurs et des développeurs, offrant ainsi une extension significative des capacités des outils actuels.
+
+
+
+
+Architecture générale
+
+La conception d'un module de calendrier générique nécessite une séparation claire entre la logique métier et les interfaces utilisateur. Cette approche permet de maintenir un code propre, modulaire, et facilement testable. En adoptant une approche de développement orientée par les tests (Test Driven Development), cette séparation devient encore plus cruciale pour garantir la robustesse et la fiabilité du module à travers des tests unitaires exhaustifs.
+
+Le calendrier agit comme une boîte qui encapsule toute la logique et les interfaces du mode courant. Lorsqu'un utilisateur interagit avec le calendrier, par exemple en changeant de vue, la boîte encapsule la transition, en passant les données pertinentes à la nouvelle vue tout en conservant une expérience utilisateur cohérente. Cette approche modulaire facilite également l'ajout de nouvelles vues ou fonctionnalités sans perturber les composants existants.
+
+
+Architecture de la logique métier
+Logique : Cette couche gère toutes les opérations, algorithmes, et flux de données. Elle est responsable de la gestion des événements, du calcul des positions des événements, et de la logique d'affichage. En isolant cette logique, nous pouvons facilement effectuer des modifications ou des extensions sans affecter l'interface utilisateur. Par exemple, si nous devons ajouter une nouvelle fonctionnalité, comme la gestion des invitations d'événements, cela peut être fait uniquement dans la couche logique sans toucher à la présentation.
+
+Diagramme architectural
+Nous avons élaboré un diagramme de classes pour illustrer l'architecture de notre module de calendrier générique. Ce diagramme présente les relations entre les différentes classes et leurs responsabilités. La capture suivante, que nous nommerons "Architecture du code - Diagramme de classe", montre cette structure.
+
+ <!-- Remplacer "image_path" par le chemin réel de l'image -->
+
+
+
+Classe de tête : Calendar
+La classe principale de notre module est Calendar. Elle gère les interactions entre les différentes vues (Day, Month, Year, Week). Elle maintient l'état actuel du mode (via l'interface IMode) et la date courante. Elle a également pour role de faire la correspondance prendre en compte la configuration des attributs du développeur.
+
+
+switchMode(IMode mode) : Permet de changer la vue courante (mode) du calendrier.
+createCalendarFromMode() : Crée et retourne une instance de la vue calendrier correspondant au mode actuel.
+
+Relations avec les autres classes
+
+Les autres classes dérivées, comme Day, Month et Year sont dédiées pour visualisation  des événements  en fonction du mode spécifique.
+
+
+Chaque classe de vue implémente l'interface IMode et doit être mise à jour lorsque les événements ou la date courante changent. Pour cela, la classe Calendar fournit une méthode de rafraîchissement, que nous appellerons update(). Cette méthode magique permet de mettre à jour la date courante ou la donnée d'évenements.
+
+
+Classe Spécifique : Day
+La classe DayView est chargée de la visualisation des événements pour une journée spécifique.
+
+Algorithme de Détermination des Événements du Jour
+La première étape dans la gestion des événements du jour consiste à filtrer les événements pertinents pour la date sélectionnée. La classe DayView identifie tous les événements qui se produisent le jour courant et les prépare pour l'affichage. Elle effectue une sélection précise pour s'assurer que seuls les événements du jour en cours sont pris en compte.
+
+Positionnement des Événements
+Les événements sont ensuite placés dans une grille horaire abstraite qui divise la journée en tranches de 15 minutes, soit une grille de 24 heures avec 4 tranches par heure. Les événements sont positionnés en fonction de leur heure de début et de leur durée. Chaque événement occupe une ou plusieurs cellules dans cette grille en fonction de sa durée.
+
+Pour éviter des chevauchements visuels, la grille est conçue pour afficher un maximum de trois événements par tranche horaire. Si plusieurs événements se chevauchent à la même heure, la quatrième colonne de chaque ligne est réservée pour un affichage supplémentaire. Cette colonne "voir plus" permet de présenter les événements excédentaires dans une liste déroulante accessible par survol ou clic, offrant ainsi une solution élégante pour gérer les chevauchements.
+
+
+
+
+
+    Gestion des Événements dans la Vue Mensuelle
+    La vue mensuelle du calendrier partage la même logique de base que la vue quotidienne, mais avec des spécificités adaptées à une échelle plus large. Le mois est divisé en une grille de 7 jours par 6 semaines, permettant ainsi de couvrir tous les jours du mois, même si le mois commence ou se termine en milieu de semaine.
+
+    Dans cette vue, chaque jour est représenté par une cellule dans la grille, où jusqu'à trois événements peuvent être affichés directement. Pour les jours avec plus de trois événements, un espace est réservé pour indiquer qu'il y a des événements supplémentaires à consulter. Un bouton "voir plus" est prévu pour donner plus de détails sur les événements de cette journée.
+
+    Les événements qui s'étendent sur plusieurs jours sont également pris en compte dans la vue mensuelle. Ils sont affichés en tant que blocs couvrant les jours concernés, assurant ainsi que la durée des événements est bien représentée à travers le mois.
+
+
+
+Architecture des interfaces Calendrier
+Les interfaces sont composées principalement de trois éléments : la barre d'action, la vue globale du calendrier, et les composants spécifiques à chaque mode de vue.
+
+
+Barre d'Action
+La barre d'action, qui agit comme la barre de navigation (navbar) du calendrier, est divisée en trois sections principales :
+
+1.Section de la Date Courante :
+Cette section permet de naviguer entre les dates. Selon le mode actuel (Day, Week, Month, Year), les boutons de navigation permettent de se déplacer vers les dates précédentes ou suivantes. Par exemple, en mode jour (Day), on peut passer au jour précédent ou suivant, tandis qu'en mode mois (Month), on peut naviguer vers le mois précédent ou suivant. Un bouton spécifique permet également de revenir directement à la date actuelle, qu'il s'agisse du jour, du mois ou de l'année.
+
+2.Section de Mode :
+Cette partie affiche les quatre modes de vue disponibles : Day, Week, Month, Year. Un clic sur l'un de ces modes déclenche un changement de mode, mettant à jour l'affichage pour refléter le mode sélectionné. La méthode appropriée de la classe Calendar est appelée pour effectuer ce changement, et les grilles de présentation sont mises à jour en conséquence.
+
+
+3.Section de Recherche :
+La barre d'action inclut également une fonctionnalité de recherche rapide d'événements par titre. Cette recherche est dynamique et filtre automatiquement les événements en fonction des termes de recherche saisis par l'utilisateur.
+
+
+Vue Globale du Calendrier
+La vue globale, ou CalendarView, est responsable de l'instanciation du calendrier et de la gestion des vues spécifiques selon le mode actuel. Elle intègre les vues suivantes :
+
+DayView : Affiche les événements pour un jour spécifique.
+WeekView : Présente les événements pour une semaine entière.
+MonthView : Montre les événements pour un mois.
+YearView : Affiche les événements pour une année.
+
+
+Pour chacune de ces vues, une grille de fond est dessinée pour structurer l'affichage des jours, heures, ou mois. Une seconde grille, transparente mais de la même taille, est superposée pour positionner les événements. La méthode buildEventStyle est utilisée pour définir le style visuel des événements sur cette grille transparente, garantissant ainsi une présentation claire et cohérente.
+
+
+Composants Spécifiques à Chaque Vue
+Chaque vue (Day, Week, Month, Year) dispose de composants spécifiques pour gérer ses particularités :
+
+DayView : Utilise un composant HourList pour afficher les heures de la journée et pour aider à la disposition des événements dans la grille horaire.
+
+MonthView : Emploie un composant pour afficher les jours de chaque semaine, permettant une visualisation cohérente du mois.
+
+
+
+
+Langages Utilisés et Méthodologie
+Le module de calendrier a été implémenté en utilisant JavaScript avec Mithril pour gérer la logique métier et les interactions utilisateur. Le style et la présentation ont été réalisés avec CSS pour assurer une apparence cohérente et attrayante.
+
+Le développement a été guidé par une approche de Test Driven Development (TDD). Cette méthodologie nous permet de mettre des tests unitaires avant l’écriture du code, assurant ainsi un code bien structuré.
+
+
+Résultats
+
+Résumé des Objectifs Atteints
+Le module de calendrier a été développé avec succès pour gérer les événements dans les vues quotidienne, hebdomadaire et mensuelle. Il filtre et positionne les événements dans une grille horaire précise, tout en gérant efficacement les chevauchements. La barre d’action facilite la navigation, le changement de mode, et la recherche des événements. L'architecture modulaire assure une séparation claire entre la logique métier et l'interface utilisateur, permettant une intégration aisée par d'autres développeurs.
+
+
+Démonstration et Exemples
+
+
+Cas d’Utilisation
+Webinaires et Conférences
+Pour les webinaires, le module de calendrier offre une vue mensuelle pour planifier les événements et une vue horaire pour gérer les créneaux sans chevauchement. La recherche dynamique aide à trouver rapidement les sessions, et la barre d’action facilite la navigation entre les dates.
+
+Applications de Gestion de Projets
+Dans les outils de gestion de projets, le calendrier aide à organiser les tâches avec des vues quotidienne, hebdomadaire et mensuelle. Il permet de suivre les échéances et d'éviter les conflits de calendrier, garantissant une gestion efficace des projets.
+
+Gestion Universitaire
+Pour les plateformes universitaires, le calendrier organise les cours, examens et événements académiques. La vue quotidienne et hebdomadaire aide à suivre les horaires, tandis que la vue mensuelle permet de planifier les sessions de rattrapage et autres événements importants.
+
+
+
+
+Discussion && Perspectives
+
+Élargissement des Vues
+Pour enrichir le module de calendrier, il serait bénéfique d'ajouter des vues supplémentaires telles que la vue ressource, qui permet de visualiser la disponibilité des ressources, ou des vues personnalisées comme le Kanban pour gérer des tâches de manière visuelle. Ces ajouts pourraient améliorer la flexibilité et l'adaptabilité du calendrier à divers besoins.
+
+Options de Statut et Analyse
+Intégrer des options de statut pour les tâches permettrait de suivre l'avancement des projets et d'ajouter un système intelligent d'analyse de performance. Cela offrirait des insights en temps réel sur la productivité des utilisateurs, facilitant ainsi une meilleure gestion des tâches et des objectifs.
+
+Extension de la Communauté de Développement
+Pour maximiser l'adoption, il est essentiel d'élargir la communauté de développement et de rendre le module compatible avec plusieurs frameworks. Cela permettrait à un plus grand nombre de développeurs d'intégrer et de contribuer au module, enrichissant ainsi ses fonctionnalités et sa portée.
+
+Personnalisation de la Gestion des Chevauchements
+Permettre une personnalisation accrue de la gestion des chevauchements offrira plus de flexibilité aux utilisateurs pour adapter l'affichage des événements à leurs préférences spécifiques. Cela pourrait inclure des options pour définir le nombre d'événements visibles par tranche horaire ou la manière dont les événements supplémentaires sont affichés.
+
+Responsivité et Personnalisation Mobile
+Assurer la compatibilité du calendrier avec les appareils mobiles est crucial pour offrir une expérience utilisateur fluide. La personnalisation de l'affichage sur mobile, incluant la gestion des différentes vues en fonction de la taille de l'écran, garantirait que le calendrier reste fonctionnel et intuitif sur toutes les plateformes.
+
+
+
+Conclusion
+UnifiedCalendar offre une solution la gestion des événements à travers différentes vues, telles que quotidienne, hebdomadaire et mensuelle. Sa conception modulaire, qui sépare la logique métier des interfaces utilisateur, permet non seulement une intégration aisée dans divers projets, mais aussi une personnalisation adaptée aux besoins spécifiques des utilisateurs. Il vient avec des fonctionnalités de filtrage, de gestion des chevauchements, et de navigation fluide.
+Envisager des extensions comme des vues personnalisées, des options de statut, et une meilleure compatibilité mobile pourrait encore enrichir ses capacités et répondre à un éventail plus large de besoins.
+
+WebBiographie pour la réalisation du projet

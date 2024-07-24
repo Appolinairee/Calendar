@@ -37,7 +37,7 @@ function formatDateForDayNav (date) {
 };
 
 function formatDateForDayEvent(dateString) {
-    const date = new Date(dateString);
+    const date = getUtcDate(new Date(dateString));
     const options = { hour: '2-digit', minute: '2-digit' };
     
     return date.toLocaleTimeString('fr-FR', options);

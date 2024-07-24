@@ -11,7 +11,7 @@
     font-size: 13px;
     overflow-y: hidden;
     border-left: 2.5px solid rgb(26, 115, 232);
-    background: rgb(26, 115, 232, 0.05) !important;
+    background: rgb(26, 115, 232, 0.2) !important;
     border-radius: 3px;
     color: rgb(26, 115, 232);
     padding: 0 5px;
@@ -22,30 +22,98 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03), -1px -1px 1px rgba(0, 0, 0, 0.03);
 }
 
-.events .event:nth-child(5n) {
+.events .event:nth-child(10n) {
     border-left: 2.5px solid rgb(26, 115, 232);
-    background: rgb(26, 115, 232, 0.1) !important;
+    background: rgba(26, 115, 232, 0.1) !important;
     color: rgb(26, 115, 232);
 }
 
-.events .event:nth-child(5n + 1) {
-    border-left: 2.5px solid red;
-    background: rgba(255, 0, 0, 0.05) !important;
-    color: red;
+.events .event:nth-child(10n + 1) {
+    border-left: 2.5px solid rgb(255, 0, 0);
+    background: rgba(255, 0, 0, 0.1) !important;
+    color: rgb(255, 0, 0);
 }
 
-.events .event:nth-child(5n + 2) {
-    border-left: 2.5px solid green;
-    background: rgba(0, 128, 0, 0.05) !important;
-    color: green;
+.events .event:nth-child(10n + 2) {
+    border-left: 2.5px solid rgb(0, 128, 0);
+    background: rgba(0, 128, 0, 0.1) !important;
+    color: rgb(0, 128, 0);
 }
 
-.events .event:nth-child(5n + 3) {
-    border-left: 2.5px solid yellow;
-    background: rgba(255, 255, 0, 0.05) !important;
-    color: yellow;
+.events .event:nth-child(10n + 3) {
+    border-left: 2.5px solid rgb(255, 255, 0);
+    background: rgba(255, 255, 0, 0.1) !important;
+    color: rgb(0, 0, 0);
 }
 
+.events .event:nth-child(10n + 4) {
+    border-left: 2.5px solid rgb(102, 51, 153);
+    background: rgba(102, 51, 153, 0.1) !important;
+    color: rgb(102, 51, 153);
+}
+
+.events .event:nth-child(10n + 5) {
+    border-left: 2.5px solid rgb(0, 255, 255); 
+    background: rgba(0, 255, 255, 0.1) !important;
+    color: rgb(0, 255, 255);
+}
+
+.events .event:nth-child(10n + 6) {
+    border-left: 2.5px solid rgb(255, 0, 255);
+    background: rgba(255, 0, 255, 0.1) !important;
+    color: rgb(255, 0, 255);
+}
+
+.events .event:nth-child(10n + 7) {
+    border-left: 2.5px solid rgb(255, 165, 0);
+    background: rgba(255, 165, 0, 0.1) !important;
+    color: rgb(255, 165, 0);
+}
+
+.events .event:nth-child(10n + 8) {
+    border-left: 2.5px solid rgb(211, 211, 211); 
+    background: rgba(211, 211, 211, 0.1) !important;
+    color: rgb(0, 0, 0);
+}
+
+.events .event:nth-child(10n + 9) {
+    border-left: 2.5px solid rgb(128, 128, 0);
+    background: rgba(128, 128, 0, 0.1) !important;
+    color: rgb(128, 128, 0);
+}
+
+.events .event:nth-child(10n + 10) {
+    border-left: 2.5px solid rgb(26, 115, 232);
+    background: rgba(26, 115, 232, 0.1) !important;
+    color: rgb(26, 115, 232);
+}
+
+
+
+
+
+
+
+.more-events .more-event {
+    padding: 5px 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(102, 51, 153, 0.1);
+}
+
+.more-events .more-event:hover {
+    background: rgba(102, 51, 153, 0.2);
+}
+
+.more-events .event-datetime div {
+    margin-top: 5px;
+}
+
+.more-events .event-datetime span {
+    font-size: 11px;
+    color: var(--gridLabelColor);
+}
 .events .event:nth-child(5n + 4) {
     border-left: 2.5px solid rebeccapurple;
     background: rgba(102, 51, 153, 0.05) !important;

@@ -1,7 +1,28 @@
-Day View
-- update de Day
-- design et implémentation des vues
+Image calendar mode day et fantastic sur la même ligne mode semaine
 
-Month
+Capture FullCalendar mode day
 
-MonthView
+Diagramme archiectural - Daiagramme de classe
+
+
+Architecture
+Capture code source calendar
+
+Mode Day: affichage grille
+chevauchements: différentes captures
+See More: capture
+
+Mode Month
+Capture grille
+
+
+Interfaces: 
+3 captures sur la ligne pour la date
+2 captures mode
+1 capture recherche
+Capture barre 
+
+
+
+Démonstrations
+

@@ -56,7 +56,7 @@ const TopBarDate = {
                 onclick: () => {
                     calendar.setCurrentDate(this.setToday(mode));
                 }
-            }, mode === 'month' ? 'Mois actuel' : mode === 'year' ? 'Année actuelle' : 'Today'),
+            }, 'Today'),
             m('.chevrons.flex', [
                 m('i.fas.fa-chevron-left', {
                     onclick: () => {

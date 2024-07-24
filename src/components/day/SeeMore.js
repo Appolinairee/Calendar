@@ -14,7 +14,8 @@ const SeeMore = {
             m(SeeMoreButton, {
                 onClick: () => {
                     this.showPopup = true;
-                }
+                },
+                length: vnode.attrs.events.length,
             }),
             this.showPopup && m(Popup, {
                 visible: this.showPopup,
