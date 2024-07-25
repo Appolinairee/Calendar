@@ -36,8 +36,11 @@ const DayEventsGrid = {
                     if (this.displayedEvents.has(eventKey)) return;
 
                     this.displayedEvents.add(eventKey);
+                    let endPosition = e.endDate ? day.findPosition(e.endDate) : 1;
 
-                    const style = day.buildEventStyle(e, rowIndex, day.findPosition(e.endDate));
+                    console.log(e.endDate, endPosition);
+
+                    const style = day.buildEventStyle(e, rowIndex, endPosition);
 
                     eventsVNodes.push(this.createEventVNode(e, style, rowIndex, colIndex));
                 }

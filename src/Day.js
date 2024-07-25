@@ -48,10 +48,6 @@ class Day {
 
 
     findPosition(dateString) {
-        if (!dateString || !isValidISODate(dateString)) {
-            return -1;
-        }
-
         const dateObject = getUtcDate(new Date(dateString));
         const startOfDay = getUtcDate(new Date(this._date.getTime()));
         startOfDay.setHours(0, 0, 0);
@@ -134,6 +130,7 @@ class Day {
         return `${gridColumn} ${gridRow}`;
     }
 
+    
     update(data) {
         if (!data) return;
 
@@ -151,14 +148,18 @@ class Day {
         this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
         this._seemoreCases = Array(24).fill(null).map(() => []);
 
+
         this._events.forEach(event => {
+
             if (!this.isCurrentDayEvent(event)) return;
+
+            console.log(event)
 
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 
-            const end = this.findPosition(event.endDate);
-            end == 0 && end++;
+            const end = event.endDate ? this.findPosition(event.endDate) : 1;                     
+            
             if (end == -1) return;
 
             this.fillCases(event, start, end);

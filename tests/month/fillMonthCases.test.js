@@ -1,62 +1,90 @@
-module('fillCases for month', (hooks) => {
-    hooks.beforeEach(() => {
-        month = new Month();
-        month._date = new Date("2024-06-01");
+module("fillCases for month", (hooks) => {
+  hooks.beforeEach(() => {
+    month = new Month();
 
-        month._firstDayOfMonth = new Date(month._date.getFullYear(), month._date.getMonth(), 1).getDay();
-        month._daysInMonth = new Date(month._date.getFullYear(), month._date.getMonth() + 1, 0).getDate();
-    });
+    month._firstOfMonth = new Date(
+      testDate.getFullYear(),
+      testDate.getMonth(),
+      1
+    ).getDay();
+    month._lastOfMonth = new Date(
+      testDate.getFullYear(),
+      testDate.getMonth() + 1,
+      0,
+      23,
+      59,
+      59
+    );
+  });
 
-    test("should place a single-day event in the correct cell", assert => {
-        const event = { startDate: "2024-06-15T09:00:00Z", endDate: "2024-06-15T17:00:00Z" };
-        month.fillCases(event);
+  const event = { startDate: "2024-06-15" };
 
-        assert.deepEqual(month._cases[2 * 5 + 1][6], event);
-    });
+  test("should fill the first subdivision of cell 0, 0 when it is empty", (assert) => {
+    month.fillCases(event, 0, 0);
+    assert.deepEqual(month._cases[1][0], event);
+  });
 
-    test("should place an event spanning multiple days correctly", assert => {
-        const event = { startDate: "2024-06-14T09:00:00Z", endDate: "2024-06-16T17:00:00Z" };
-        month.fillCases(event);
+  test("should fill the second subdivision of cell 0, 0 when the first is occupied", (assert) => {
+    month._cases[1][0] = 1;
+    month.fillCases(event, 0, 0);
 
-        assert.deepEqual(month._cases[2 * 5 + 1][5], event);
-        assert.deepEqual(month._cases[2 * 5 + 1][6], event);
-        assert.deepEqual(month._cases[3 * 5 + 1][0], event);
-    });
+    assert.deepEqual(month._cases[2][0], event);
+  });
 
-    test("should handle an event that spans the end of the month", assert => {
-        const event = { startDate: "2024-06-28T09:00:00Z", endDate: "2024-07-02T17:00:00Z" };
-        month.fillCases(event);
+  test("should fill the third subdivision of cell 0, 0 when the second is occupied", (assert) => {
+    month._cases[1][0] = 1;
+    month._cases[2][0] = 1;
+    month.fillCases(event, 0, 0);
 
-        assert.deepEqual(month._cases[4 * 5 + 1][5], event);
-        assert.deepEqual(month._cases[4 * 5 + 1][6], event);
-        assert.deepEqual(month._cases[5 * 5 + 1][0], event);
-    });
+    assert.deepEqual(month._cases[3][0], event);
+  });
 
+  test("should place event into the fourth subdivision of cell 0, 0 when more than 3 three events in cases", (assert) => {
+    month._cases[1][0] = 1;
+    month._cases[2][0] = 1;
+    month._cases[3][0] = 1;
+    month.fillCases(event, 0, 0);
 
-    test("should handle a single-day event when there is already an existing event on the same day", assert => {
-        month._cases[1][6] = 1;
+    assert.deepEqual(month._cases[4][0][0], event);
+  });
 
-        const event = { startDate: "2024-06-01T11:00:00Z", endDate: "2024-06-01T12:00:00Z" };
-        month.fillCases(event);
+  test("should fill corrects cases from start to end in same line and there is place for", (assert) => {
+    month.fillCases(event, 4, 6);
 
-        assert.deepEqual(month._cases[1][6], 1);
-        assert.deepEqual(month._cases[2][6], event);
-    });
+    assert.deepEqual(month._cases[1][4], event);
+    assert.deepEqual(month._cases[1][5], event);
+    aassert.deepEqual(month._cases[1][6], event);
+  });
 
-    test("should place additional events in the seeMore section if they overflow", assert => {
-        const events = [
-            { startDate: "2024-06-15T09:00:00Z", endDate: "2024-06-15T10:00:00Z" },
-            { startDate: "2024-06-15T11:00:00Z", endDate: "2024-06-15T12:00:00Z" },
-            { startDate: "2024-06-15T13:00:00Z", endDate: "2024-06-15T14:00:00Z" },
-            { startDate: "2024-06-15T15:00:00Z", endDate: "2024-06-15T16:00:00Z" },
-        ];
+  test("should place event in seemore case of the first day when there is no place for", (assert) => {
+    for (let i = 1; i < 4; i++) month._cases[i][0] = 1;
 
-        events.forEach(event => month.fillCases(event));
+    month.fillCases(event, 0, 4);
 
-        assert.deepEqual(month._cases[2 * 5 + 1][6], events[0]);
-        assert.deepEqual(month._cases[2 * 5 + 2][6], events[1]);
-        assert.deepEqual(month._cases[2 * 5 + 3][6], events[2]);
-        assert.deepEqual(month._cases[2 * 5 + 4][6][0], events[3]);
-    });
+    assert.deepEqual(month._cases[4][0][0], event);
+  });
 
+  test("should fill corrects cases from start to 6 end from 0 to end when positions are on two lines and there is place for", (assert) => {
+    month._cases[1][0] = 1;
+    month._cases[2][0] = 1;
+    month.fillCases(event, 6, 8);
+
+    assert.deepEqual(month._cases[1][0], event);
+    assert.deepEqual(month._cases[6][0], event);
+    ssert.deepEqual(month._cases[6][1], event);
+  });
+
+  test("should fill corrects cases when positions span three lines and there is place for", (assert) => {
+    month._cases[1][0] = 1;
+    month._cases[2][0] = 1;
+    month.fillCases(event, 6, 15);
+
+    assert.deepEqual(month._cases[1][0], event);
+
+    for (let i = 0; i < 7; i++) {
+      assert.deepEqual(month._cases[6][i], event);
+    }
+
+    assert.deepEqual(month._cases[12][1], event);
+  });
 });

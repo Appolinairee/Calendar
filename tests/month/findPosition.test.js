@@ -1,33 +1,28 @@
 module('findPosition', (hooks) => {
-
     hooks.beforeEach(() => {
         month = new Month();
-        month._date = new Date("2024-06-01");
 
-        month._firstDayOfMonth = new Date(month._date.getFullYear(), month._date.getMonth(), 1).getDay();
-        month._daysInMonth = new Date(month._date.getFullYear(), month._date.getMonth() + 1, 0).getDate();
+        month._firstOfMonth = new Date(testDate.getFullYear(), testDate.getMonth(), 1).getDay();
+        month._lastOfMonth = new Date(testDate.getFullYear(), testDate.getMonth() + 1, 0, 23, 59, 59);
     });
 
-    test("should return -1, -1 for an invalid day", assert => {
-        const { row, col } = month.findPosition(32);
-        assert.deepEqual({ row, col }, { row: -1, col: -1 });
+    test("should return 6 for 01 June", assert => {
+        const date = "2024-06-01";
+        assert.equal(month.findPosition(date), 6);
     });
 
-    test("should correctly find the position for the first day of the month", assert => {
-        const { row, col } = month.findPosition(1);
-
-        assert.deepEqual({ row, col }, { row: 1, col: 6 });
+    test("should return 10 for 5 June", assert => {
+        const date = "2024-06-05";
+        assert.equal(month.findPosition(date), 10);
     });
 
-    test("should correctly find the position for the last day of the month", assert => {
-        const { row, col } = month.findPosition(30);
-
-        assert.deepEqual({ row, col }, { row: 5 * 5 + 1, col: 0 });
+    test("should return 16 for 11 June", assert => {
+        const date = "2024-06-11";
+        assert.equal(month.findPosition(date), 16);
     });
 
-    test("should correctly find the position for a day in the middle of the month", assert => {
-        const { row, col } = month.findPosition(15);
-
-        assert.deepEqual({ row, col }, { row: 2 * 5 + 1, col: 6 });
+    test("should return 35 for 30 June", assert => {
+        const date = "2024-06-30";
+        assert.equal(month.findPosition(date), 35);
     });
 });

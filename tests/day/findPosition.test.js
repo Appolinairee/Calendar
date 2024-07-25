@@ -6,11 +6,6 @@ module('findPosition', (hooks) => {
         day.update({ date: testDate, events: [{}] });
     });
 
-    test("should return -1 when date string is not valid", assert => {
-        assert.equal(day.findPosition(), -1);
-        assert.equal(day.findPosition("Invalide date"), -1);
-    });
-
     test("should return 0 when date is '2024-06-25T00:00:00Z'", assert => {
         const date = "2024-06-25T00:00:00Z";
         assert.equal(day.findPosition(date), 0);

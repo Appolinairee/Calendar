@@ -83,7 +83,7 @@
 .see-more-grid .see-more-btn {
     gap: 4px;
     white-space: nowrap;
-    border: 1px solid var(--gridColor);
+    /* border: 1px solid var(--gridColor); */
     font-size: 12px;
     text-align: center;
     cursor: pointer;

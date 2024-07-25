@@ -2,8 +2,7 @@
 export const events = [
     {
         title: "Réunion d'équipe A",
-        startDate: "2024-07-24T00:00:00Z",
-        endDate: "2024-07-24T00:30:00Z",
+        startDate: "2024-07-24T00:00:00Z"
     },
     {
         title: "Réunion d'équipe B",

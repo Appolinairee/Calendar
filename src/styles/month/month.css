@@ -16,7 +16,7 @@
     border-bottom: 1px solid var(--gridColor);
 }
 
-.month .month-grid-header div{
+.month .month-grid-header div {
     border-left: 1px solid var(--gridColor);
     align-items: center;
     display: flex;

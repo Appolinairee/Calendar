@@ -1,6 +1,6 @@
 class Month {
 
-    constructor(props = {}) {
+    constructor() {
         this._caseSubdivisions = 5;
         this._cases = Array(6 * this._caseSubdivisions).fill(null).map(() => Array(7).fill(null));
     }
@@ -36,20 +36,13 @@ class Month {
         return true;
     }
 
-    findPosition(day) {
-        if (day < 1 || day > this._daysInMonth) {
-            return { row: -1, col: -1 };
-        }
-
-        const dayIndex = day - 1;
-        const row = Math.floor((dayIndex + this._firstDayOfMonth) / 7) * this._caseSubdivisions + 1;
-        const col = (dayIndex + this._firstDayOfMonth) % 7;
-
-        return { row, col };
+    findPosition(dateString) {
+        const dateObject = getUtcDate(new Date(dateString));
+        return this._firstOfMonth + dateObject.getDate() - 1;
     }
 
 
-    fillCases(event) {
+    fillCases(event, start, end) {
         const startDate = new Date(event.startDate);
         const endDate = new Date(event.endDate);
 
@@ -113,9 +106,8 @@ class Month {
         return `${gridColumn} ${gridRow}`;
     }
 
-
-
-    update() {
+    
+    update(data) {
         // 
     }
 

@@ -17,6 +17,11 @@ module('isCurrentDayEvent', () => {
         assert.equal(day2.isCurrentDayEvent(event), false);
     });
 
+    test("should return true when event endDate is not provided and startDate is for day", assert => {
+        const event = { startDate: "2024-06-25"};
+        assert.equal(day2.isCurrentDayEvent(event), true);
+    });
+
     test("should return false when event startDate is not for current day", assert => {
         const event = { startDate: "2024-06-24T10:00:00Z", endDate: "2024-06-24T11:00:00Z" };
         assert.equal(day2.isCurrentDayEvent(event), false);

@@ -9,6 +9,16 @@ const MonthView = {
         this.month.update({ date, events });
     },
 
+    // <onbeforeupdate: function (vnode) {
+    //     const { date, events } = vnode.attrs;
+    //     if (date !== this.date || events !== this.events) {
+    //         this.month.update({ date, events });
+    //         this.date = date;
+    //         this.events = events;
+    //     }
+    // },>
+
+
     view: function (vnode) {
         const { date, events } = vnode.attrs;
 

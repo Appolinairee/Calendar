@@ -5,7 +5,7 @@ const SeeMoreButton = {
         return m('.see-more-btn.flex', {
             onclick: vnode.attrs.onClick
         }, [
-            m('i.far.fa-square-plus'),
+            m('i.far.fa-plus'),
             m('p', `${vnode.attrs.length} events`)
         ]);
     }

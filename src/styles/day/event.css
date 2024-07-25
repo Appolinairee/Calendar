@@ -72,7 +72,7 @@
 
 .events .event:nth-child(10n + 8) {
     border-left: 2.5px solid rgb(211, 211, 211); 
-    background: rgba(211, 211, 211, 0.1) !important;
+    background: rgba(211, 211, 211, 0.4) !important;
     color: rgb(0, 0, 0);
 }
 
