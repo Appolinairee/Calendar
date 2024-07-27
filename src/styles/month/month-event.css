@@ -1,0 +1,35 @@
+.month .event {
+    font-size: 13px;
+    overflow: hidden;
+    background: rgb(26, 115, 232);
+    color: white;
+    border-radius: 3px;
+    padding: 0 3px;
+    margin: 1px 1px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.month .see-more-event {
+    font-size: 13px;
+    width: fit-content;
+    margin: 1px 1px;
+    background: var(--opacityBlack);
+    cursor: pointer;
+    padding: 0px 5px;
+    border-radius: 3px;
+}
+
+.month .see-more-event:hover {
+    background: var(--gridColor);
+}
+
+.month-see-more-container {
+    position: relative;
+    background: white;
+}
+
+.month .popup .popup-content {
+    top: 3px;
+    padding: 10px 10px;
+}

@@ -37,8 +37,7 @@ const DayEventsGrid = {
 
                     this.displayedEvents.add(eventKey);
                     let endPosition = e.endDate ? day.findPosition(e.endDate) : 1;
-
-                    console.log(e.endDate, endPosition);
+                    endPosition = endPosition == 0 ? 96: endPosition;
 
                     const style = day.buildEventStyle(e, rowIndex, endPosition);
 

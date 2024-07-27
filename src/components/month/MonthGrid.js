@@ -7,7 +7,7 @@ const MonthGrid = {
     view: function (vnode) {
         return m('.month-grid-container minimize-scrollbar', [
             m(BackgroundGrid, vnode.attrs),
-            // m(MonthEventsGrid, vnode.attrs),
+            m(MonthEventsGrid, vnode.attrs),
         ]);
     }
 

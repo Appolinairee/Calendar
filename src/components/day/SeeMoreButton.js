@@ -2,7 +2,7 @@ const m = require("mithril");
 
 const SeeMoreButton = {
     view: function (vnode) {
-        return m('.see-more-btn.flex', {
+        return m('.see-more-btn.flex after', {
             onclick: vnode.attrs.onClick
         }, [
             m('i.far.fa-plus'),

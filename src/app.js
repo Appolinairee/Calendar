@@ -6,7 +6,7 @@ const TopBar = require("./components/topbar/TopBar");
 const App = {
     oninit: function (vnode) {
         const initialDate = new Date();
-        vnode.state.calendar = new Calendar({ date: initialDate, events: events, mode: 'month' });
+        vnode.state.calendar = new Calendar({ date: initialDate, events: events, mode: 'day' });
     },
 
     view: function (vnode) {

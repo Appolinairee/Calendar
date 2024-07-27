@@ -116,6 +116,7 @@ class Day {
                 }
             });
         }
+        
 
         const columnWidth = Math.floor(totalColumns / (Math.min(overlappingEvents.size, totalColumns)));
 
@@ -158,7 +159,8 @@ class Day {
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 
-            const end = event.endDate ? this.findPosition(event.endDate) : 1;                     
+            let end = event.endDate ? this.findPosition(event.endDate) : 1;      
+            end = end == 0 ? 95: end;             
             
             if (end == -1) return;
 

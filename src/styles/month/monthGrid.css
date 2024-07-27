@@ -2,6 +2,7 @@
     height: 470px;
     overflow-y: scroll;
     padding: 0 30px;
+    position: relative;
 }
 
 .month-grid {
@@ -16,26 +17,20 @@
     border-right: none;
 }
 
-/* .month-grid.background-grid {
-    height: 500px;
-    width: calc(100% + 18.5px);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding-right: px;
-} */
-
 .month-grid .month-grid-cell {
     border-right: 1px solid var(--gridColor);
     text-align: center;
     font-size: 12px;
     position: relative;
     font-weight: 500;
+
 }
 
 .month-grid .month-grid-cell.month-grid-border {
     border-top: 1px solid var(--gridColor);
     position: relative;
     height: 30px;
+
 }
 
 .month-grid .month-grid-cell.month-grid-border:nth-child(7n + 1)::after, .month-grid .month-grid-cell.month-grid-border:nth-child(7n)::after {
@@ -63,7 +58,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
 }
 
@@ -73,4 +68,18 @@
     padding: 1px 4px;
     color: var(--primaryColor);
     font-weight: 600;
+}
+
+
+/*  */
+
+.month-events-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 60px);
+    background: transparent;
+    border: none;
+
+    margin: 0px 30px;
 }

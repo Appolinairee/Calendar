@@ -83,7 +83,6 @@
 .see-more-grid .see-more-btn {
     gap: 4px;
     white-space: nowrap;
-    /* border: 1px solid var(--gridColor); */
     font-size: 12px;
     text-align: center;
     cursor: pointer;
@@ -100,6 +99,15 @@
 
 .see-more-grid .see-more-btn:hover, .see-more-grid .see-more-btn:focus{
     background: var(--gridColor);
+}
+
+.see-more-grid .see-more-btn::after {
+    background-color: var(--gridColor);
+    width: 70%;
+    bottom: 8px;
+    height: 1px;
+    left: 17%;
+    border-radius: 5px;
 }
 
 
@@ -143,9 +151,9 @@
     background: rgba(0, 0, 0, 0.163);
 }
 
-.popup .popup-content::after {
+.popup::after {
     background: white;
-    top: -7px;
+    top: 57px;
     height: 14px;
     width: 14px;
     left: calc(50% - 7px);

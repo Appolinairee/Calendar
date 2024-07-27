@@ -3,6 +3,8 @@ module('isMonthEvent', (hooks) => {
     hooks.beforeEach(() => {
         month = new Month();
         month._date = testDate;
+        month._firstOfMonth = new Date(month._date.getFullYear(), month._date.getMonth(), 1);
+        month._lastOfMonth = new Date(month._date.getFullYear(), month._date.getMonth() + 1, 0, 23, 59, 59);
     });
 
     test("should return false when event has no startDate", assert => {
@@ -17,6 +19,16 @@ module('isMonthEvent', (hooks) => {
 
     test("should return false when event endDate is provided and is not valid ISO date", assert => {
         const event = { startDate: new Date().toISOString(), endDate: "Invalid Date" };
+        assert.equal(month.isMonthEvent(event), false);
+    });
+
+    test("should return false when event starts and ends before the current month", assert => {
+        const event = { startDate: "2024-05-01T08:00:00Z", endDate: "2024-05-10T12:00:00Z" };
+        assert.equal(month.isMonthEvent(event), false);
+    });
+
+    test("should return false when event starts and ends after the current month", assert => {
+        const event = { startDate: "2024-07-01T08:00:00Z", endDate: "2024-07-10T12:00:00Z" };
         assert.equal(month.isMonthEvent(event), false);
     });
 

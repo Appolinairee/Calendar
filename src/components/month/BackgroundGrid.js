@@ -23,7 +23,7 @@ const BackgroundGrid = {
         const cellIndex = Math.floor(i / 5) * 7 + j;
 
         if (i % 5 !== 0) {
-            return m('.month-grid-cell', { key: { i, j }, class: baseClass });
+            return m('.month-grid-cell', { class: baseClass });
         }
 
         const { day, styleClass } = this.getDayInfo(cellIndex, firstDay, lastDay, prevMonthDays);
@@ -33,7 +33,7 @@ const BackgroundGrid = {
             finalClass += ' current-day';
         }
 
-        return m('.month-grid-cell', { key: { i, j }, class: finalClass }, m('span', day));
+        return m('.month-grid-cell', {class: finalClass }, m('span', day));
     },
 
     view: function (vnode) {
