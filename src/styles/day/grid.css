@@ -53,16 +53,17 @@
 
 .see-more-grid {
     display: grid;
-    width: 10%;
+    width: 13%;
     grid-template-columns: 1fr;
     padding: 15px 0;
-    grid-template-rows: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 80px);
     border-right: 1px solid var(--gridColor);
 }
 
 .see-more-grid-cell {
     border-top: 1px solid #ccc;
     position: relative;
+    height: 100%;
 }
 
 .see-more-grid-cell:nth-last-child(1) {

@@ -7,11 +7,11 @@ const TopBar = {
     view: function (vnode) {
         const { calendar } = vnode.attrs;
 
-        return m('.navSection', m('.top-bar.flex', [
+        return m('.top-bar.flex', [
             m(TopBarDate, { calendar }),
             m(TopBarMode, { calendar }),
             m(TopBarSearch)
-        ]));
+        ]);
     }
 };
 

@@ -24,16 +24,16 @@ const DayView = {
         const formattedDate = date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' }).split(' ');
         formattedDate[0] = formattedDate[0].replace('.', '');
 
-        return m('.calendar-view minimize-scrollbar', [
-            m('.day', [
-                m(HourList),
-                m(DayGrid, { day: this.day }),
-                m(HourList),
-            ]),
+        return m('.calendar-view', [
             m('.dayLabel', [
                 m("p.text", formattedDate[0]),
                 m("p.number", formattedDate[1]),
             ]),
+            m('.day minimize-scrollbar', [
+                m(HourList),
+                m(DayGrid, { day: this.day }),
+                m(HourList),
+            ])
         ]);
     }
 };

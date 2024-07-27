@@ -2,6 +2,7 @@ const m = require("mithril");
 const CalendarView = require("./CalendarView");
 const { events } = require('./assets/datas');
 const TopBar = require("./components/topbar/TopBar");
+const SideBar = require("./components/sidebar/SideBar");
 
 const App = {
     oninit: function (vnode) {
@@ -10,13 +11,18 @@ const App = {
     },
 
     view: function (vnode) {
-        return m('.app', [
-            m(TopBar, {
+        return m('.all-calendar', [
+            m(SideBar, {
                 calendar: vnode.state.calendar
             }),
-            m(CalendarView, {
-                calendar: vnode.state.calendar
-            })
+            m('.app', [
+                m(TopBar, {
+                    calendar: vnode.state.calendar
+                }),
+                m(CalendarView, {
+                    calendar: vnode.state.calendar
+                })
+            ])
         ]);
     }
 }

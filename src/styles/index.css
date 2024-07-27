@@ -80,3 +80,14 @@ input {
     color: var(--gridLabelColor);
     margin: 10px;
 }
+
+
+.all-calendar {
+    display: flex;
+    align-items: start;
+    height: full;
+}
+
+.all-calendar .app {
+    width: 100%;
+}

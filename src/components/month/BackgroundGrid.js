@@ -33,7 +33,7 @@ const BackgroundGrid = {
             finalClass += ' current-day';
         }
 
-        return m('.month-grid-cell', {class: finalClass }, m('span', day));
+        return m('.month-grid-cell', { class: finalClass }, m('span', day));
     },
 
     view: function (vnode) {

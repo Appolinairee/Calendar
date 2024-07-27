@@ -1,0 +1,105 @@
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(33, 33, 33);
+    color: white;
+    padding: 20px 10px;
+}
+
+.sidebar .month-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #868f97;
+    margin-bottom: 3px;
+}
+
+.sidebar .sidebar-month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 30px);
+    text-align: center;
+    font-size: 11px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid var(--gridLabelColor);
+}
+
+.sidebar .sidebar-month-grid .cell {
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.sidebar .sidebar-month-grid .cell.non-current-month {
+    color: #868f97;
+    cursor: not-allowed;
+}
+
+
+.sidebar .sidebar-month-grid .cell p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    width: 80%;
+    padding: 2px 0px;
+    border-radius: 50%;
+}
+
+.sidebar .sidebar-month-grid .cell.today p {
+    background: var(--primaryColor);
+}
+
+.sidebar .sidebar-month-grid .cell.non-current-month:hover p {
+    border: none;
+}
+
+.sidebar .sidebar-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.sidebar .sidebar-navigation .nav-button {
+    cursor: pointer;
+    padding: 0 8px;
+    border-radius: 50%;
+}
+
+.sidebar .sidebar-navigation .nav-button:hover {
+    background: var(--gridLabelColor);
+}
+
+
+
+
+/* DOTS */
+.sidebar .sidebar-month-grid .cell p .event-points {
+    height: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primaryColor);
+}
+
+.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n) {
+    color: green;
+}
+
+.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 2) {
+    color: yellow;
+}
+
+.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 3) {
+    color: red;
+}
+
+.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 4) {
+    color: chartreuse;
+}
