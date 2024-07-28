@@ -1,5 +1,6 @@
 .top-bar {
     padding: 8px 3%;
+    padding-left: calc(3% + 8px);
     font-size: 14px;
     position: relative;
     top: 0;

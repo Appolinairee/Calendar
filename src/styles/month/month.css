@@ -21,8 +21,6 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    /* width: calc(100% - 2px);
-    background: red; */
 }
 
 .month .month-grid-header div:nth-last-child(1) {

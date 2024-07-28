@@ -154,8 +154,6 @@ class Day {
 
             if (!this.isCurrentDayEvent(event)) return;
 
-            console.log(event)
-
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 

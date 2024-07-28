@@ -1,0 +1,60 @@
+.year-view {
+    margin: 20px 3%;
+    height: 82vh;
+    overflow-y: scroll;
+    padding: 0px 20px 0px;
+}
+
+.year-view.year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 30px;
+    column-gap: 30px;
+}
+
+.year-view h4 {
+    text-transform: capitalize;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.year-view.year-grid .year-month-view {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.02), -1px -1px 3px rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    padding: 10px 0 0;
+}
+
+.year-view .year-month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    text-align: center;
+    font-size: 11px;
+    height: 100%;
+    height: 200px;
+    border-right: .3px solid rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    overflow: hidden;
+}
+
+.year-view .year-month-grid .cell {
+    cursor: pointer;
+    transition: .2s ease;
+    border-bottom: .5px solid rgba(0, 0, 0, 0.02);
+}
+
+.year-view .year-month-grid .cell.non-current-month {
+    color: #d3d4d4;
+    cursor: not-allowed;
+}
+
+.year-view.year-grid .year-month-view .month-grid-header {
+    border-bottom: .3px solid rgba(0, 0, 0, 0.03);
+    padding-bottom: 5px;
+    margin: 0;
+}

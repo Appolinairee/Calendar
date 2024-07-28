@@ -5,7 +5,6 @@ const WeekView = require("./components/week/WeekView");
 const YearView = require("./components/year/YearView");
 
 const CalendarView = {
-
     view: function (vnode) {
         const { currentMode, date, events } = vnode.attrs.calendar;
 
@@ -15,7 +14,7 @@ const CalendarView = {
             case 'month':
                 return m(MonthView, { date, events });
             case 'year':
-                return m(YearView, { date, events });
+                return m(YearView, { date, events, calendar: vnode.attrs.calendar });
             case 'week':
                 return m(WeekView, { date, events });
             default:

@@ -1,0 +1,44 @@
+Slide 1: Nom, logo, slogan accrocheur
+
+Plan: Problèmes,  existants, fonctionnalités, architecture, démonstration, Exemples et Perspectives, Conclusion
+
+
+Introduction
+
+Le problème
+    - Outils non gratuits et accessibles uniquement au sein d'autres services,
+    - Manque de modules intégrables facilement à des projets personnalisés
+    - Les vues de calendrier sont souvent offertes comme vue secondaire (sur les applications de gestion de projet par exemple)
+    - Nombre de formats de visualisation relativement limités
+    - Manque de liberté de structuration
+    - Faible personnalisation
+
+La solution
+
+Fonctionnalités clés
+    titre
+    description brève
+    capture
+
+Architecture technique
+    Diagramme de l'architecture de l'app avec de brèves explications
+    Liste des technologies
+
+Démostration en direct
+    - Mettre en avant les points forts
+
+
+Etude de cas et perspectives
+
+Business Model et Stratégie
+
+Conclusion
+
+Remerciement
+
+
+
+
+
+
+Slide Technologies: 

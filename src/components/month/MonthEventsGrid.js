@@ -25,8 +25,6 @@ const MonthEventsGrid = {
         const month = vnode.attrs.month;
         const eventsVNodes = [];
 
-        console.log(month.cases)
-
         month.cases.forEach((row, rowIndex) => {
             row.forEach((e, colIndex) => {
                 if (!e || this.displayedEvents.has(JSON.stringify(e))) return;
@@ -34,8 +32,6 @@ const MonthEventsGrid = {
                 this.displayedEvents.add(JSON.stringify(e));
 
                 const style = month.buildEventStyle(e, colIndex, rowIndex);
-
-                console.log(e, style)
 
                 if (Array.isArray(e)) {
                     eventsVNodes.push(m(MonthSeeMoreEvent, {

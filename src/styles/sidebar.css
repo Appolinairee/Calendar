@@ -1,13 +1,32 @@
+.sidebar-container {
+    position: relative;
+    max-width: 310px;
+}
+
+.sidebar-container .menu-icon{
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    color: dark;
+    background-color: white;
+    padding: 5px 6px;
+    border-radius: 50%;
+    z-index: 50;
+    cursor: pointer;
+    border: .5px solid var(--gridColor);
+    font-size: 15px;
+}
+
 .sidebar {
-    width: 300px;
     height: 100vh;
+    width: 250px;
     overflow: hidden;
     background: rgb(33, 33, 33);
     color: white;
-    padding: 20px 10px;
+    padding: 50px 15px 20px;
 }
 
-.sidebar .month-grid-header {
+.month-grid-header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     font-size: 10px;
@@ -40,21 +59,31 @@
 }
 
 
-.sidebar .sidebar-month-grid .cell p {
+.sidebar .sidebar-month-grid .cell p , .year-view .cell p{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
     margin: auto;
     width: 80%;
-    padding: 2px 0px;
+    padding: 4px 0px;
     border-radius: 50%;
+    max-width: 25px;
 }
 
-.sidebar .sidebar-month-grid .cell.today p {
+.sidebar .sidebar-month-grid .cell.with-dots p, .year-view .cell.with-dots p{
+    padding: 2px 6px;
+}
+
+.sidebar .sidebar-month-grid .cell.today p, .year-view .cell.today p{
+    background: #6f42c1;
+    color: white;
+}
+
+.sidebar .sidebar-month-grid .cell.selected p{
     background: var(--primaryColor);
 }
 
-.sidebar .sidebar-month-grid .cell.non-current-month:hover p {
+.sidebar .sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p{
     border: none;
 }
 
@@ -64,6 +93,8 @@
     justify-content: space-between;
     margin-bottom: 10px;
     text-transform: capitalize;
+    border-top: 1px solid var(--gridLabelColor);
+    padding-top: 7px;
 }
 
 .sidebar .sidebar-navigation .nav-button {
@@ -78,9 +109,8 @@
 
 
 
-
 /* DOTS */
-.sidebar .sidebar-month-grid .cell p .event-points {
+.sidebar .sidebar-month-grid .cell p .event-points, .year-view .cell p .event-points{
     height: 4px;
     display: flex;
     justify-content: center;
@@ -88,18 +118,22 @@
     color: var(--primaryColor);
 }
 
-.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n) {
+.cell.today p .event-points {
+    color: chartreuse;
+}
+
+.cell p .event-points .point:nth-child(5n) {
     color: green;
 }
 
-.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 2) {
+.cell p .event-points .point:nth-child(5n + 2) {
     color: yellow;
 }
 
-.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 3) {
+.cell p .event-points .point:nth-child(5n + 3) {
     color: red;
 }
 
-.sidebar .sidebar-month-grid .cell p .event-points .point:nth-child(5n + 4) {
+.cell p .event-points .point:nth-child(5n + 4) {
     color: chartreuse;
 }

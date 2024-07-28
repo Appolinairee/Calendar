@@ -78,6 +78,7 @@
 
 .see-more-grid {
     position: relative;
+    height: auto;
 }
 
 .see-more-grid .see-more-btn {
@@ -92,6 +93,7 @@
     width: 80%;
     position: absolute;
     top: 50%;
+    width: fit-content;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: .1s ease;

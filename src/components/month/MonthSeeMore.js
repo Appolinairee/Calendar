@@ -10,7 +10,7 @@ const MonthSeeMoreEvent = {
             m('.see-more-event.flex', {
                 onclick: () => {
                     vnode.state.showPopup = !vnode.state.showPopup;
-                    m.redraw();
+                    // m.redraw();
                 }
             }, [
                 m('i.far.fa-plus'),
@@ -21,7 +21,7 @@ const MonthSeeMoreEvent = {
                 events: vnode.attrs.events,
                 onClose: () => {
                     vnode.state.showPopup = false;
-                    m.redraw();
+                    // m.redraw();
                 }
             })
         ]);

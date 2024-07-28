@@ -1,8 +1,23 @@
 const m = require("mithril");
+const HourList = require("../day/HourList");
+const WeekDaysList = require("./WeekDaysList");
+const WeekGrid= require("./WeekGrid");
 
 const WeekView = {
-    view: function () {
-        return m('p.wait-message', "Le mode semaine n'est pas encore implémenté 🚀.")
+    view: function (vnode) {
+        const { date, events } = vnode.attrs;
+
+        const formattedDate = date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' }).split(' ');
+        formattedDate[0] = formattedDate[0].replace('.', '');
+
+        return m('.week-view', [
+            m(WeekDaysList),
+            m('.week flex minimize-scrollbar', [
+                m(HourList),
+                m(WeekGrid, { day: this.day }),
+                m(HourList),
+            ])
+        ]);
     }
 }
 

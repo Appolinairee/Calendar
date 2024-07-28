@@ -1,0 +1,75 @@
+.week-view {
+    margin: 30px 3% 0;
+}
+
+/* Week List */
+
+.week-view .weekDaysList {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 60px);
+    border-bottom: .5px solid var(--gridColor);
+    width: calc(100% - 131px);
+    margin-left: 50px;
+}
+
+.week-view .day-item {
+    height: 200px;
+    position: relative;
+    height: 100%;
+    border-right: .5px solid var(--gridColor);
+    padding-left: 15px;
+    user-select: none;
+}
+
+.week-view .day-item:nth-child(1) {
+    border-left: .5px solid var(--gridColor);
+}
+
+.week-view .day-item span{
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.week-view .day-item p{
+    font-size: 1.4rem;
+    margin-top: -9px;
+    margin-left: -2px;
+    font-weight: 500;
+}
+
+
+
+/* Week */
+.week {
+   align-items: start;
+    overflow-x: scroll;
+    height: 75vh;
+    padding-right: 30px;
+}
+
+.week .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr );
+    grid-template-rows: repeat(24, 70px);
+    border: solid;
+    width: 100%;
+    height: auto;
+    margin: 0 10px 0 18px;
+    border: none;
+    border-right: .5px solid var(--gridColor);
+}
+
+.week .week-grid .week-cell {
+    border-left: .5px solid var(--gridColor);
+    border-bottom: .5px solid var(--gridColor);
+}
+
+.week .hourList{
+    transform: translateY(-10px);
+    grid-template-rows: repeat(24, 70px);
+}
+
+.week .hourList .hour-item {
+    padding: 0;
+}

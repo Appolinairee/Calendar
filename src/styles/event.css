@@ -1,0 +1,9 @@
+.events-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 257px;
+    height: 360px;
+    padding: 10px;
+    color: white;
+}
