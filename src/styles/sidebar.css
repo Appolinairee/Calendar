@@ -3,7 +3,7 @@
     max-width: 310px;
 }
 
-.sidebar-container .menu-icon{
+.sidebar-container .menu-icon {
     position: fixed;
     top: 15px;
     left: 10px;
@@ -13,7 +13,7 @@
     border-radius: 50%;
     z-index: 50;
     cursor: pointer;
-    border: .5px solid var(--gridColor);
+    border: .5px solid var(--opacityBlack);
     font-size: 15px;
 }
 
@@ -21,9 +21,11 @@
     height: 100vh;
     width: 250px;
     overflow: hidden;
-    background: rgb(33, 33, 33);
-    color: white;
-    padding: 50px 15px 20px;
+    /* background: rgb(33, 33, 33); */
+    /* color: whi; */
+    padding: 58px 15px 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.036);
+    border-radius: 10px;
 }
 
 .month-grid-header {
@@ -45,7 +47,7 @@
 
     padding-bottom: 15px;
 
-    border-bottom: 1px solid var(--gridLabelColor);
+    border-bottom: 1px solid var(--opacityBlack);
 }
 
 .sidebar .sidebar-month-grid .cell {
@@ -59,7 +61,7 @@
 }
 
 
-.sidebar .sidebar-month-grid .cell p , .year-view .cell p{
+.sidebar .sidebar-month-grid .cell p, .year-view .cell p {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -70,20 +72,21 @@
     max-width: 25px;
 }
 
-.sidebar .sidebar-month-grid .cell.with-dots p, .year-view .cell.with-dots p{
+.sidebar .sidebar-month-grid .cell.with-dots p, .year-view .cell.with-dots p {
     padding: 2px 6px;
 }
 
-.sidebar .sidebar-month-grid .cell.today p, .year-view .cell.today p{
+.sidebar .sidebar-month-grid .cell.today p, .year-view .cell.today p {
     background: #6f42c1;
     color: white;
 }
 
-.sidebar .sidebar-month-grid .cell.selected p{
+.sidebar .sidebar-month-grid .cell.selected p {
+    color: white;
     background: var(--primaryColor);
 }
 
-.sidebar .sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p{
+.sidebar .sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p {
     border: none;
 }
 
@@ -93,7 +96,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     text-transform: capitalize;
-    border-top: 1px solid var(--gridLabelColor);
+    border-top: 1px solid var(--opacityBlack);
     padding-top: 7px;
 }
 
@@ -110,7 +113,7 @@
 
 
 /* DOTS */
-.sidebar .sidebar-month-grid .cell p .event-points, .year-view .cell p .event-points{
+.sidebar .sidebar-month-grid .cell p .event-points, .year-view .cell p .event-points {
     height: 4px;
     display: flex;
     justify-content: center;
