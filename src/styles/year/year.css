@@ -7,8 +7,8 @@
 
 .year-view.year-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     row-gap: 30px;
     column-gap: 30px;
 }
@@ -23,8 +23,9 @@
 
 .year-view.year-grid .year-month-view {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.02), -1px -1px 3px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 10px 0 0;
+    padding: 10px 0 0; 
 }
 
 .year-view .year-month-grid {
@@ -54,7 +55,7 @@
 }
 
 .year-view.year-grid .year-month-view .month-grid-header {
-    border-bottom: .3px solid rgba(0, 0, 0, 0.03);
+    border-bottom: .3px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 5px;
     margin: 0;
 }

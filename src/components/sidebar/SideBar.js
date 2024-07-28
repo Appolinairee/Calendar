@@ -2,7 +2,7 @@ const m = require("mithril");
 const SideBarMonthGrid = require("./SideBarMonthGrid");
 
 const SideBar = {
-    isVisible: true,
+    isVisible: false,
 
     toggleVisibility: function () {
         SideBar.isVisible = !SideBar.isVisible;

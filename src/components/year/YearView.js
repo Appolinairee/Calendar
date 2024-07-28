@@ -4,8 +4,7 @@ const MonthHeaderGrid = require("../month/MonthHeaderGrid");
 
 const YearView = {
     oninit: function (vnode) {
-        this.date = new Date();
-        this.currentYear = this.date.getFullYear();
+        vnode.attrs.date.getFullYear();
         this.events = vnode.attrs.events;
         this.calendar = vnode.attrs.calendar;
     },
@@ -22,9 +21,9 @@ const YearView = {
         const yearComponents = [];
 
         for (let month = 0; month < months; month++) {
-            const firstDayOfMonth = new Date(this.currentYear, month, 1);
+            const firstDayOfMonth = new Date(vnode.attrs.date.getFullYear(), month, 1);
             const startingDayOfWeek = firstDayOfMonth.getDay();
-            const lastDayOfPreviousMonth = CalendarUtils.getDaysInMonth(this.currentYear, month - 1);
+            const lastDayOfPreviousMonth = CalendarUtils.getDaysInMonth(vnode.attrs.date.getFullYear(), month - 1);
 
             const monthComponents = CalendarUtils.generateGridCells({
                 weeks,
@@ -32,7 +31,7 @@ const YearView = {
                 firstDayOfMonth,
                 startingDayOfWeek,
                 lastDayOfPreviousMonth,
-                currentYear: this.currentYear,
+                currentYear: vnode.attrs.date.getFullYear(),
                 currentMonth: month,
                 events: this.events,
                 calendar: this.calendar,
@@ -40,7 +39,7 @@ const YearView = {
             });
 
             yearComponents.push(m('', [
-                m('h4', new Date(this.currentYear, month).toLocaleString('default', { month: 'long' })),
+                m('h4', new Date(vnode.attrs.date.getFullYear(), month).toLocaleString('default', { month: 'long' })),
                 m('.year-month-view', [
                     m(MonthHeaderGrid),
                     m('.year-month-grid', monthComponents)
