@@ -6,6 +6,21 @@ export const events = [
     },
     // {
     //     title: "Réunion de coordination quotidienne",
+    //     startDate: "2024-07-29T08:00:00Z",
+    //     endDate: "2024-07-29T08:30:00Z",
+    // },
+    // {
+    //     title: "Réunion de coordination quotidienne",
+    //     startDate: "2024-07-29T08:00:00Z",
+    //     endDate: "2024-07-29T08:30:00Z",
+    // },
+    // {
+    //     title: "Réunion de coordination quotidienne",
+    //     startDate: "2024-07-29T08:00:00Z",
+    //     endDate: "2024-07-29T08:30:00Z",
+    // },
+    // {
+    //     title: "Réunion de coordination quotidienne",
     //     startDate: "2024-07-29T08:30:00Z",
     //     endDate: "2024-07-29T09:00:00Z",
     // },
