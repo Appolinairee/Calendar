@@ -1,6 +1,11 @@
 export const events = [
     // Un événement sur un créneau
     {
+        title: "Planning et Lecture",
+        startDate: "2023-07-29T08:00:00Z",
+        endDate: "2023-07-29T08:45:00Z",
+    },
+    {
         title: "Réunion de coordination quotidienne",
         startDate: "2024-07-29T08:00:00Z",
         endDate: "2024-07-29T08:45:00Z",
