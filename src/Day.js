@@ -51,6 +51,7 @@ class Day {
         const dateObject = getUtcDate(new Date(dateString));
         const startOfDay = getUtcDate(new Date(this._date.getTime()));
         startOfDay.setHours(0, 0, 0);
+        let position;
 
         const endOfDay = new Date(this._date.getTime());
         endOfDay.setHours(23, 59, 59);
@@ -60,6 +61,10 @@ class Day {
         }
 
         const minutes = dateObject.getHours() * 60 + dateObject.getMinutes();
+
+        if (dateObject.getMinutes() % 15 != 0)
+            return Math.floor(minutes / 15) + 1;
+
         return Math.floor(minutes / 15);
     }
 
@@ -108,6 +113,8 @@ class Day {
     buildEventStyle(event, start, end) {
         const totalColumns = 3;
         const overlappingEvents = new Set();
+
+        console.log(start, end);
 
         for (let i = start; i < end; i++) {
             this._cases[i].forEach(e => {

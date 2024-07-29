@@ -99,8 +99,8 @@
     transition: .1s ease;
 }
 
-.see-more-grid .see-more-btn:hover, .see-more-grid .see-more-btn:focus{
-    background: var(--gridColor);
+.see-more-grid .see-more-btn:hover::after, .see-more-grid .see-more-btn:focus{
+    display: none;
 }
 
 .see-more-grid .see-more-btn::after {
