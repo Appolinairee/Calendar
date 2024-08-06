@@ -22,11 +22,11 @@ export const events = [
         endDate: "2024-07-29T10:00:00Z",
     },
     // Trois événements sur le même créneau
-    // {
-    //     title: "Evénement Test",
-    //     startDate: "2024-07-29T09:30:00Z",
-    //     endDate: "2024-07-29T10:00:00Z",
-    // },
+    {
+        title: "Evénement Test",
+        startDate: "2024-07-29T09:30:00Z",
+        endDate: "2024-07-29T10:00:00Z",
+    },
     {
         title: "Atelier sur les nouvelles technologies",
         startDate: "2024-07-29T10:00:00Z",
@@ -46,7 +46,7 @@ export const events = [
     {
         title: "Rencontre avec des startups locales",
         startDate: "2024-07-29T12:00:00Z",
-        endDate: "2024-07-29T13:00:00Z",
+        endDate: "2024-07-29T15:00:00Z",
     },
     {
         title: "Réunion de planification de projet",

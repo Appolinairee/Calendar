@@ -89,7 +89,7 @@ class Month {
 
         for (let i = 1; i < 4; i++) {
             if (this._cases[startRow * 5 + i][startCol] == null) {
-                this._cases[startRow * 5 + i][startCol] = event;
+                this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: false };
                 canBeInSeeMore = false;
                 break;
             }
@@ -124,7 +124,7 @@ class Month {
 
             if (canPlace) {
                 for (let j = startCol; j <= endCol; j++) {
-                    this._cases[row * 5 + i][j] = event;
+                    this._cases[row * 5 + i][j] = { event, start: j === startCol, end: j === endCol, continuation: j !== startCol, newLine: false };
                 }
 
                 placed = true;
@@ -136,7 +136,7 @@ class Month {
             let placedInFirstDay = false;
             for (let i = 1; i < 4; i++) {
                 if (this._cases[row * 5 + i][startCol] == null) {
-                    this._cases[row * 5 + i][startCol] = event;
+                    this._cases[row * 5 + i][startCol] = { event, start: true, end: true, newLine: false, continuation: true };
                     placedInFirstDay = true;
                     break;
                 }
@@ -173,22 +173,20 @@ class Month {
             if (!canPlace) break;
         }
 
-
         if (canPlace) {
             for (let row = startRow; row <= endRow; row++) {
                 let rowStartCol = (row === startRow) ? startCol : 0;
                 let rowEndCol = (row === endRow) ? endCol : 6;
 
                 for (let j = rowStartCol; j <= rowEndCol; j++) {
-                    this._cases[row * 5 + placeIndex][j] = { event, index: row };
+                    this._cases[row * 5 + placeIndex][j] = { event, start: row === startRow && j === startCol, end: row === endRow && j === endCol, continuation: !(row === startRow && j === startCol), newLine: row !== startRow };
                 }
-
             }
         } else {
             let placedInFirstDay = false;
             for (let i = 1; i < 4; i++) {
                 if (this._cases[startRow * 5 + i][startCol] == null) {
-                    this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true };
+                    this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: false };
                     placedInFirstDay = true;
                     break;
                 }
@@ -201,7 +199,6 @@ class Month {
                 this._cases[startRow * 5 + 4][startCol].push(event);
             }
         }
-
     }
 
     buildEventStyle(event, col, startRow) {
@@ -212,11 +209,11 @@ class Month {
             for (let i = 0; i < totalColumns; i++) {
                 let isSameEvent = event == this._cases[row][i];
 
-                if(typeof event?.index == 'number') {
+                if (typeof event?.index == 'number') {
                     isSameEvent = JSON.stringify(event) == JSON.stringify(this._cases[row][i]);
                 }
 
-                if (this._cases[row][i] && isSameEvent ) {
+                if (this._cases[row][i] && isSameEvent) {
                     eventsColNumber++;
 
                     if (eventsColNumber === 1) {
