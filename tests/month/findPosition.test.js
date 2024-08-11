@@ -2,7 +2,7 @@ module('findPosition', (hooks) => {
     hooks.beforeEach(() => {
         month = new Month();
 
-        month._firstOfMonth = new Date(testDate.getFullYear(), testDate.getMonth(), 1).getDay();
+        month._firstOfMonth = new Date(testDate.getFullYear(), testDate.getMonth(), 1);
         month._lastOfMonth = new Date(testDate.getFullYear(), testDate.getMonth() + 1, 0, 23, 59, 59);
     });
 

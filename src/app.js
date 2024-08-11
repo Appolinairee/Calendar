@@ -8,8 +8,9 @@ const EventList = require("./components/events/Events");
 const App = {
     oninit: function (vnode) {
         const initialDate = new Date();
-        vnode.state.calendar = new Calendar({ date: initialDate, events: events, mode: 'day' });
+        vnode.state.calendar = new Calendar({ date: initialDate, events: events, mode: 'month' });
     },
+    
 
     view: function (vnode) {
         return m('.all-calendar', [

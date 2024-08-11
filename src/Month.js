@@ -65,7 +65,7 @@ class Month {
 
     findPosition(dateString) {
         const dateObject = getUtcDate(new Date(dateString));
-        return this._firstOfMonth.getDate() + dateObject.getDate() - 1;
+        return this._firstOfMonth.getDay() + dateObject.getDate() - 1;
     }
 
 
@@ -89,7 +89,7 @@ class Month {
 
         for (let i = 1; i < 4; i++) {
             if (this._cases[startRow * 5 + i][startCol] == null) {
-                this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: false };
+                this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: 0 };
                 canBeInSeeMore = false;
                 break;
             }
@@ -124,7 +124,7 @@ class Month {
 
             if (canPlace) {
                 for (let j = startCol; j <= endCol; j++) {
-                    this._cases[row * 5 + i][j] = { event, start: j === startCol, end: j === endCol, continuation: j !== startCol, newLine: false };
+                    this._cases[row * 5 + i][j] = { event, start: j === startCol, end: j === endCol, continuation: j !== startCol, newLine: 0 };
                 }
 
                 placed = true;
@@ -136,7 +136,7 @@ class Month {
             let placedInFirstDay = false;
             for (let i = 1; i < 4; i++) {
                 if (this._cases[row * 5 + i][startCol] == null) {
-                    this._cases[row * 5 + i][startCol] = { event, start: true, end: true, newLine: false, continuation: true };
+                    this._cases[row * 5 + i][startCol] = { event, start: true, end: true, newLine: 0, continuation: true };
                     placedInFirstDay = true;
                     break;
                 }
@@ -179,14 +179,14 @@ class Month {
                 let rowEndCol = (row === endRow) ? endCol : 6;
 
                 for (let j = rowStartCol; j <= rowEndCol; j++) {
-                    this._cases[row * 5 + placeIndex][j] = { event, start: row === startRow && j === startCol, end: row === endRow && j === endCol, continuation: !(row === startRow && j === startCol), newLine: row !== startRow };
+                    this._cases[row * 5 + placeIndex][j] = { event, start: row === startRow && j === startCol, end: row === endRow && j === endCol, continuation: !(row === startRow && j === startCol), newLine: row };
                 }
             }
         } else {
             let placedInFirstDay = false;
             for (let i = 1; i < 4; i++) {
                 if (this._cases[startRow * 5 + i][startCol] == null) {
-                    this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: false };
+                    this._cases[startRow * 5 + i][startCol] = { event, start: true, end: true, newLine: 0 };
                     placedInFirstDay = true;
                     break;
                 }
@@ -207,7 +207,7 @@ class Month {
 
         for (let row = startRow; row < startRow + this._caseSubdivisions - 1; row++) {
             for (let i = 0; i < totalColumns; i++) {
-                let isSameEvent = event == this._cases[row][i];
+                let isSameEvent = event == this._cases[row][i]?.event;
 
                 if (typeof event?.index == 'number') {
                     isSameEvent = JSON.stringify(event) == JSON.stringify(this._cases[row][i]);
@@ -247,6 +247,7 @@ class Month {
         this._date = null;
 
         data.events.forEach(event => {
+
             if (!this.isMonthEvent(event) || !event.startDate)
                 return;
 

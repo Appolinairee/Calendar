@@ -7,7 +7,7 @@ module('buildEventStyle', (hooks) => {
 
     test('should generate correct style for a single event without overlaps', assert => {
         const event = { id: 1, startDate: "2024-06-15T09:00:00Z" };
-        month._cases[10][1] = event;
+        month._cases[10][1] = { event };
 
         const style = month.buildEventStyle(event, 1, 10);
         assert.equal(style, 'grid-column: 2 / 3; grid-row: 11 / 12;');
@@ -18,9 +18,9 @@ module('buildEventStyle', (hooks) => {
         const event2 = { id: 2, startDate: "2024-06-15T10:00:00Z" };
         const event3 = { id: 3, startDate: "2024-06-15T11:00:00Z" };
 
-        month._cases[11][1] = event1;
-        month._cases[12][1] = event2;
-        month._cases[13][1] = event3;
+        month._cases[11][1] = { event: event1 };
+        month._cases[12][1] = { event: event2 };
+        month._cases[13][1] = { event: event3 };
 
         const style1 = month.buildEventStyle(event1, 1, 10);
         const style2 = month.buildEventStyle(event2, 2, 10);
@@ -33,9 +33,9 @@ module('buildEventStyle', (hooks) => {
 
     test('should handle multi-day events correctly', assert => {
         const event = { id: 1, startDate: "2024-06-14T09:00:00Z", endDate: "2024-06-16T17:00:00Z" };
-        month._cases[11][0] = event;
-        month._cases[11][1] = event;
-        month._cases[11][2] = event;
+        month._cases[11][0] = { event };
+        month._cases[11][1] = { event };
+        month._cases[11][2] = { event };
 
         const style = month.buildEventStyle(event, 6, 10);
 

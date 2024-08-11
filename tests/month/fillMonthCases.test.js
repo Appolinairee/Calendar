@@ -10,14 +10,14 @@ module("fillCases for month", (hooks) => {
 
   test("should fill the first subdivision of cell when it is empty", (assert) => {
     month.fillCases(event, 0, 0);
-    assert.deepEqual(month._cases[1][0], { event, start: true, end: true, newLine: false });
+    assert.deepEqual(month._cases[1][0], { event, start: true, end: true, newLine: 0 });
   });
 
   test("should fill the second subdivision of cell when the first is occupied", (assert) => {
     month._cases[1][0] = 1;
     month.fillCases(event, 0, 0);
 
-    assert.deepEqual(month._cases[2][0], { event, start: true, end: true, newLine: false });
+    assert.deepEqual(month._cases[2][0], { event, start: true, end: true, newLine: 0 });
   });
 
   test("should fill the third subdivision of cell when the second is occupied", (assert) => {
@@ -25,7 +25,7 @@ module("fillCases for month", (hooks) => {
     month._cases[2][0] = 1;
     month.fillCases(event, 0, 0);
 
-    assert.deepEqual(month._cases[3][0], { event, start: true, end: true, newLine: false });
+    assert.deepEqual(month._cases[3][0], { event, start: true, end: true, newLine: 0 });
   });
 
   test("should place event into the fourth subdivision of cell when more than 3 events in cases", (assert) => {
@@ -40,9 +40,9 @@ module("fillCases for month", (hooks) => {
   test("should fill correct cases from start to end when positions are in same line and there is place for", (assert) => {
     month.fillCases(event, 4, 6);
 
-    assert.deepEqual(month._cases[1][4], { event, start: true, continuation: false, newLine: false, end: false });
-    assert.deepEqual(month._cases[1][5], { event, continuation: true, newLine: false, end: false, start: false });
-    assert.deepEqual(month._cases[1][6], { event, continuation: true, end: true, newLine: false, start: false });
+    assert.deepEqual(month._cases[1][4], { event, start: true, continuation: false, newLine: 0, end: false });
+    assert.deepEqual(month._cases[1][5], { event, continuation: true, newLine: 0, end: false, start: false });
+    assert.deepEqual(month._cases[1][6], { event, continuation: true, end: true, newLine: 0, start: false });
   });
 
   test("should place event in seemore case of the first day when there is no place for in its firstday", (assert) => {
@@ -57,7 +57,7 @@ module("fillCases for month", (hooks) => {
 
     month.fillCases(event, 0, 3);
 
-    assert.deepEqual(month._cases[1][0], { event, newLine: false, start: true, end: true, continuation: true });
+    assert.deepEqual(month._cases[1][0], { event, newLine: 0, start: true, end: true, continuation: true });
     assert.notDeepEqual(month._cases[1][2], event);
   });
 
@@ -66,22 +66,22 @@ module("fillCases for month", (hooks) => {
   test("should fill correct cases from start to end when positions are on two lines and there is place for", (assert) => {
     month.fillCases(event, 6, 8);
 
-    assert.deepEqual(month._cases[1][6], { event, start: true, continuation: false, newLine: false, end: false });
-    assert.deepEqual(month._cases[6][0], { event, continuation: true, newLine: true, start: false, end: false });
-    assert.deepEqual(month._cases[6][1], { event, continuation: true, end: true, newLine: true, start: false });
+    assert.deepEqual(month._cases[1][6], { event, start: true, continuation: false, newLine: 0, end: false });
+    assert.deepEqual(month._cases[6][0], { event, continuation: true, newLine: 1, start: false, end: false });
+    assert.deepEqual(month._cases[6][1], { event, continuation: true, end: true, newLine: 1, start: false });
   });
 
 
   test("should fill correct cases when positions span three lines and there is place for", (assert) => {
     month.fillCases(event, 6, 15);
 
-    assert.deepEqual(month._cases[1][6], { event, start: true, continuation: false, newLine: false, end: false });
+    assert.deepEqual(month._cases[1][6], { event, start: true, continuation: false, newLine: 0, end: false });
 
-    for (let i = 0; i < 7; i++) {
-      assert.deepEqual(month._cases[6][i], { event, continuation: true, newLine: i === 0, end: false, start:false, newLine: true });
+    for (let i = 1; i < 7; i++) {
+      assert.deepEqual(month._cases[6][i], { event, continuation: true, end: false, start: false, newLine: Math.ceil(i / 6) });
     }
 
-    assert.deepEqual(month._cases[11][1], { event, continuation: true, end: true, newLine: true, start: false });
+    assert.deepEqual(month._cases[11][1], { event, continuation: true, end: true, newLine: 2, start: false });
   });
 
 
@@ -100,6 +100,6 @@ module("fillCases for month", (hooks) => {
 
     month.fillCases(event, 6, 7);
 
-    assert.deepEqual(month._cases[3][6], { event, start: true, end: true, newLine: false });
+    assert.deepEqual(month._cases[3][6], { event, start: true, end: true, newLine: 0 });
   });
 });

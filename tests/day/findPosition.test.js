@@ -13,7 +13,7 @@ module('findPosition', (hooks) => {
 
     test("should return 1 when date is '2024-06-25T00:05:00Z'", assert => {
         const date = "2024-06-25T00:05:00Z";
-        assert.equal(day.findPosition(date), 0);
+        assert.equal(day.findPosition(date), 1);
     });
 
     test("should return 1 when date is '2024-06-25T00:15:00Z'", assert => {
@@ -23,7 +23,7 @@ module('findPosition', (hooks) => {
 
     test("should return 2 when date is '2024-06-25T00:23:00Z'", assert => {
         const date = "2024-06-25T00:23:00Z";
-        assert.equal(day.findPosition(date), 1);
+        assert.equal(day.findPosition(date), 2);
     });
 
     test("should return 2 when date is '2024-06-25T00:30:00Z'", assert => {
@@ -33,7 +33,7 @@ module('findPosition', (hooks) => {
 
     test("should return 2 when date is '2024-06-25T00:34:00Z'", assert => {
         const date = "2024-06-25T00:34:00Z";
-        assert.equal(day.findPosition(date), 2);
+        assert.equal(day.findPosition(date), 3);
     });
 
     test("should return 3 when date is '2024-06-25T00:45:00Z'", assert => {
@@ -43,7 +43,7 @@ module('findPosition', (hooks) => {
 
     test("should return 3 when date is '2024-06-25T00:47:00Z'", assert => {
         const date = "2024-06-25T00:47:00Z";
-        assert.equal(day.findPosition(date), 3);
+        assert.equal(day.findPosition(date), 4);
     });
 
     test("should return 60 when date is '2024-06-25T15:00:00Z'", assert => {

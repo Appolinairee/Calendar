@@ -14,9 +14,11 @@ const MonthEventsGrid = {
         return JSON.stringify(event);
     },
 
-    createEventVNode(event, style, rowIndex, colIndex) {
-        return m('.event', { style: style }, [
-            m('span', event.title),
+    createEventVNode(e, style, rowIndex, colIndex) {
+        const eventClass = e.start === true ? "event-start" : "event-continue";
+
+        return m('.event', { style: style, class: eventClass }, [
+            m('span', e.start === true && e.event.title),
         ]);
     },
 
@@ -27,14 +29,13 @@ const MonthEventsGrid = {
 
         console.log(month.cases)
 
-
         month.cases.forEach((row, rowIndex) => {
             row.forEach((e, colIndex) => {
-                if (!e || this.displayedEvents.has(JSON.stringify(e))) return;
+                if (!e || this.displayedEvents.has(JSON.stringify({ event: e.event, newline: e.newLine }))) return;
 
-                this.displayedEvents.add(JSON.stringify(e));
+                this.displayedEvents.add(JSON.stringify({ event: e.event, newline: e.newLine }));
 
-                const style = month.buildEventStyle(e, colIndex, rowIndex);
+                const style = month.buildEventStyle(e.event, colIndex, rowIndex);
 
                 if (Array.isArray(e)) {
                     eventsVNodes.push(m(MonthSeeMoreEvent, {
@@ -42,8 +43,8 @@ const MonthEventsGrid = {
                         events: e
                     }));
                 } else {
-                    let event = e.event ? e.event : e;
-                    const eventVNode = this.createEventVNode(event, style, rowIndex, colIndex);
+
+                    const eventVNode = this.createEventVNode(e, style, rowIndex, colIndex);
                     if (eventVNode) {
                         eventsVNodes.push(eventVNode);
                     }
