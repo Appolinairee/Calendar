@@ -1,49 +1,30 @@
-class Calendar {
-    constructor(props = {}) {
-        if (props.date && !(props.date instanceof Date)) {
-            throw new Error(DateParamError);
-        }
+const m = require("mithril");
+const CalendarView = require("./CalendarView");
+const { events } = require('./assets/datas');
+const TopBar = require("./components/topbar/TopBar");
+const SideBar = require("./components/sidebar/SideBar");
 
-        if (!props.events || !Array.isArray(props.events) || !props.events.every(event => typeof event === 'object')) {
-            throw new Error(EventsParamError);
-        }
+const CalendarApp = {
+    oninit: function (vnode) {
+        const initialDate = new Date();
+        vnode.state.calendar = new Calendar({ date: initialDate, events: vnode.attrs.events, mode: 'month' });
+    },
 
-        this._currentDate = props.date instanceof Date ? props.date : new Date();
-        this._events = props.events;
-
-        this._validModes = ['day', 'month', 'year', 'week'];
-        this._currentMode = this._validModes.includes(props.mode) ? props.mode : 'day';
-    }
-
-    switchMode(mode) {
-        if (this._validModes.includes(mode)) {
-            this._currentMode = mode;
-        } else {
-            this._currentMode = 'day';
-        }
-    }
-
-    setCurrentDate(date) {
-        if (date === undefined) {
-            throw new Error(DateParamError);
-        }
-
-        if (!(date instanceof Date) || isNaN(date.getTime())) {
-            throw new Error(DateParamError);
-        }
-
-        this._currentDate = date;
-    }
-
-    get date() {
-        return this._currentDate;
-    }
-
-    get events() {
-        return this._events;
-    }
-
-    get currentMode() {
-        return this._currentMode;
+    view: function (vnode) {
+        return m('.all-calendar', [
+            m(SideBar, {
+                calendar: vnode.state.calendar
+            }),
+            m('.app', [
+                m(TopBar, {
+                    calendar: vnode.state.calendar
+                }),
+                m(CalendarView, {
+                    calendar: vnode.state.calendar
+                })
+            ])
+        ]);
     }
 }
+
+module.exports = CalendarApp;

@@ -6,7 +6,7 @@ export const events = [
     },
     {
         title: "Réunion de coordination quotidienne",
-        startDate: "2024-08-17T08:00:00Z",
+        startDate: "2024-08-20T08:00:00Z",
         endDate: "2024-08-29T08:45:00Z",
     },
     // Deux événements sur le même créneau
