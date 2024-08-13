@@ -1,13 +1,12 @@
 const m = require("mithril");
 const CalendarView = require("./CalendarView");
-const { events } = require('./assets/datas');
 const TopBar = require("./components/topbar/TopBar");
 const SideBar = require("./components/sidebar/SideBar");
 
 const CalendarApp = {
     oninit: function (vnode) {
         const initialDate = new Date();
-        vnode.state.calendar = new Calendar({ date: initialDate, events: vnode.attrs.events, mode: 'month' });
+        vnode.state.calendar = new Calendar({ date: initialDate, events: vnode.attrs.events, mode: 'day' });
     },
 
     view: function (vnode) {

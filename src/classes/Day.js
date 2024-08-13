@@ -14,8 +14,8 @@ class Day {
             return false;
         }
 
-        const startDate = getUtcDate(new Date(event.startDate));
-        const endDate = getUtcDate(new Date(event.endDate));
+        const startDate = getUtcDate(new Date(event.startDate + 'Z')); 
+        const endDate = getUtcDate(new Date(event.endDate + 'Z'));
         const currentDate = this._date;
 
         const isSameDay = (date) =>
@@ -114,8 +114,6 @@ class Day {
         const totalColumns = 3;
         const overlappingEvents = new Set();
 
-        console.log(start, end);
-
         for (let i = start; i < end; i++) {
             this._cases[i].forEach(e => {
                 if (e !== null) {
@@ -123,7 +121,7 @@ class Day {
                 }
             });
         }
-        
+
 
         const columnWidth = Math.floor(totalColumns / (Math.min(overlappingEvents.size, totalColumns)));
 
@@ -138,7 +136,7 @@ class Day {
         return `${gridColumn} ${gridRow}`;
     }
 
-    
+
     update(data) {
         if (!data) return;
 
@@ -158,15 +156,16 @@ class Day {
 
 
         this._events.forEach(event => {
-
+            console.log(event, 'dfg')
             if (!this.isCurrentDayEvent(event)) return;
 
+            console.log(event)
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 
-            let end = event.endDate ? this.findPosition(event.endDate) : 1;      
-            end = end == 0 ? 95: end;             
-            
+            let end = event.endDate ? this.findPosition(event.endDate) : 1;
+            end = end == 0 ? 95 : end;
+
             if (end == -1) return;
 
             this.fillCases(event, start, end);

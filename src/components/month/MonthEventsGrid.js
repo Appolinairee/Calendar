@@ -26,9 +26,7 @@ const MonthEventsGrid = {
         this.resetDisplayedEvents();
         const month = vnode.attrs.month;
         const eventsVNodes = [];
-
-        console.log(month.cases)
-
+        
         month.cases.forEach((row, rowIndex) => {
             row.forEach((e, colIndex) => {
                 if (!e || this.displayedEvents.has(JSON.stringify({ event: e.event, newline: e.newLine }))) return;

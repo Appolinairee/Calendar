@@ -1,10 +1,11 @@
 const m = require("mithril");
 
 const ToggleButton = {
-    view: function(vnode) {
-        return m('button', {
+    view: function (vnode) {
+        return m('div.button flex', {
             onclick: vnode.attrs.onToggle
-        }, vnode.attrs.showForm ? '-' : '+');
+        }, [m('i.fa-solid fa-plus',)
+        ]);
     }
 };
 

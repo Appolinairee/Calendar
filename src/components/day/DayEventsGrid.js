@@ -28,8 +28,6 @@ const DayEventsGrid = {
 
         const eventsVNodes = [];
 
-        console.log(day.cases)
-
         day.cases.forEach((row, rowIndex) => {
             row.forEach((e, colIndex) => {
                 if (e) {

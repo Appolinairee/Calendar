@@ -11,8 +11,9 @@ const DayView = {
 
     onbeforeupdate: function (vnode) {
         const { date, events } = vnode.attrs;
-        if (date !== this.date || events !== this.events) {
-            this.day.update({ date, events });
+        if (vnode.attrs.date !== this.date || vnode.attrs.events !== this.events) {
+            console.log(events)
+            this.day.update({ date: vnode.attrs.date, events: vnode.attrs.events });
             this.date = date;
             this.events = events;
         }

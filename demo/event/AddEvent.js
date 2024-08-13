@@ -5,11 +5,6 @@ const EventForm = require("./EventForm");
 const AddEvent = {
     oninit: function (vnode) {
         vnode.state.showForm = false;
-        vnode.state.newEvent = {
-            title: '',
-            startDate: '',
-            endDate: ''
-        };
     },
 
     view: function (vnode) {
@@ -20,18 +15,15 @@ const AddEvent = {
             }),
 
             vnode.state.showForm && m(EventForm, {
-                event: vnode.state.newEvent,
-                onFieldChange: (field, value) => {
-                    vnode.state.newEvent[field] = value;
-                },
-                onSubmit: () => {
+                onSubmit: (newEvent) => {
                     vnode.attrs.eventManager.addEvent(
-                        vnode.state.newEvent.title,
-                        vnode.state.newEvent.startDate,
-                        vnode.state.newEvent.endDate
+                        newEvent.title,
+                        newEvent.startDate,
+                        newEvent.endDate
                     );
-
-                    vnode.state.newEvent = { title: '', startDate: '', endDate: '' };
+                    vnode.state.showForm = false;
+                },
+                onClose: () => {
                     vnode.state.showForm = false;
                 },
                 submitLabel: 'Ajouter'
