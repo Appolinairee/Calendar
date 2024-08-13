@@ -14,7 +14,7 @@ class Day {
             return false;
         }
 
-        const startDate = getUtcDate(new Date(event.startDate + 'Z')); 
+        const startDate = getUtcDate(new Date(event.startDate + 'Z'));
         const endDate = getUtcDate(new Date(event.endDate + 'Z'));
         const currentDate = this._date;
 
@@ -154,12 +154,9 @@ class Day {
         this._cases = Array(96).fill(null).map(() => Array(3).fill(null));
         this._seemoreCases = Array(24).fill(null).map(() => []);
 
-
         this._events.forEach(event => {
-            console.log(event, 'dfg')
             if (!this.isCurrentDayEvent(event)) return;
-
-            console.log(event)
+            
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 
