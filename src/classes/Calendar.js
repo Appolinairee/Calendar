@@ -49,6 +49,12 @@ class Calendar {
         this._currentDate = date;
     }
 
+    updateEvents(newEvents, attributeNames) {
+        console.log(this._events)
+        this._events = this.configureEvents(newEvents, attributeNames);
+        console.log(this._events)
+    }
+
     get date() {
         return this._currentDate;
     }

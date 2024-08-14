@@ -1,6 +1,3 @@
-- Readme.md,
-- Versioning: 1.0.0, (CHANGELOG.md)
-- publier sur npm, cdn, 
-- mettre les events
-
-npx terser dist/index.js -o dist/index.min.js
+- Readme.md
+- webpack
+- To do list

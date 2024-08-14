@@ -6,19 +6,19 @@ const YearView = require("./components/year/YearView");
 
 const CalendarView = {
     view: function (vnode) {
-        const { currentMode, date, events } = vnode.attrs.calendar;
+        const { currentMode, date } = vnode.attrs.calendar;
 
         switch (currentMode) {
             case 'day':
-                return m(DayView, { date, events });
+                return m(DayView, { date, events: vnode.attrs.events });
             case 'month':
-                return m(MonthView, { date, events });
+                return m(MonthView, { date, events: vnode.attrs.events });
             case 'year':
-                return m(YearView, { date, events, calendar: vnode.attrs.calendar });
+                return m(YearView, { date, events: vnode.attrs.events, calendar: vnode.attrs.calendar });
             case 'week':
-                return m(WeekView, { date, events });
+                return m(WeekView, { date, events: vnode.attrs.events });
             default:
-                return m(DayView, { date, events });
+                return m(DayView, { date, events: vnode.attrs.events });
         }
     }
 };

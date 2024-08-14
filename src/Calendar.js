@@ -6,36 +6,25 @@ const SideBar = require("./components/sidebar/SideBar");
 const CalendarApp = {
     oninit: function (vnode) {
         const initialDate = new Date();
-        this.calendar = new Calendar({
+        vnode.state.calendar = new Calendar({
             date: initialDate,
             events: vnode.attrs.events,
-            mode: 'day',
+            mode: 'month',
             attributeNames: vnode.attrs.attributeNames
         });
-    },
-
-    onupdate: function (vnode) {
-        if (vnode.attrs.events !== this.calendar.events || vnode.attrs.attributeNames !== this.calendar.attributeNames) {
-            this.calendar = new Calendar({
-                date: this.calendar.date,
-                events: vnode.attrs.events,
-                mode: this.calendar.currentMode,
-                attributeNames: vnode.attrs.attributeNames
-            });
-        }
     },
 
     view: function (vnode) {
         return m('.all-calendar', [
             m(SideBar, {
-                calendar: this.calendar
+                calendar: vnode.state.calendar
             }),
             m('.app', [
                 m(TopBar, {
-                    calendar: this.calendar
+                    calendar: vnode.state.calendar
                 }),
                 m(CalendarView, {
-                    calendar: this.calendar
+                    calendar: vnode.state.calendar, events: vnode.attrs.events
                 })
             ])
         ]);

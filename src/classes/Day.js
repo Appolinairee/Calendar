@@ -156,12 +156,14 @@ class Day {
 
         this._events.forEach(event => {
             if (!this.isCurrentDayEvent(event)) return;
-            
+
             const start = this.findPosition(event.startDate);
             if (start == -1) return;
 
             let end = event.endDate ? this.findPosition(event.endDate) : 1;
             end = end == 0 ? 95 : end;
+
+            console.log(start, end, event)
 
             if (end == -1) return;
 

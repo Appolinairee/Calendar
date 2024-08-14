@@ -13,7 +13,9 @@ const MonthView = {
         const { date, events } = vnode.attrs;
         if (date !== this.date || events !== this.events) {
             this.month.update({ date, events });
+            return true;
         }
+        return false;
     },
 
     view: function (vnode) {

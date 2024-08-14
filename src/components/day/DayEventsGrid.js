@@ -22,24 +22,24 @@ const DayEventsGrid = {
 
     view(vnode) {
         this.displayedEvents = new Set();
-        const day = vnode.attrs.day;
 
         this.resetDisplayedEvents();
 
         const eventsVNodes = [];
 
-        day.cases.forEach((row, rowIndex) => {
+        vnode.attrs.day.cases.forEach((row, rowIndex) => {
             row.forEach((e, colIndex) => {
                 if (e) {
                     const eventKey = this.getEventKey(e, colIndex);
-
                     if (this.displayedEvents.has(eventKey)) return;
 
                     this.displayedEvents.add(eventKey);
-                    let endPosition = e.endDate ? day.findPosition(e.endDate) : 1;
-                    endPosition = endPosition == 0 ? 96: endPosition;
+                    let endPosition = e.endDate ? vnode.attrs.day.findPosition(e.endDate) : 1;
+                    endPosition = endPosition == 0 ? 96 : endPosition;
 
-                    const style = day.buildEventStyle(e, rowIndex, endPosition);
+                    const style = vnode.attrs.day.buildEventStyle(e, rowIndex, endPosition);
+
+                    console.log(style)
 
                     eventsVNodes.push(this.createEventVNode(e, style, rowIndex, colIndex));
                 }
