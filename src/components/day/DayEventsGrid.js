@@ -39,8 +39,6 @@ const DayEventsGrid = {
 
                     const style = vnode.attrs.day.buildEventStyle(e, rowIndex, endPosition);
 
-                    console.log(style)
-
                     eventsVNodes.push(this.createEventVNode(e, style, rowIndex, colIndex));
                 }
             });

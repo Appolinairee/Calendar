@@ -69,7 +69,7 @@
 }
 
 .event-form button {
-    background: var(--primaryColor);
+    background: var(--calendarPrimaryColor);
     border-radius: 0;
     font-size: 14px;
     border: none;

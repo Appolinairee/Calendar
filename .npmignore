@@ -1,0 +1,10 @@
+node_modules/
+bin/
+docs/
+webpack.config.js
+/src/assets/
+tests/
+*.config.js
+*.md
+*.log
+bin/

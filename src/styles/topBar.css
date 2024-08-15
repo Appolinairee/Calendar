@@ -8,7 +8,7 @@
     width: 100%;
     z-index: 15;
     background: white;
-    border-bottom: 1px solid var(--opacityBlack);
+    border-bottom: 1px solid var(--calendarOpacityBlack);
     margin-bottom: 10px;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .top-bar-mode span.active {
-    background: var(--primaryColor);
+    background: var(--calendarPrimaryColor);
     color: white;
 }
 

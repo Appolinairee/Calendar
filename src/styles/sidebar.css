@@ -13,7 +13,7 @@
     border-radius: 50%;
     z-index: 50;
     cursor: pointer;
-    border: .5px solid var(--opacityBlack);
+    border: .5px solid var(--calendarOpacityBlack);
     font-size: 15px;
 }
 
@@ -45,7 +45,7 @@
 
     padding-bottom: 15px;
 
-    border-bottom: 1px solid var(--opacityBlack);
+    border-bottom: 1px solid var(--calendarOpacityBlack);
 }
 
 .sidebar .sidebar-month-grid .cell {
@@ -75,13 +75,13 @@
 }
 
 .sidebar .sidebar-month-grid .cell.today p, .year-view .cell.today p {
-    background: var(--primaryColor);
+    background: var(--calendarPrimaryColor);
     color: white;
 }
 
 .sidebar .sidebar-month-grid .cell.selected p {
     color: white;
-    background: var(--primaryColor);
+    background: var(--calendarPrimaryColor);
 }
 
 .sidebar .sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p {
@@ -94,7 +94,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     text-transform: capitalize;
-    border-top: 1px solid var(--opacityBlack);
+    border-top: 1px solid var(--calendarOpacityBlack);
     padding-top: 7px;
 }
 
@@ -116,7 +116,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--primaryColor);
+    color: var(--calendarPrimaryColor);
 }
 
 .cell.today p .event-points {

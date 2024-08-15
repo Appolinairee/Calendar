@@ -31,10 +31,10 @@ function formatHour(date) {
     return `${hours}:${minutes}`;
 }
 
-function formatDateForDayNav (date) {
+function formatDateForDayNav(date) {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return date.toLocaleDateString('fr-FR', options);
-};
+}
 
 function formatDateForDayEvent(dateString) {
     const date = getUtcDate(new Date(dateString));
@@ -42,3 +42,12 @@ function formatDateForDayEvent(dateString) {
     
     return date.toLocaleTimeString('fr-FR', options);
 }
+
+module.exports = {
+    isValidISODate,
+    getUtcDate,
+    formatDate,
+    formatHour,
+    formatDateForDayNav,
+    formatDateForDayEvent
+};

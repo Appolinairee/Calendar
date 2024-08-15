@@ -1,3 +1,5 @@
+const { isValidISODate, getUtcDate } = require('../../utils/date.utils');
+
 class Day {
 
     constructor() {
@@ -163,8 +165,6 @@ class Day {
             let end = event.endDate ? this.findPosition(event.endDate) : 1;
             end = end == 0 ? 95 : end;
 
-            console.log(start, end, event)
-
             if (end == -1) return;
 
             this.fillCases(event, start, end);
@@ -198,3 +198,5 @@ class Day {
         return this._seemoreCases;
     }
 }
+
+module.exports = Day;

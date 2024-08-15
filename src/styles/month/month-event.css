@@ -18,7 +18,7 @@
     font-size: 13px;
     width: fit-content;
     margin: 1px 1px;
-    background: var(--opacityBlack);
+    background: var(--calendarOpacityBlack);
     cursor: pointer;
     padding: 0px 5px;
     border-radius: 3px;

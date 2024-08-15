@@ -2,6 +2,8 @@ const m = require("mithril");
 const HourList = require("./HourList");
 const DayGrid = require("./DayGrid");
 
+const Day = require("../../classes/Day");
+
 const DayView = {
     oninit: function (vnode) {
         this.day = new Day();

@@ -50,9 +50,7 @@ class Calendar {
     }
 
     updateEvents(newEvents, attributeNames) {
-        console.log(this._events)
         this._events = this.configureEvents(newEvents, attributeNames);
-        console.log(this._events)
     }
 
     get date() {
@@ -67,3 +65,5 @@ class Calendar {
         return this._currentMode;
     }
 }
+
+module.exports = Calendar;

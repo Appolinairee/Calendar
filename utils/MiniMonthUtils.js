@@ -1,3 +1,5 @@
+const Day = require('../src/classes/Day');
+
 class CalendarUtils {
     static generateGridCells(params) {
         const {

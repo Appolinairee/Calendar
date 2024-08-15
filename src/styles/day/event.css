@@ -112,7 +112,7 @@
 
 .more-events .event-datetime span {
     font-size: 11px;
-    color: var(--gridLabelColor);
+    color: var(--calendarGridLabelColor);
 }
 .events .event:nth-child(5n + 4) {
     border-left: 2.5px solid rebeccapurple;
@@ -139,5 +139,5 @@
 
 .more-events .event-datetime span {
     font-size: 11px;
-    color: var(--gridLabelColor);
+    color: var(--calendarGridLabelColor);
 }

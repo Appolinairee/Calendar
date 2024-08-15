@@ -7,7 +7,7 @@
     width: calc(100% - 69px);
     grid-template-columns: repeat(7, 1fr);
     height: 50px;
-    color: var(--gridLabelColor);
+    color: var(--calendarGridLabelColor);
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;

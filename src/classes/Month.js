@@ -1,3 +1,5 @@
+const { isValidISODate, getUtcDate } = require('../../utils/date.utils');
+
 class Month {
 
     constructor() {
@@ -266,3 +268,5 @@ class Month {
         return this._cases;
     }
 }
+
+module.exports = Month;

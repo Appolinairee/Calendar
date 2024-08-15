@@ -2,6 +2,8 @@ const m = require("mithril");
 const MonthGrid = require("./MonthGrid");
 const MonthHeaderGrid = require('./MonthHeaderGrid');
 
+const Month = require("../../classes/Month");
+
 const MonthView = {
     oninit: function (vnode) {
         const { date, events } = vnode.attrs;
