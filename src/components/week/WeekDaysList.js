@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const WeekDaysList = {
     getWeekDays: function () {
@@ -31,4 +31,4 @@ const WeekDaysList = {
     }
 }
 
-module.exports = WeekDaysList;
+export default  WeekDaysList;

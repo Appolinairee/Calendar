@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m  from "mithril";
 
 const EventForm = {
     oninit: function (vnode) {
@@ -91,4 +91,4 @@ const EventForm = {
     }
 };
 
-module.exports = EventForm;
+export default  EventForm;

@@ -1,7 +1,7 @@
-const m = require("mithril");
-const HourList = require("../day/HourList");
-const WeekDaysList = require("./WeekDaysList");
-const WeekGrid= require("./WeekGrid");
+import m from "mithril";
+import HourList from "../day/HourList";
+import WeekDaysList from "./WeekDaysList";
+import WeekGrid from "./WeekGrid";
 
 const WeekView = {
     view: function (vnode) {
@@ -21,4 +21,4 @@ const WeekView = {
     }
 }
 
-module.exports = WeekView;
+export default  WeekView;

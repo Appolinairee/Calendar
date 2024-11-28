@@ -1,6 +1,6 @@
-const m = require("mithril");
-const CalendarUtils = require("../../../utils/MiniMonthUtils");
-const MonthHeaderGrid = require("../month/MonthHeaderGrid");
+import m from "mithril";
+import CalendarUtils from "../../../utils/MiniMonthUtils";
+import MonthHeaderGrid from "../month/MonthHeaderGrid";
 
 const YearView = {
     oninit: function (vnode) {
@@ -51,4 +51,4 @@ const YearView = {
     }
 };
 
-module.exports = YearView;
+export default  YearView;

@@ -1,7 +1,7 @@
-const m = require("mithril");
-const MonthHeaderGrid = require("../month/MonthHeaderGrid");
-const SideBarMonthNavigation = require("./SideBarMonthNavigation");
-const CalendarUtils = require("../../../utils/MiniMonthUtils");
+import m from "mithril";
+import MonthHeaderGrid from "../month/MonthHeaderGrid";
+import SideBarMonthNavigation from "./SideBarMonthNavigation";
+import CalendarUtils from "../../../utils/MiniMonthUtils";
 
 const SideBarMonthGrid = {
     oninit: function (vnode) {
@@ -58,4 +58,4 @@ const SideBarMonthGrid = {
     }
 };
 
-module.exports = SideBarMonthGrid;
+export default  SideBarMonthGrid;

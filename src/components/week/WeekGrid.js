@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const WeekGrid = {
     view: function (vnode) {
@@ -12,4 +12,4 @@ const WeekGrid = {
     }
 }
 
-module.exports = WeekGrid;
+export default  WeekGrid;

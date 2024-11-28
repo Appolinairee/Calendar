@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const HourList = {
     view: function () {
@@ -9,4 +9,4 @@ const HourList = {
     }
 }
 
-module.exports = HourList;
+export default  HourList;

@@ -1,5 +1,5 @@
-const m = require("mithril");
-const SeeMore = require("./SeeMore");
+import m from "mithril";
+import SeeMore from "./SeeMore";
 
 const SeeMoreGrid = {
     view: function (vnode) {
@@ -19,4 +19,4 @@ const SeeMoreGrid = {
     }
 };
 
-module.exports = SeeMoreGrid;
+export default  SeeMoreGrid;

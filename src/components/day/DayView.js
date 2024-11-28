@@ -1,8 +1,8 @@
-const m = require("mithril");
-const HourList = require("./HourList");
-const DayGrid = require("./DayGrid");
+import m from "mithril";
+import HourList from "./HourList";
+import DayGrid from "./DayGrid";
 
-const Day = require("../../classes/Day");
+import Day from "../../classes/Day";
 
 const DayView = {
     oninit: function (vnode) {
@@ -34,4 +34,4 @@ const DayView = {
     }
 };
 
-module.exports = DayView;
+export default  DayView;

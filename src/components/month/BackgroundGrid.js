@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const BackgroundGrid = {
     getDayInfo: function (cellIndex, firstDay, lastDay, prevMonthDays) {
@@ -64,4 +64,4 @@ const BackgroundGrid = {
     }
 };
 
-module.exports = BackgroundGrid;
+export default  BackgroundGrid;

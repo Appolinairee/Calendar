@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const SeeMoreButton = {
     view: function (vnode) {
@@ -11,4 +11,4 @@ const SeeMoreButton = {
     }
 };
 
-module.exports = SeeMoreButton;
+export default  SeeMoreButton;

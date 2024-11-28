@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const Popup = {
     view: function (vnode) {
@@ -18,4 +18,4 @@ const Popup = {
     }
 };
 
-module.exports = Popup;
+export default  Popup;

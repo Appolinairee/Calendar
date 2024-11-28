@@ -1,6 +1,6 @@
-const m = require("mithril");
-const ToggleButton = require("./ToggleButton");
-const EventForm = require("./EventForm");
+import m from "mithril";
+import ToggleButton from "./ToggleButton";
+import EventForm from "./EventForm";
 
 const AddEvent = {
     oninit: function (vnode) {
@@ -32,4 +32,4 @@ const AddEvent = {
     }
 };
 
-module.exports = AddEvent;
+export default  AddEvent;

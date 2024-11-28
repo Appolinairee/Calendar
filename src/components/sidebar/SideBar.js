@@ -1,5 +1,5 @@
-const m = require("mithril");
-const SideBarMonthGrid = require("./SideBarMonthGrid");
+import m from "mithril";
+import SideBarMonthGrid from "./SideBarMonthGrid";
 
 const SideBar = {
     isVisible: false,
@@ -17,4 +17,4 @@ const SideBar = {
     },
 };
 
-module.exports = SideBar;
+export default SideBar;

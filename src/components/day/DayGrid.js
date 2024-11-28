@@ -1,6 +1,6 @@
-const m = require("mithril");
-const SeeMoreGrid = require('./SeeMoreGrid');
-const DayEventsGrid = require("./DayEventsGrid");
+import m from "mithril";
+import SeeMoreGrid from './SeeMoreGrid';
+import DayEventsGrid from "./DayEventsGrid";
 
 const DayGrid = {
     renderCell: function (i, j) {
@@ -29,4 +29,4 @@ const DayGrid = {
     }
 };
 
-module.exports = DayGrid;
+export default  DayGrid;

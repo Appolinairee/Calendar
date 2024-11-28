@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const TopBarMode = {
     view: function (vnode) {
@@ -17,4 +17,4 @@ const TopBarMode = {
     }
 };
 
-module.exports = TopBarMode;
+export default  TopBarMode;

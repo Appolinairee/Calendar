@@ -1,8 +1,8 @@
-const m = require("mithril");
-const { events } = require('../src/assets/datas');
-const EventManager = require('./EventManager');
-const EventsView = require('./event/EventsView');
-const CalendarApp = require("../src/Calendar");
+import m from "mithril";
+import { events } from '../src/assets/datas';
+import EventManager from './EventManager';
+import EventsView from './event/EventsView';
+import CalendarApp from "../src/Calendar";
 
 let eventManager = new EventManager(events);
 

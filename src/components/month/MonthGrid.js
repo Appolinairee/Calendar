@@ -1,6 +1,6 @@
-const m = require("mithril");
-const BackgroundGrid = require("./BackgroundGrid");
-const MonthEventsGrid = require("./MonthEventsGrid");
+import m from "mithril";
+import BackgroundGrid from "./BackgroundGrid";
+import MonthEventsGrid from "./MonthEventsGrid";
 
 const MonthGrid = {
 
@@ -13,4 +13,4 @@ const MonthGrid = {
 
 };
 
-module.exports = MonthGrid;
+export default  MonthGrid;

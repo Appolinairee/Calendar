@@ -1,5 +1,5 @@
-const m = require("mithril");
-const AddEvent = require('./AddEvent');
+import m from "mithril";
+import AddEvent from './AddEvent';
 
 const EventsView = {
     view: function (vnode) {
@@ -9,4 +9,4 @@ const EventsView = {
     }
 };
 
-module.exports = EventsView;
+export default  EventsView;

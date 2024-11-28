@@ -1,27 +1,27 @@
-const m = require("mithril");
-const CalendarView = require("./CalendarView");
-const TopBar = require("./components/topbar/TopBar");
-const SideBar = require("./components/sidebar/SideBar");
+import m from "mithril";
+import CalendarView from "./CalendarView";
+import TopBar from "./components/topbar/TopBar";
+import SideBar from "./components/sidebar/SideBar";
 
-require("./styles/index.css");
-require("./styles/topBar.css");
+import "./styles/index.css";
+import "./styles/topBar.css";
 
-require("./styles/topBar.css");
-require("./styles/sidebar.css");
+import "./styles/topBar.css";
+import "./styles/sidebar.css";
 
-require("./styles/day/day.css");
-require("./styles/day/grid.css");
-require("./styles/day/event.css");
+import "./styles/day/day.css";
+import "./styles/day/grid.css";
+import "./styles/day/event.css";
 
-require("./styles/month/month.css");
-require("./styles/month/monthGrid.css");
-require("./styles/month/month-event.css");
+import "./styles/month/month.css";
+import "./styles/month/monthGrid.css";
+import "./styles/month/month-event.css";
 
-require("./styles/year/year.css");
-require("./styles/week/week.css");
+import "./styles/year/year.css";
+import "./styles/week/week.css";
 
-const Calendar = require("./classes/Calendar");
-require("../utils/date.utils");
+import Calendar from "./classes/Calendar";
+import "../utils/date.utils";
 
 const CalendarApp = {
     oninit: function (vnode) {
@@ -51,4 +51,4 @@ const CalendarApp = {
     }
 }
 
-module.exports = CalendarApp;
+export default CalendarApp;

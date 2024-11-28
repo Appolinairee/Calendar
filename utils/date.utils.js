@@ -43,7 +43,7 @@ function formatDateForDayEvent(dateString) {
     return date.toLocaleTimeString('fr-FR', options);
 }
 
-module.exports = {
+export  {
     isValidISODate,
     getUtcDate,
     formatDate,

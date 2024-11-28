@@ -1,5 +1,5 @@
-const m = require("mithril");
-const EventManager = require("./EventManager");
+import m from "mithril";
+import EventManager from "./EventManager";
 
 const eventManager = new EventManager('events');
 
@@ -22,4 +22,4 @@ const EventList = {
     }
 };
 
-module.exports = EventList;
+export default  EventList;

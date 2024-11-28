@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const SideBarMonthNavigation = {
     view: function(vnode) {
@@ -11,4 +11,4 @@ const SideBarMonthNavigation = {
     }
 };
 
-module.exports = SideBarMonthNavigation;
+export default  SideBarMonthNavigation;

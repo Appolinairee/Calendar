@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const ToggleButton = {
     view: function (vnode) {
@@ -11,4 +11,4 @@ const ToggleButton = {
     }
 };
 
-module.exports = ToggleButton;
+export default  ToggleButton;

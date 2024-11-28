@@ -1,4 +1,5 @@
-const Day = require('../src/classes/Day');
+import m from "mithril"
+import Day from '../src/classes/Day';
 
 class CalendarUtils {
     static generateGridCells(params) {
@@ -122,4 +123,4 @@ class CalendarUtils {
     }
 }
 
-module.exports = CalendarUtils;
+export default CalendarUtils;

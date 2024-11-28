@@ -1,7 +1,7 @@
-const m = require("mithril");
-const MonthSeeMore = require("./MonthSeeMore");
-const SeeMore = require("../day/SeeMore");
-const MonthSeeMoreEvent = require("./MonthSeeMore");
+import m from "mithril";
+import MonthSeeMore from "./MonthSeeMore";
+import SeeMore from "../day/SeeMore";
+import MonthSeeMoreEvent from "./MonthSeeMore";
 
 const MonthEventsGrid = {
     displayedEvents: new Set(),
@@ -55,4 +55,4 @@ const MonthEventsGrid = {
     }
 };
 
-module.exports = MonthEventsGrid;
+export default  MonthEventsGrid;

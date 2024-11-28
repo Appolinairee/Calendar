@@ -1,5 +1,5 @@
-const m = require("mithril");
-const Popup = require("../day/PopUp");
+import m from "mithril";
+import Popup from "../day/PopUp";
 
 const MonthSeeMoreEvent = {
     oninit: function (vnode) {
@@ -26,4 +26,4 @@ const MonthSeeMoreEvent = {
     }
 };
 
-module.exports = MonthSeeMoreEvent;
+export default  MonthSeeMoreEvent;

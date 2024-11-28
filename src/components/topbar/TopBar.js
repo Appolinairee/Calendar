@@ -1,7 +1,7 @@
-const m = require("mithril");
-const TopBarDate = require("./TopBarDate");
-const TopBarMode = require("./TopBarMode");
-const TopBarSearch = require("./TopBarSearch");
+import m from "mithril";
+import TopBarDate from "./TopBarDate";
+import TopBarMode from "./TopBarMode";
+import TopBarSearch from "./TopBarSearch";
 
 const TopBar = {
     view: function (vnode) {
@@ -15,4 +15,4 @@ const TopBar = {
     }
 };
 
-module.exports = TopBar;
+export default  TopBar;

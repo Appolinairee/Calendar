@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const TopBarDate = {
     formatDate: function (date, mode) {
@@ -74,4 +74,4 @@ const TopBarDate = {
     }
 };
 
-module.exports = TopBarDate;
+export default  TopBarDate;

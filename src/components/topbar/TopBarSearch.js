@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const TopBarSearch = {
     view: function (vnode) {
@@ -13,4 +13,4 @@ const TopBarSearch = {
     }
 };
 
-module.exports = TopBarSearch;
+export default TopBarSearch;

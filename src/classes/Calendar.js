@@ -66,4 +66,4 @@ class Calendar {
     }
 }
 
-module.exports = Calendar;
+export default  Calendar;

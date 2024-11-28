@@ -1,4 +1,4 @@
-const { isValidISODate, getUtcDate } = require('../../utils/date.utils');
+import { isValidISODate, getUtcDate } from '../../utils/date.utils';
 
 class Month {
 
@@ -269,4 +269,4 @@ class Month {
     }
 }
 
-module.exports = Month;
+export default  Month;

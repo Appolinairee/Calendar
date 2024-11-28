@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const DayEventsGrid = {
     resetDisplayedEvents() {
@@ -48,4 +48,4 @@ const DayEventsGrid = {
     }
 }
 
-module.exports = DayEventsGrid;
+export default  DayEventsGrid;

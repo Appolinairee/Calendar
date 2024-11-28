@@ -1,6 +1,6 @@
-const m = require("mithril");
-const Popup = require("./PopUp");
-const SeeMoreButton = require('./SeeMoreButton');
+import m from "mithril";
+import Popup from "./PopUp";
+import SeeMoreButton from './SeeMoreButton';
 
 const SeeMore = {
     oninit: function (vnode) {
@@ -26,4 +26,4 @@ const SeeMore = {
     }
 };
 
-module.exports = SeeMore;
+export default  SeeMore;

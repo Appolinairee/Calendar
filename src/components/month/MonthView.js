@@ -1,8 +1,8 @@
-const m = require("mithril");
-const MonthGrid = require("./MonthGrid");
-const MonthHeaderGrid = require('./MonthHeaderGrid');
+import m from "mithril";
+import MonthGrid from "./MonthGrid";
+import MonthHeaderGrid from './MonthHeaderGrid';
 
-const Month = require("../../classes/Month");
+import Month from "../../classes/Month";
 
 const MonthView = {
     oninit: function (vnode) {
@@ -30,4 +30,4 @@ const MonthView = {
     }
 };
 
-module.exports = MonthView;
+export default  MonthView;

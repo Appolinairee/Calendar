@@ -1,4 +1,4 @@
-const m = require("mithril");
+import m from "mithril";
 
 const MonthHeaderGrid = {
     view: function () {
@@ -14,4 +14,4 @@ const MonthHeaderGrid = {
     }
 };
 
-module.exports = MonthHeaderGrid;
+export default  MonthHeaderGrid;

@@ -1,8 +1,8 @@
-const m = require("mithril");
-const DayView = require("./components/day/DayView");
-const MonthView = require("./components/month/MonthView");
-const WeekView = require("./components/week/WeekView");
-const YearView = require("./components/year/YearView");
+import m from "mithril";
+import DayView from "./components/day/DayView";
+import MonthView from "./components/month/MonthView";
+import WeekView from "./components/week/WeekView";
+import YearView from "./components/year/YearView";
 
 const CalendarView = {
     view: function (vnode) {
@@ -23,4 +23,4 @@ const CalendarView = {
     }
 };
 
-module.exports = CalendarView;
+export default CalendarView;
