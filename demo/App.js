@@ -19,10 +19,10 @@ const App = {
     view: function (vnode) {
         return m('.app', [
             m(EventsView, { eventManager }),
-            m(CalendarApp, {
+            m('p', m(CalendarApp, {
                 events: eventManager.getEvents(),
                 attributeNames: vnode.state.calendarAttributes
-            })
+            }))
         ]);
     }
 }

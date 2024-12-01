@@ -80,6 +80,8 @@
 
 
 
+
+
 .top-bar-search {
     position: relative;
     border: solid;
@@ -92,18 +94,40 @@
     height: 100%;
     border: none;
     width: 100%;
+    max-width: 200px;
     padding-left: 17px;
 }
 
-.top-bar-search input:focus{
+.top-bar-search input:focus {
     outline: none;
 }
 
-.top-bar-search i{
+.top-bar-search i {
     position: absolute;
     left: 8px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
-    color:rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 800px) {
+    .top-bar .top-bar-search {
+        display: none;
+    }
+
+    .top-bar-date {
+        gap: 5px;
+    }
+
+    .top-bar-date .chevrons {
+        gap: 0px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .top-bar-date span {
+        display: none;
+    }
 }

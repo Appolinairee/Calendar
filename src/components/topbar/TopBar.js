@@ -8,11 +8,14 @@ const TopBar = {
         const { calendar } = vnode.attrs;
 
         return m('.top-bar.flex', [
-            m(TopBarDate, { calendar }),
+            m('div.flex', { style: " gap: 12px; " }, [
+                m('i.fas.fa-bars menu-icon', { onclick: () => vnode.attrs.toggleSideBarVisibility(), style: "cursor: pointer;" }),
+                m(TopBarDate, { calendar })
+            ]),
             m(TopBarMode, { calendar }),
             m(TopBarSearch)
         ]);
     }
 };
 
-export default  TopBar;
+export default TopBar;

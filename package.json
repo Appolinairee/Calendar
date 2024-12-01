@@ -1,15 +1,21 @@
 {
   "name": "modern-calendar",
-  "version": "1.0.0",
+  "version": "2.1.3",
   "description": "A calendar module for displaying events.",
-  "main": "dist/calendar.bundle.js",
+  "main": "dist/calendar.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/calendar.es.js",
+      "require": "./dist/calendar.cjs.js"
+    }
+  },
   "directories": {
     "doc": "docs",
     "test": "tests"
   },
- "scripts": {
+  "scripts": {
     "start": "vite",
-    "build": "vite build", 
+    "build": "vite build",
     "build:css": "postcss src/styles/tailwind.css -o dist/styles.css"
   },
   "keywords": [

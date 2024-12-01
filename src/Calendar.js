@@ -1,10 +1,10 @@
 import m from "mithril";
 import CalendarView from "./CalendarView";
 import TopBar from "./components/topbar/TopBar";
-import SideBar from "./components/sidebar/SideBar";
 
 import "./styles/index.css";
 import "./styles/topBar.css";
+import "./styles/components.css";
 
 import "./styles/topBar.css";
 import "./styles/sidebar.css";
@@ -22,6 +22,13 @@ import "./styles/week/week.css";
 
 import Calendar from "./classes/Calendar";
 import "../utils/date.utils";
+import SideBarMonthGrid from "./components/sidebar/SideBarMonthGrid";
+
+let isSideBarVisible = false;
+
+const toggleSideBarVisibility = () => {
+    isSideBarVisible = !isSideBarVisible;
+}
 
 const CalendarApp = {
     oninit: function (vnode) {
@@ -36,12 +43,13 @@ const CalendarApp = {
 
     view: function (vnode) {
         return m('.all-calendar', [
-            m(SideBar, {
-                calendar: vnode.state.calendar
-            }),
+            m('.sidebar-container', [
+                isSideBarVisible && m('.sidebar', m(SideBarMonthGrid, { calendar: vnode.state.calendar}))
+            ]),
             m('.app', [
                 m(TopBar, {
-                    calendar: vnode.state.calendar
+                    calendar: vnode.state.calendar,
+                    toggleSideBarVisibility
                 }),
                 m(CalendarView, {
                     calendar: vnode.state.calendar, events: vnode.attrs.events

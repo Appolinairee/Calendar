@@ -36,7 +36,6 @@
     color: var(--calendarPrimaryColor);
     background-color: white;
     width: 100%;
-    z-index: 20;
 }
 
 .dayLabel p.text {
@@ -48,7 +47,7 @@
     font-size: 1rem;
     background: var(--calendarPrimaryColor);
     border-radius: 50%;
-    transform: translateY(10px);    
+    transform: translateY(10px);
     color: white;
     width: 43px;
     margin-left: 60px;

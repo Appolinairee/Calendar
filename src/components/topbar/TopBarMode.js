@@ -1,20 +1,46 @@
 import m from "mithril";
+import SelectField from "./SelectField";
 
 const TopBarMode = {
+    isMobile: window.matchMedia("(max-width: 768px)").matches,
+
     view: function (vnode) {
         const { calendar } = vnode.attrs;
 
-        return m('.top-bar-mode.flex', [
-            m('span', { class: calendar.currentMode === 'day' ? 'active' : '', onclick: () => calendar.switchMode('day') }, 'Day'),
+        return this.isMobile
+            ? m(SelectField, {
+                value: calendar.currentMode,
+                onChange: (mode) => calendar.switchMode(mode),
+                options: [
+                    { label: "Day", value: "day" },
+                    { label: "Week", value: "week" },
+                    { label: "Month", value: "month" },
+                    { label: "Year", value: "year" },
+                ],
+                placeholder: "Select Mode",
+                className: "top-bar-mode-select",
+                inputClass: "custom-input-class",
+            })
+            : m('.top-bar-mode.flex', [
+                m('span', { class: calendar.currentMode === 'day' ? 'active' : '', onclick: () => calendar.switchMode('day') }, 'Day'),
+                m('span', { class: calendar.currentMode === 'week' ? 'active' : '', onclick: () => calendar.switchMode('week') }, 'Week'),
+                m('span', { class: calendar.currentMode === 'month' ? 'active' : '', onclick: () => calendar.switchMode('month') }, 'Month'),
+                m('span', { class: calendar.currentMode === 'year' ? 'active' : '', onclick: () => calendar.switchMode('year') }, 'Year'),
+            ]);
+    },
 
-            m('span', { class: calendar.currentMode === 'week' ? 'active' : '', onclick: () => calendar.switchMode('week') }, 'Week'),
+    oncreate: function () {
+        const updateMode = () => {
+            this.isMobile = window.matchMedia("(max-width: 768px)").matches;
+            m.redraw();
+        };
 
-            m('span', { class: calendar.currentMode === 'month' ? 'active' : '', onclick: () => calendar.switchMode('month') }, 'Month'),
+        window.addEventListener("resize", updateMode);
+    },
 
-            m('span', { class: calendar.currentMode === 'year' ? 'active' : '', onclick: () => calendar.switchMode('year') }, 'Year'),
-
-        ]);
+    onremove: function () {
+        window.removeEventListener("resize", this.updateMode);
     }
 };
 
-export default  TopBarMode;
+export default TopBarMode;
