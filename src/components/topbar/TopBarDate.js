@@ -74,4 +74,4 @@ const TopBarDate = {
     }
 };
 
-export default  TopBarDate;
+export default TopBarDate;

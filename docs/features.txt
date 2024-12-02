@@ -1,3 +1,7 @@
 - findPosition && BuildEventStyle
 - Redactions
 - Interfaces
+
+
+Popup de seemore des events sur mobile,
+Vérifier le style des events sur mobile

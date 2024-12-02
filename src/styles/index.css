@@ -61,11 +61,11 @@
     box-shadow: none;
     background: rgb(218, 220, 224);
     border-radius: 8px;
-    min-height: 40px;
+    min-height: 30px;
 }
 
 .all-calendar .minimize-scrollbar::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     border-radius: 5px;
     height: 5px;
 }

@@ -6,9 +6,12 @@ const SeeMoreButton = {
             onclick: vnode.attrs.onClick
         }, [
             m('i.far.fa-plus'),
-            m('p', `${vnode.attrs.length} events`)
+            m('p', [
+                m('p.number', vnode.attrs.length),
+                m('p.label', ' events')
+            ])
         ]);
     }
 };
 
-export default  SeeMoreButton;
+export default SeeMoreButton;

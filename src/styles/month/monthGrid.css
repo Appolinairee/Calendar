@@ -1,6 +1,7 @@
 .month-grid-container {
-    height: 470px;
+    height: calc(100vh - 120px);
     overflow-y: scroll;
+    overflow-x: hidden;
     padding: 0 30px;
     position: relative;
 }
@@ -23,7 +24,6 @@
     font-size: 12px;
     position: relative;
     font-weight: 500;
-
 }
 
 .month-grid .month-grid-cell.month-grid-border {
@@ -82,4 +82,10 @@
     border: none;
 
     margin: 0px 30px;
+}
+
+@media screen and (max-width: 500px) {
+    .month-grid-container {
+        padding: 0 10px;
+    }
 }

@@ -26,4 +26,4 @@ const SeeMore = {
     }
 };
 
-export default  SeeMore;
+export default SeeMore;

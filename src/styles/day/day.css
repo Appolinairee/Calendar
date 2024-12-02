@@ -29,6 +29,7 @@
     height: 450px;
 }
 
+
 .dayLabel {
     position: sticky;
     top: 0px;
@@ -64,7 +65,6 @@
     grid-template-rows: repeat(24, 80px);
     text-align: center;
     color: var(--calendarGridLabelColor);
-
 }
 
 .hour-item {
@@ -98,7 +98,7 @@
     transition: .1s ease;
 }
 
-.see-more-grid .see-more-btn:hover::after, .see-more-grid .see-more-btn:focus{
+.see-more-grid .see-more-btn:hover::after, .see-more-grid .see-more-btn:focus {
     display: none;
 }
 
@@ -109,6 +109,16 @@
     height: 1px;
     left: 17%;
     border-radius: 5px;
+}
+
+.see-more-grid .see-more-btn p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.see-more-grid .see-more-btn p .label {
+    margin-top: -2px;
 }
 
 
@@ -132,11 +142,11 @@
     font-size: 14px;
 }
 
-.popup .popup-content span  {
+.popup .popup-content span {
     font-size: 13px;
 }
 
-.popup .popup-content i{
+.popup .popup-content i {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -146,9 +156,9 @@
     font-size: 12px;
     cursor: pointer;
     transition: 0.03s ease;
-} 
+}
 
-.popup .popup-content i:hover{
+.popup .popup-content i:hover {
     background: rgba(0, 0, 0, 0.163);
 }
 
@@ -160,4 +170,28 @@
     left: calc(50% - 7px);
     transform: rotate(45deg);
     border: .5px solid var(--gridColor);
+}
+
+@media screen and (max-width: 500px) {
+    .calendar-view {
+        margin: 0px 5px 0;
+    }
+
+    .day {
+        padding-right: 5px;
+    }
+
+    .day .hourList:nth-last-child(1) {
+        display: none;
+        background: red;
+    }
+
+    .see-more-grid .see-more-btn p .label {
+        display: none;
+    }
+
+    .see-more-grid .see-more-btn {
+        gap: 2px;
+        font-size: 12px;
+    }
 }

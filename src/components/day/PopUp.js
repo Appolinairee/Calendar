@@ -1,4 +1,5 @@
 import m from "mithril";
+import { formatDate, formatHour } from "../../../utils/date.utils";
 
 const Popup = {
     view: function (vnode) {

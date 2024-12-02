@@ -1,4 +1,5 @@
 import m from "mithril";
+import { formatDateForDayEvent } from "../../../utils/date.utils";
 
 const DayEventsGrid = {
     resetDisplayedEvents() {

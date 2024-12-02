@@ -1,7 +1,7 @@
 import { isValidISODate, getUtcDate } from '../../utils/date.utils';
 
 class Day {
-
+    
     constructor() {
         this._events = null;
         this._cases = null;

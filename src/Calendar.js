@@ -36,7 +36,7 @@ const CalendarApp = {
         vnode.state.calendar = new Calendar({
             date: initialDate,
             events: vnode.attrs.events,
-            mode: 'month',
+            mode: 'day',
             attributeNames: vnode.attrs.attributeNames
         });
     },

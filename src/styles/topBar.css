@@ -30,7 +30,7 @@
 }
 
 .top-bar-date .chevrons i {
-    background: rgba(0, 0, 0, 0.027);
+    background: rgba(0, 0, 0, 0.07);
     cursor: pointer;
     padding: 5px 8px;
     border-radius: 50%;
@@ -121,13 +121,17 @@
     }
 
     .top-bar-date .chevrons {
-        gap: 0px;
-        font-size: 13px;
+        gap: 4px;
+        font-size: 11px;
     }
 }
 
 @media screen and (max-width: 450px) {
     .top-bar-date span {
         display: none;
+    }
+
+    .top-bar {
+        margin-bottom: -5px;
     }
 }

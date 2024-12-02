@@ -1,7 +1,6 @@
 import m from "mithril";
 import HourList from "./HourList";
 import DayGrid from "./DayGrid";
-
 import Day from "../../classes/Day";
 
 const DayView = {
@@ -34,4 +33,4 @@ const DayView = {
     }
 };
 
-export default  DayView;
+export default DayView;
