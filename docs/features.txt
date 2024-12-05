@@ -3,5 +3,7 @@
 - Interfaces
 
 
-Popup de seemore des events sur mobile,
-Vérifier le style des events sur mobile
+mobile
+- Enlever les modes day, week
+- Enlever tous les events sur les modes
+- implémenter la liste et mettre les events 

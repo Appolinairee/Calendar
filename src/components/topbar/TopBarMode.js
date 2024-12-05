@@ -7,16 +7,21 @@ const TopBarMode = {
     view: function (vnode) {
         const { calendar } = vnode.attrs;
 
+        const options = [
+            { label: "Month", value: "month" },
+            { label: "Year", value: "year" },
+        ];
+
+        if (!this.isMobile) {
+            options.unshift({ label: "Day", value: "day" });
+            options.unshift({ label: "Week", value: "week" });
+        }
+
         return this.isMobile
             ? m(SelectField, {
                 value: calendar.currentMode,
                 onChange: (mode) => calendar.switchMode(mode),
-                options: [
-                    { label: "Day", value: "day" },
-                    { label: "Week", value: "week" },
-                    { label: "Month", value: "month" },
-                    { label: "Year", value: "year" },
-                ],
+                options: options,
                 placeholder: "Select Mode",
                 className: "top-bar-mode-select",
                 inputClass: "custom-input-class",
@@ -32,10 +37,10 @@ const TopBarMode = {
     oncreate: function () {
         const updateMode = () => {
             this.isMobile = window.matchMedia("(max-width: 768px)").matches;
-            m.redraw();
         };
 
         window.addEventListener("resize", updateMode);
+        this.updateMode = updateMode;
     },
 
     onremove: function () {

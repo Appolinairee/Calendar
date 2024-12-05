@@ -5,7 +5,7 @@
     color: black;
     border-radius: 3px;
     padding: 0 3px;
-    margin: 1px 1px; 
+    margin: 1px 1px;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
@@ -36,4 +36,11 @@
 .month .popup .popup-content {
     top: 3px;
     padding: 10px 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .month .event, .month .popup, .month .month-see-more-container, .month .see-more-event, .month-grid.month-events-grid {
+        display: none;
+    }
 }

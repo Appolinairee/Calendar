@@ -49,4 +49,4 @@ const DayEventsGrid = {
     }
 }
 
-export default  DayEventsGrid;
+export default DayEventsGrid;

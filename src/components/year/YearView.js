@@ -7,11 +7,13 @@ const YearView = {
         vnode.attrs.date.getFullYear();
         this.events = vnode.attrs.events;
         this.calendar = vnode.attrs.calendar;
+        this.isMobile = window.matchMedia("(max-width: 768px)").matches;
     },
 
     setCalendarDate: function (date) {
         this.calendar.setCurrentDate(date);
-        this.calendar.switchMode('day');
+        const targetMode = this.isMobile ? 'month' : 'day';
+        this.calendar.switchMode(targetMode);
     },
 
     view: function (vnode) {
@@ -51,4 +53,4 @@ const YearView = {
     }
 };
 
-export default  YearView;
+export default YearView;

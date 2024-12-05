@@ -49,8 +49,6 @@
 }
 
 
-
-
 .top-bar-mode {
     position: absolute;
     left: 50%;
@@ -123,6 +121,16 @@
     .top-bar-date .chevrons {
         gap: 4px;
         font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .top-bar .menu-icon {
+        display: none;
+    }
+
+    .top-bar {
+        padding-left: 3%;
     }
 }
 

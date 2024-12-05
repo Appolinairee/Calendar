@@ -9,7 +9,7 @@ const TopBar = {
 
         return m('.top-bar.flex', [
             m('div.flex', { style: " gap: 12px; " }, [
-                m('i.fas.fa-bars menu-icon', { onclick: () => vnode.attrs.toggleSideBarVisibility(), style: "cursor: pointer;" }),
+                m('i.fas.fa-bars.menu-icon', { onclick: () => vnode.attrs.toggleSideBarVisibility(), style: "cursor: pointer;" }),
                 m(TopBarDate, { calendar })
             ]),
             m(TopBarMode, { calendar }),

@@ -25,6 +25,12 @@ const SelectField = () => {
       document.addEventListener("click", vnode.state.handleClickOutside);
     },
 
+    onbeforeupdate: (vnode) => {
+      if (vnode.attrs.value !== vnode.state.selected) {
+        vnode.state.selected = vnode.attrs.value || "";
+      }
+    },
+    
     onremove: (vnode) => {
       document.removeEventListener("click", vnode.state.handleClickOutside);
     },
@@ -44,6 +50,8 @@ const SelectField = () => {
       } = vnode.attrs;
 
       const { selected, isOpen, inputId, searchValue } = vnode.state;
+
+      console.log()
 
       const handleButtonClick = () => {
         vnode.state.isOpen = !vnode.state.isOpen;
