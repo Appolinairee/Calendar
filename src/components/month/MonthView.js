@@ -25,7 +25,7 @@ const MonthView = {
 
         return m('.month', [
             m(MonthHeaderGrid),
-            m(MonthGrid, {date, month: this.month})
+            m(MonthGrid, {date, month: this.month}),
         ]);
     }
 };

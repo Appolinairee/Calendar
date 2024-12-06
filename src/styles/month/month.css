@@ -28,6 +28,22 @@
     padding-right: 1px;
 }
 
+.list-mode-container {
+}
+
+.list-mode-container .list-mode {
+    z-index: 20;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    background: white;
+    width: 100%;
+    height: 80%;
+    border-radius: 25px 25px 0 0;
+    padding: 15px 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.398);
+}
+
 @media screen and (max-width: 500px) {
     .month {
         margin: 20px 5px 0 0;

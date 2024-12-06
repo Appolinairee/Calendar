@@ -14,6 +14,7 @@ const YearView = {
         this.calendar.setCurrentDate(date);
         const targetMode = this.isMobile ? 'month' : 'day';
         this.calendar.switchMode(targetMode);
+        this.calendar.activeMobileListMode();
     },
 
     view: function (vnode) {

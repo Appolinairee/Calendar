@@ -30,13 +30,15 @@ const toggleSideBarVisibility = () => {
     isSideBarVisible = !isSideBarVisible;
 }
 
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
 const CalendarApp = {
     oninit: function (vnode) {
         const initialDate = new Date();
         vnode.state.calendar = new Calendar({
             date: initialDate,
             events: vnode.attrs.events,
-            mode: 'day',
+            mode: isMobile ? 'month' : 'day',
             attributeNames: vnode.attrs.attributeNames
         });
     },
@@ -44,7 +46,7 @@ const CalendarApp = {
     view: function (vnode) {
         return m('.all-calendar', [
             m('.sidebar-container', [
-                isSideBarVisible && m('.sidebar', m(SideBarMonthGrid, { calendar: vnode.state.calendar}))
+                isSideBarVisible && m('.sidebar', m(SideBarMonthGrid, { calendar: vnode.state.calendar }))
             ]),
             m('.app', [
                 m(TopBar, {

@@ -12,6 +12,7 @@ class Calendar {
         this._events = this.configureEvents(props.events, props.attributeNames || {});
         this._validModes = ['day', 'month', 'year', 'week'];
         this._currentMode = this._validModes.includes(props.mode) ? props.mode : 'day';
+        this._isMobileListMode = false;
     }
 
     configureEvents(events, attributeNames) {
@@ -53,6 +54,14 @@ class Calendar {
         this._events = this.configureEvents(newEvents, attributeNames);
     }
 
+    activeMobileListMode(date) {
+        this._isMobileListMode = true;
+    }
+
+    desactiveMobileListMode(date) {
+        this._isMobileListMode = false;
+    }
+
     get date() {
         return this._currentDate;
     }
@@ -66,4 +75,4 @@ class Calendar {
     }
 }
 
-export default  Calendar;
+export default Calendar;

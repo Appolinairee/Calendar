@@ -30,7 +30,7 @@ const SelectField = () => {
         vnode.state.selected = vnode.attrs.value || "";
       }
     },
-    
+
     onremove: (vnode) => {
       document.removeEventListener("click", vnode.state.handleClickOutside);
     },

@@ -49,7 +49,7 @@ class CalendarUtils {
 
                 components.push(m('.cell', {
                     class: cellClass,
-                    onclick: () => { console.log(new Date(currentYear, currentMonth, cellInfo.content)); setCalendarDate(new Date(currentYear, currentMonth, cellInfo.content)) }
+                    onclick: () => { setCalendarDate(new Date(currentYear, currentMonth, cellInfo.content)) }
                 }, [
                     m('p', [
                         m('span', cellInfo.content),
