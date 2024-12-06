@@ -62,6 +62,20 @@ class Calendar {
         this._isMobileListMode = false;
     }
 
+    getCurrentDayEvents() {
+        const currentDate = this._currentDate;
+        return this._events.filter(event => {
+            const eventStart = new Date(event.startDate);
+            const eventEnd = new Date(event.endDate);
+
+            return (
+                eventStart.getFullYear() === currentDate.getFullYear() &&
+                eventStart.getMonth() === currentDate.getMonth() &&
+                eventStart.getDate() === currentDate.getDate()
+            );
+        });
+    }
+
     get date() {
         return this._currentDate;
     }

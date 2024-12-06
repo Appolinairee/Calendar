@@ -22,18 +22,24 @@ const BackgroundGrid = {
         const baseClass = (i % 5 === 0) ? ' month-grid-border' : '';
         const cellIndex = Math.floor(i / 5) * 7 + j;
 
+        const { day, styleClass } = this.getDayInfo(cellIndex, firstDay, lastDay, prevMonthDays);
+        let finalClass = `${baseClass} ${styleClass}`;
+
         if (i % 5 !== 0) {
             return m('.month-grid-cell', { class: baseClass });
         }
-
-        const { day, styleClass } = this.getDayInfo(cellIndex, firstDay, lastDay, prevMonthDays);
-        let finalClass = `${baseClass} ${styleClass}`;
 
         if (day === currentDay) {
             finalClass += ' current-day';
         }
 
-        return m('.month-grid-cell', { class: finalClass }, m('span', day));
+        return m('.month-grid-cell', {
+            class: finalClass, onclick: () => {
+                const cellDate = new Date(date.getFullYear(), date.getMonth(), day);
+                this.calendar.setCurrentDate(cellDate);
+                this.calendar.activeMobileListMode();
+            }
+        }, m('span', day));
     },
 
     view: function (vnode) {
@@ -64,4 +70,4 @@ const BackgroundGrid = {
     }
 };
 
-export default  BackgroundGrid;
+export default BackgroundGrid;
