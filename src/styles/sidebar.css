@@ -21,30 +21,28 @@
     margin-bottom: 3px;
 }
 
-.sidebar .sidebar-month-grid {
+.sidebar-month-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 30px);
     text-align: center;
     font-size: 11px;
-
     padding-bottom: 15px;
-
     border-bottom: 1px solid var(--calendarOpacityBlack);
 }
 
-.sidebar .sidebar-month-grid .cell {
+.sidebar-month-grid .cell {
     cursor: pointer;
     transition: .2s ease;
 }
 
-.sidebar .sidebar-month-grid .cell.non-current-month {
+.sidebar-month-grid .cell.non-current-month {
     color: #868f97;
     cursor: not-allowed;
 }
 
 
-.sidebar .sidebar-month-grid .cell p, .year-view .cell p {
+.sidebar-month-grid .cell p, .year-view .cell p {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -55,25 +53,25 @@
     max-width: 25px;
 }
 
-.sidebar .sidebar-month-grid .cell.with-dots p, .year-view .cell.with-dots p {
+.sidebar-month-grid .cell.with-dots p, .year-view .cell.with-dots p {
     padding: 2px 6px;
 }
 
-.sidebar .sidebar-month-grid .cell.today p, .year-view .cell.today p {
+.sidebar-month-grid .cell.today p, .year-view .cell.today p {
     background: var(--calendarPrimaryColor);
     color: white;
 }
 
-.sidebar .sidebar-month-grid .cell.selected p {
+.sidebar-month-grid .cell.selected p {
     color: white;
     background: var(--calendarPrimaryColor);
 }
 
-.sidebar .sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p {
+.sidebar-month-grid .cell.non-current-month:hover p, .year-view .cell.non-current-month:hover p {
     border: none;
 }
 
-.sidebar .sidebar-navigation {
+.sidebar-navigation {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,20 +81,20 @@
     padding-top: 7px;
 }
 
-.sidebar .sidebar-navigation .nav-button {
+.sidebar-navigation .nav-button {
     cursor: pointer;
     padding: 0 8px;
     border-radius: 50%;
 }
 
-.sidebar .sidebar-navigation .nav-button:hover {
+.sidebar-navigation .nav-button:hover {
     background: var(--gridColor);
 }
 
 
 
 /* DOTS */
-.sidebar .sidebar-month-grid .cell p .event-points, .year-view .cell p .event-points {
+.sidebar-month-grid .cell p .event-points, .year-view .cell p .event-points {
     height: 4px;
     display: flex;
     justify-content: center;

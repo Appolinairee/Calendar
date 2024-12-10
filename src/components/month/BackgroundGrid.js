@@ -37,7 +37,6 @@ const BackgroundGrid = {
             class: finalClass, onclick: () => {
                 const cellDate = new Date(date.getFullYear(), date.getMonth(), day);
                 this.calendar.setCurrentDate(cellDate);
-                this.calendar.activeMobileListMode();
             }
         }, m('span', day));
     },

@@ -53,15 +53,7 @@ class Calendar {
     updateEvents(newEvents, attributeNames) {
         this._events = this.configureEvents(newEvents, attributeNames);
     }
-
-    activeMobileListMode(date) {
-        this._isMobileListMode = true;
-    }
-
-    desactiveMobileListMode(date) {
-        this._isMobileListMode = false;
-    }
-
+    
     getCurrentDayEvents() {
         const currentDate = this._currentDate;
         return this._events.filter(event => {

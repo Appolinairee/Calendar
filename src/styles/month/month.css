@@ -28,20 +28,17 @@
     padding-right: 1px;
 }
 
+
+
 .list-mode-container {}
 
 .list-mode-container .list-mode {
-    z-index: 20;
-    position: absolute;
-    left: 0;
-    top: 10%;
     background: white;
     width: 100%;
-    height: 90%;
     border-radius: 25px 25px 0 0;
     padding: 15px 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.398);
-    overflow: hidden;
+    font-size: 15px;
+    overflow-y: auto;
 }
 
 .list-mode-container .header {
@@ -63,7 +60,7 @@
 .list-mode-container .list-mode-events {
     margin-top: 5px;
     overflow-y: auto;
-    height: 95%;
+    height: calc(100vh - 360px);
     padding: 10px 0;
     padding-right: 10px;
     padding-bottom: 50px;
