@@ -4,6 +4,19 @@ import SelectField from "./SelectField";
 const TopBarMode = {
   isMobile: window.matchMedia("(max-width: 768px)").matches,
 
+  oninit: function () {
+    this.isMobile = window.matchMedia("(max-width: 768px)").matches;
+    this.updateMobileStatus = () => {
+      this.isMobile = window.matchMedia("(max-width: 768px)").matches;
+      m.redraw();
+    };
+    window.addEventListener("resize", this.updateMobileStatus);
+  },
+
+  onremove: function () {
+    window.removeEventListener("resize", this.updateMobileStatus);
+  },
+
   view: function (vnode) {
     const { calendar } = vnode.attrs;
 
@@ -60,19 +73,6 @@ const TopBarMode = {
             "Year"
           ),
         ]);
-  },
-
-  oncreate: function () {
-    const updateMode = () => {
-      this.isMobile = window.matchMedia("(max-width: 768px)").matches;
-    };
-
-    window.addEventListener("resize", updateMode);
-    this.updateMode = updateMode;
-  },
-
-  onremove: function () {
-    window.removeEventListener("resize", this.updateMode);
   },
 };
 
